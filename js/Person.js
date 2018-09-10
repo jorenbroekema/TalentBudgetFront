@@ -7,19 +7,18 @@ class Person {
     this.height = height; 
     this.weight = weight;
     this.teamId = teamId;
-    console.log(this);
   }
 
-  sendPerson(){
+  static sendPerson(api, age, firstname, height, weight, teamId){
     const personObj = {
-      api: this.api,
-      age: this.age,
-      firstname: this.firstname,
-      height: this.height,
-      weight: this.weight,
-      teamId: this.teamId
+      api: api,
+      age: age,
+      firstname: firstname,
+      height: height,
+      weight: weight,
+      teamId: teamId
     };
-
+    console.log(personObj);
     if (personObj.age < 18) {
       document.getElementById("sendPersonButton").style.background='#FF69B4';
       document.getElementById("sendPersonButton").style.color='#FFFFFF';

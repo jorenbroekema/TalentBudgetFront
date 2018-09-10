@@ -1,7 +1,7 @@
 <html>
 <head>
-    <script type="module" src="js/main.js"></script>
     <link rel="stylesheet" type="text/css" href="css/main.css">
+    <script type="module" src="js/main.js"></script>
 </head>
 <body>
 <img src="resources/logo.svg" alt="Young Colfield logo">
@@ -12,7 +12,7 @@
 <div id="ajaxResponseDemo"></div>
 Person:
 <div id="person_API_container" style="text-align: center;">
-    <span id="person_API">API: <input type=text id="apiUrl" value="api/person"/></span>
+    <span id="person_API">API: <input type=text id="apiPersonUrl" value="api/person"/></span>
 </div>
 
 <hr/>
@@ -23,7 +23,7 @@ Person:
     <li><span>Weight:</span><span><input type="text" id="weight"/></span></li>
     <li><span>TeamID:</span> <span><input type="text" id="teamid"/></span></li>
 </ul>
-<div><button id="sendPersonButton" onclick="sendPerson()">Add Player</button></div>
+<div><button id="sendPersonButton">Add Player</button></div>
 <hr>
 Team:
 <div id="team_API_container" style="text-align: center;">
@@ -31,19 +31,19 @@ Team:
 </div>
 
 <hr/>
-<ul>
+<ul id="teams_table">
     <li>Team Name: <input type="text" id="teamname"/></li>
     <li>Nationality: <input type="text" id="nationality"/></li>
     <li>Slogan: <input type="text" id="slogan"/></li>
 </ul>
 
-<div><button id="send_team_button" onclick="sendTeam()">Add Team</button></div>
+<div><button id="sendTeamButton">Add Team</button></div>
 <br>
 <hr>
 <br>
 <div id="show_buttons">
-    <button onclick="getData('api/person')">Show Players</button>
-    <button onclick="getData('api/team')">Show Teams</button>
+    <button id="showPersonsButton">Show Players</button>
+    <button id="showTeamsButton">Show Teams</button>
 </div>
 
 </body>

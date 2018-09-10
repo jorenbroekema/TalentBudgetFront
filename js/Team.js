@@ -5,19 +5,16 @@ class Team {
     this.teamname = teamname;
     this.nationality = nationality;
     this.slogan = slogan;
-    console.log(this);
   }
 
-  sendTeam(){
+  static sendTeam(api, teamname, nationality, slogan){
     var teamObj = {
-      api: this.api,
-      teamname: this.teamname,
-      nationality: this.nationality,
-      slogan: this.slogan
+      api: api,
+      teamname: teamname,
+      nationality: nationality,
+      slogan: slogan
     };
-    var teamJSON = JSON.stringify(teamObj);
-    console.log(teamJSON);
+    const teamJSON = JSON.stringify(teamObj);
     postData(teamObj.api, teamJSON);
   }
-
 }

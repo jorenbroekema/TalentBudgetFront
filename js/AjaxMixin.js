@@ -1,3 +1,5 @@
+import * as data from '../localconfig.js';
+
 export function postData(api, data){
   let xhttp = new XMLHttpRequest();
   xhttp.onreadystatechange = function() {
@@ -6,7 +8,7 @@ export function postData(api, data){
       const response = JSON.parse(this.responseText);
     }
   };
-  xhttp.open("POST", "http://localhost:8082/"+api, true);
+  xhttp.open("POST", "http://localhost:" + httpPort + "/" + api, true);
   xhttp.setRequestHeader("Content-type", "application/json");
   xhttp.send(data);
 }
@@ -19,7 +21,7 @@ export function getData(api){
       const response = JSON.parse(this.responseText);
     }
   };
-  xhttp.open("GET", "http://localhost:8082/"+api);
+  xhttp.open("GET", "http://localhost:" + httpPort + "/" + api);
   xhttp.setRequestHeader("Content-type", "application/json");
   xhttp.send();
 }
