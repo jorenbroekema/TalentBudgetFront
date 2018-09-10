@@ -2,8 +2,6 @@
 <head>
     <script>
         function sendPerson(){
-			document.getElementById("send_person_button").style.background='#BB3333';
-			
             var personObj = {
                 api: document.getElementById("apiUrl").value,
                 age: document.getElementById("age").value,
@@ -12,8 +10,15 @@
                 weight: document.getElementById("weight").value,
                 teamId: document.getElementById("teamid").value
             };
-            var personJSON = JSON.stringify(personObj);
-            postData(personObj.api, personJSON);
+			
+			if (personObj.age < 18) {
+				document.getElementById("send_person_button").style.background='#FF69B4';
+				document.getElementById("send_person_button").style.color='#FFFFFF';
+				alert("You're too young!");
+			} else {			
+				var personJSON = JSON.stringify(personObj);
+				postData(personObj.api, personJSON);
+			}
         }
 
         function sendTeam(){
