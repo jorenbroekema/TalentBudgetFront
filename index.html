@@ -1,5 +1,6 @@
 <html>
 <head>
+	<script src="./localconfig.js"></script>
     <script>
         function sendPerson(){
             var personObj = {
@@ -12,10 +13,10 @@
             };
 			
 			if (personObj.age < 18) {
-				document.getElementById("send_person_button").style.background='#FF69B4';
-				document.getElementById("send_person_button").style.color='#FFFFFF';
+				document.getElementById("sendPersonButton").style.background='#FF69B4';
+				document.getElementById("sendPersonButton").style.color='#FFFFFF';
 				alert("You're too young!");
-			} else {			
+			} else {
 				var personJSON = JSON.stringify(personObj);
 				postData(personObj.api, personJSON);
 			}
@@ -43,7 +44,7 @@
                 //return response;
                 }
             };
-            xhttp.open("POST", "http://localhost:8083/"+api, true);
+            xhttp.open("POST", "http://localhost:"+localConfig.port+"/"+api, true);
             xhttp.setRequestHeader("Content-type", "application/json");
             xhttp.send(data);
         }
@@ -58,7 +59,7 @@
                 //return response;
                 }
             };
-            xhttp.open("GET", "http://localhost:8083/"+api);
+            xhttp.open("GET", "http://localhost:"+localConfig.port+"/"+api);
             xhttp.setRequestHeader("Content-type", "application/json");
             xhttp.send();
         }
@@ -107,10 +108,9 @@ Person:
     <li><span>Weight:</span><span><input type="text" id="weight"/></span></li>
     <li><span>TeamID:</span> <span><input type="text" id="teamid"/></span></li>
 </ul>
-<div><button id="send_person_button" onclick="sendPerson()">Add Player</button></div>
+<div><button id="sendPersonButton" onclick="sendPerson()">Add Player</button></div>
 <hr>
 Team:
-
 <div id="team_API_container" style="text-align: center;">
     <span id="team_API">API: <input type=text id="apiTeamUrl" value="api/team"/></span>
 </div>
