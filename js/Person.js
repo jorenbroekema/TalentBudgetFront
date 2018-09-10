@@ -19,7 +19,14 @@ class Person {
       weight: this.weight,
       teamId: this.teamId
     };
-    const personJSON = JSON.stringify(personObj);
-    postData(personObj.api, personJSON);
+
+    if (personObj.age < 18) {
+      document.getElementById("sendPersonButton").style.background='#FF69B4';
+      document.getElementById("sendPersonButton").style.color='#FFFFFF';
+      alert("You're too young!");
+    } else {
+      const personJSON = JSON.stringify(personObj);
+      postData(personObj.api, personJSON);
+    }
   }
 }

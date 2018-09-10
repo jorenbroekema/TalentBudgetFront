@@ -4,6 +4,8 @@
     <link rel="stylesheet" type="text/css" href="css/main.css">
 </head>
 <body>
+<img src="resources/logo.svg" alt="Young Colfield logo">
+
 <div id="show_tables" style="text-align: center;"><span>Tables:</span></div>
 <hr>
 
@@ -21,10 +23,9 @@ Person:
     <li><span>Weight:</span><span><input type="text" id="weight"/></span></li>
     <li><span>TeamID:</span> <span><input type="text" id="teamid"/></span></li>
 </ul>
-<div><button onclick="sendPerson()">Add Player</button></div>
+<div><button id="sendPersonButton" onclick="sendPerson()">Add Player</button></div>
 <hr>
 Team:
-
 <div id="team_API_container" style="text-align: center;">
     <span id="team_API">API: <input type=text id="apiTeamUrl" value="api/team"/></span>
 </div>
@@ -36,7 +37,7 @@ Team:
     <li>Slogan: <input type="text" id="slogan"/></li>
 </ul>
 
-<div><button onclick="sendTeam()">Add Team</button></div>
+<div><button id="send_team_button" onclick="sendTeam()">Add Team</button></div>
 <br>
 <hr>
 <br>
