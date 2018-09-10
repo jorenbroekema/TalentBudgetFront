@@ -16,4 +16,4 @@ Furthermore, to be able to run this locally, we need a simple http server to ser
 
 If you don't have npm, download and install node from here https://nodejs.org/en/. 
 
-To run it, just do `npm run` and it will do the http-server start. Alternatively, `http-server` works and you can provide an alternative port to the default given one. 
+To run it, just do `npm start` and it will do the http-server start. Alternatively, `http-server` works and you can provide an alternative port to the default given one. 
