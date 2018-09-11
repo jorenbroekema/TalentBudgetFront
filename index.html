@@ -2,9 +2,28 @@
 <head>
     <link rel="stylesheet" type="text/css" href="css/main.css">
     <script type="module" src="js/main.js"></script>
+	<link rel="icon" type="image/png" href="resources/favicons/favicon-32x32.png?x66806" sizes="32x32">
+	<link rel="icon" type="image/png" href="resources/favicons/favicon-16x16.png?x66806" sizes="16x16">
 </head>
+
 <body>
-<img src="resources/logo.svg" alt="Young Colfield logo">
+<!-- Top navigation -->
+<div class="topnav">
+	<img src="resources/logo.svg" alt="Young Colfield logo">
+	<button id="view-teams" onclick="viewTeams()">View Teams</button>
+	<button id="view-teams" onclick="viewTalents()">View Talents</button>
+</div>
+
+<!-- Side navigation -->
+<div class="sidenav">
+  <a href="#">Recommendations</a><p>
+  <a href="#">Joren suggested "Node.js course"!</a><p>
+  <a href="#">Maike suggested "Deutsch für Dummies"!</a><p>
+  <a href="#">Josephine suggested "Introduction to Quantum Mechanics by David J. Griffiths"!</a><p>
+</div>
+
+<!-- Page content -->
+<div class="main">
 
 <div id="show_tables" style="text-align: center;"><span>Tables:</span></div>
 <hr>
@@ -44,6 +63,8 @@ Team:
 <div id="show_buttons">
     <button id="showPersonsButton">Show Players</button>
     <button id="showTeamsButton">Show Teams</button>
+</div>
+
 </div>
 
 </body>

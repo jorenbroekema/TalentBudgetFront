@@ -1,18 +1,17 @@
-#persons_table {
-  display: flex;
-  justify-content: center;
-  flex-direction: column
-}
-
-#show_buttons {
-  display: flex;
-  justify-content: space-around;
-}
-
 @font-face {
   font-family: NeuzeitGroT;
   /* Chrome 4+, Firefox 3.5, Opera 10+, Safari 3—5 */
-  src: url('../resources/fonts/NeuzeitGroT-2.ttf') format('truetype');
+  src: url('resources/fonts/NeuzeitGroT-2.ttf') format('truetype');
+}
+
+#persons_table {
+	display: flex;
+	justify-content: center;
+	flex-direction: column
+}
+#show_buttons {
+	display: flex;
+	justify-content: space-around;
 }
 
 * {
