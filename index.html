@@ -1,103 +1,18 @@
 <html>
 <head>
-	<script src="./localconfig.js"></script>
-    <script>
-        function sendPerson(){
-            var personObj = {
-                api: document.getElementById("apiUrl").value,
-                age: document.getElementById("age").value,
-                firstname: document.getElementById("firstname").value,
-                height: document.getElementById("height").value,
-                weight: document.getElementById("weight").value,
-                teamId: document.getElementById("teamid").value
-            };
-			
-			if (personObj.age < 18) {
-				document.getElementById("sendPersonButton").style.background='#FF69B4';
-				document.getElementById("sendPersonButton").style.color='#FFFFFF';
-				alert("You're too young!");
-			} else {
-				var personJSON = JSON.stringify(personObj);
-				postData(personObj.api, personJSON);
-			}
-        }
-
-        function sendTeam(){
-            var teamObj = {
-                api: document.getElementById("apiTeamUrl").value,
-                teamname: document.getElementById("teamname").value,
-                nationality: document.getElementById("nationality").value,
-                slogan: document.getElementById("slogan").value
-            };
-            var teamJSON = JSON.stringify(teamObj);
-            console.log(teamJSON);
-            postData(teamObj.api, teamJSON);
-        }
-
-        function postData(api, data){
-            var xhttp = new XMLHttpRequest();
-            xhttp.onreadystatechange = function() {
-                if (this.readyState == 4 && this.status == 202) {
-                    document.getElementById("demo").innerHTML = this.responseText;
-                //var response = JSON.parse(this.responseText);
-                //alert(response);
-                //return response;
-                }
-            };
-            xhttp.open("POST", "http://localhost:"+localConfig.port+"/"+api, true);
-            xhttp.setRequestHeader("Content-type", "application/json");
-            xhttp.send(data);
-        }
-        function getData(api){
-            var xhttp = new XMLHttpRequest();
-            xhttp.onreadystatechange = function() {
-                if (this.readyState == 4 && this.status == 200) {
-                 //   document.getElementById("demo").innerHTML = this.responseText;
-                var response = JSON.parse(this.responseText);
-                console.log(response)
-                //alert(response);
-                //return response;
-                }
-            };
-            xhttp.open("GET", "http://localhost:"+localConfig.port+"/"+api);
-            xhttp.setRequestHeader("Content-type", "application/json");
-            xhttp.send();
-        }
-    </script>
+    <link rel="stylesheet" type="text/css" href="css/main.css">
+    <script type="module" src="js/main.js"></script>
 </head>
-
-<style>
-    #persons_table {
-        display: flex;
-        justify-content: center;
-        flex-direction: column
-    }
-    ul > li {
-     display: flex;
-     justify-content: space-between;
-    }
-
-    #show_buttons {
-    display: flex;
-    justify-content: space-around;
-    }
-    div {
-    display: flex;
-    justify-content: center;
-    }
-
-</style>
-
 <body>
 <img src="resources/logo.svg" alt="Young Colfield logo">
 
 <div id="show_tables" style="text-align: center;"><span>Tables:</span></div>
 <hr>
 
-<div id=demo></div>
+<div id="ajaxResponseDemo"></div>
 Person:
 <div id="person_API_container" style="text-align: center;">
-    <span id="person_API">API: <input type=text id="apiUrl" value="api/person"/></span>
+    <span id="person_API">API: <input type=text id="apiPersonUrl" value="api/person"/></span>
 </div>
 
 <hr/>
@@ -108,7 +23,7 @@ Person:
     <li><span>Weight:</span><span><input type="text" id="weight"/></span></li>
     <li><span>TeamID:</span> <span><input type="text" id="teamid"/></span></li>
 </ul>
-<div><button id="sendPersonButton" onclick="sendPerson()">Add Player</button></div>
+<div><button id="sendPersonButton">Add Player</button></div>
 <hr>
 Team:
 <div id="team_API_container" style="text-align: center;">
@@ -116,19 +31,19 @@ Team:
 </div>
 
 <hr/>
-<ul>
+<ul id="teams_table">
     <li>Team Name: <input type="text" id="teamname"/></li>
     <li>Nationality: <input type="text" id="nationality"/></li>
     <li>Slogan: <input type="text" id="slogan"/></li>
 </ul>
 
-<div><button id="send_team_button" onclick="sendTeam()">Add Team</button></div>
+<div><button id="sendTeamButton">Add Team</button></div>
 <br>
 <hr>
 <br>
 <div id="show_buttons">
-    <button onclick="getData('api/person')">Show Players</button>
-    <button onclick="getData('api/team')">Show Teams</button>
+    <button id="showPersonsButton">Show Players</button>
+    <button id="showTeamsButton">Show Teams</button>
 </div>
 
 </body>
