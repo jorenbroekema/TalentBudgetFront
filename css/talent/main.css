@@ -1,0 +1,15 @@
+.container-fluid {
+  margin-top: 50px;
+}
+
+.talent-container {
+  width: 700px;
+  margin: 0 auto;
+}
+
+.list-group-item {
+  height: 200px;
+  margin-bottom: 15px;
+  border-radius: 4px;
+  display: flex;
+}
