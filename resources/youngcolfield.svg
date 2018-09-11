@@ -9,13 +9,13 @@
    xmlns="http://www.w3.org/2000/svg"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
-   width="226.68779"
-   height="140.23851"
-   viewBox="0 0 59.977813 37.104773"
+   width="254.30408"
+   height="140.23853"
+   viewBox="0 0 67.284623 37.104777"
    version="1.1"
    id="svg8"
    inkscape:version="0.92.3 (2405546, 2018-03-11)"
-   sodipodi:docname="youngtalents.svg">
+   sodipodi:docname="youngcolfield.svg">
   <defs
      id="defs2" />
   <sodipodi:namedview
@@ -26,8 +26,8 @@
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
      inkscape:zoom="1.8881973"
-     inkscape:cx="27.978305"
-     inkscape:cy="65.91859"
+     inkscape:cx="27.978306"
+     inkscape:cy="65.918605"
      inkscape:document-units="mm"
      inkscape:current-layer="layer1"
      showgrid="false"
@@ -74,16 +74,15 @@
          x="12.060534"
          y="135.45314"
          style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:21.01967621px;line-height:0.80000001;font-family:NeuzeitGroT;-inkscape-font-specification:'NeuzeitGroT Bold';letter-spacing:-0.56753123px;fill:#e46a35;fill-opacity:1;stroke-width:0.18917707"
-         id="tspan14"
-         dx="0 -2.145">Talents</tspan></text>
+         id="tspan14">Colfield</tspan></text>
     <rect
-       style="fill:#e46a35;fill-opacity:1;stroke-width:0.15508944"
+       style="fill:#e46a35;fill-opacity:1;stroke-width:0.16454542"
        id="rect4524"
-       width="59.09391"
-       height="2.6979978"
-       x="11.672572"
-       y="138.52466"
+       width="66.519562"
+       height="2.6980007"
+       x="11.62362"
+       y="138.52264"
        ry="0"
-       transform="matrix(0.9999987,-0.00160992,0.00281246,0.99999605,0,0)" />
+       transform="matrix(0.99999898,-0.0014302,0.00316587,0.99999499,0,0)" />
   </g>
 </svg>
