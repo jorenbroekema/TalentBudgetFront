@@ -1,4 +1,4 @@
-import * as data from '../localconfig.js';
+import { httpPort } from '../localconfig.js';
 
 export function postData(api, data){
   let xhttp = new XMLHttpRequest();

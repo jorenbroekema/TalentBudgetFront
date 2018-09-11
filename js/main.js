@@ -1,12 +1,9 @@
-import { getData, postData } from './AjaxMixin.js';
-import './Person.js';
-import './Team.js';
-console.log("Hello");
-// POST
-let el = document.getElementById("sendPersonButton");
-console.log(el);
-el.addEventListener("click", sendPerson, false);
+import { getData } from './AjaxMixin.js';
+import { Person } from './Person.js';
+import { Team } from './Team.js';
 
+// POST
+document.getElementById("sendPersonButton").addEventListener("click", sendPerson, false);
 document.getElementById("sendTeamButton").addEventListener("click", sendTeam);
 
 // GET
@@ -14,25 +11,22 @@ document.getElementById("showPersonsButton").addEventListener("click", getPerson
 document.getElementById("showTeamsButton").addEventListener("click", getTeams);
 
 function sendPerson(){
-  console.log("clicked on send person");
-  const personForm = document.getElementById('persons_table');
   Person.sendPerson(
-    personForm.getElementById('apiPersonUrl'),
-    personForm.getElementById('age'),
-    personForm.getElementById('firstname'),
-    personForm.getElementById('height'),
-    personForm.getElementById('weight'),
-    personForm.getElementById('teamid')
+    document.querySelector('#apiPersonUrl').value,
+    document.querySelector('#persons_table #age').value,
+    document.querySelector('#persons_table #firstname').value,
+    document.querySelector('#persons_table #height').value,
+    document.querySelector('#persons_table #weight').value,
+    document.querySelector('#persons_table #teamid').value
   );
 }
 
 function sendTeam(){
-  const teamForm = document.getElementById('teams_table');
   Team.sendTeam(
-    teamForm.getElementById('apiTeamUrl'),
-    teamForm.getElementById('teamname'),
-    teamnorm.getElementById('nationality'),
-    teamForm.getElementById('slogan')
+    document.querySelector('#apiTeamUrl').value,
+    document.querySelector('#teams_table #teamname').value,
+    document.querySelector('#teams_table #nationality').value,
+    document.querySelector('#teams_table #slogan').value
   );
 }
 

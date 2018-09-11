@@ -1,4 +1,6 @@
-class Team {
+import { postData } from './AjaxMixin.js';
+
+export class Team {
 
   constructor(api, teamname, nationality, slogan){
     this.api = api;

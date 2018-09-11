@@ -1,4 +1,6 @@
-class Person {
+import { postData } from './AjaxMixin.js';
+
+export class Person {
 
   constructor(api, age, firstname, height, weight, teamId){
     this.api = api;
@@ -16,9 +18,10 @@ class Person {
       firstname: firstname,
       height: height,
       weight: weight,
-      teamId: teamId
+      team: {
+        id: teamId
+      }
     };
-    console.log(personObj);
     if (personObj.age < 18) {
       document.getElementById("sendPersonButton").style.background='#FF69B4';
       document.getElementById("sendPersonButton").style.color='#FFFFFF';
