@@ -26,28 +26,32 @@ class BudgetTalent extends HTMLElement {
         }
 
         .talent {
-          height: 200px;
-          margin-bottom: 15p;
+          height: 100px;
+          margin-bottom: 15px;
           border-radius: 4px;
           display: flex;
-        }
-
-        .id {
-          width: 100%;
-          line-height: 40px;
-          text-aling: center;
+          position: relative;
         }
 
         .name {
           width: 100%;
-          line-height: 40px;
-          text-aling: center;
+          text-align: center;
+          position: absolute;
+          top: 0px;
+        }
+
+        .id {
+          width: 100%;
+          text-align: center;
+          position: absolute;
+          top: 20px;
         }
 
         .budget {
           width: 100%;
-          line-height: 40px;
-          text-aling: center;
+          text-align: center;
+          position: absolute;
+          top: 40px;
         }
       </style>
       <div class="id">${id}</div>
