@@ -2,11 +2,9 @@
 Front-end for TalentBudgetApp
 
 Guys, there's a local config here similar to the backend application.properties.
-Make sure you have a `localconfig.json` file in your root directory
+Make sure you have a `localconfig.js` file in your root directory
 ```
-{
-	'httpPort' : 8082
-}
+export let httpPort = 8082;
 ```
 Change the port to your server port, same one as in the last line of your application.properties in your backend
 
