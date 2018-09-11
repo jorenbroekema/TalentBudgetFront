@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="210.45071"
+   height="140.23853"
+   viewBox="0 0 55.68175 37.104777"
+   version="1.1"
+   id="svg8"
+   inkscape:version="0.92.3 (2405546, 2018-03-11)"
+   sodipodi:docname="youngteams.svg"
+   inkscape:export-filename="C:\GitFiles\TalentBudgetFront\resources\youngteams.png"
+   inkscape:export-xdpi="96"
+   inkscape:export-ydpi="96">
+  <defs
+     id="defs2" />
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="2"
+     inkscape:cx="34.56504"
+     inkscape:cy="58.61286"
+     inkscape:document-units="mm"
+     inkscape:current-layer="layer1"
+     showgrid="false"
+     inkscape:window-width="1498"
+     inkscape:window-height="626"
+     inkscape:window-x="86"
+     inkscape:window-y="196"
+     inkscape:window-maximized="0"
+     units="px"
+     fit-margin-top="1"
+     fit-margin-left="1"
+     fit-margin-right="1"
+     fit-margin-bottom="1"
+     showguides="true" />
+  <metadata
+     id="metadata5">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title />
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(-116.95276,-113.08303)">
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:7.56708288px;line-height:1;font-family:NeuzeitGroT;-inkscape-font-specification:NeuzeitGroT;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.18917707"
+       x="117.44314"
+       y="127.35731"
+       id="text12-6"><tspan
+         sodipodi:role="line"
+         id="tspan10-7"
+         x="117.44314"
+         y="127.35731"
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:21.01967621px;line-height:0.80000001;font-family:NeuzeitGroT;-inkscape-font-specification:'NeuzeitGroT Bold';letter-spacing:-0.56753123px;fill:#e46a35;fill-opacity:1;stroke-width:0.18917707"
+         dy="0"
+         dx="0 -2.5025001">Young</tspan><tspan
+         sodipodi:role="line"
+         x="117.44314"
+         y="144.17305"
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:21.01967621px;line-height:0.80000001;font-family:NeuzeitGroT;-inkscape-font-specification:'NeuzeitGroT Bold';letter-spacing:-0.56753123px;fill:#e46a35;fill-opacity:1;stroke-width:0.18917707"
+         id="tspan14-9"
+         dx="0 -2.145 0.35749999">Teams</tspan></text>
+    <rect
+       style="fill:#e46a35;fill-opacity:1;stroke-width:0.14950876"
+       id="rect4524-5"
+       width="54.917633"
+       height="2.6979966"
+       x="117.05957"
+       y="147.42853"
+       ry="0"
+       transform="matrix(0.9999985,-0.00173235,0.00261369,0.99999658,0,0)" />
+  </g>
+</svg>
