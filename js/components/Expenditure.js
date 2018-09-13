@@ -77,9 +77,6 @@ class BudgetExpenditure extends HTMLElement {
         </div>
       </div>
     `;
-
-    console.log(modalContainer);
-    console.log(this);
     this.insertAdjacentElement('afterend', modalContainer);
   }
 
