@@ -30,6 +30,7 @@ function sendTalentTeam(){
 function getTalents(){
   getData('api/talentmanager/talent');
 }
+
 function getTalentTeams(){
   getData('api/talentmanager/team');
 }

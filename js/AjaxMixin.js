@@ -4,8 +4,8 @@ export function postData(api, data){
   let xhttp = new XMLHttpRequest();
   xhttp.onreadystatechange = function() {
     if (this.readyState == 4 && this.status == 202) {
-      document.getElementById("ajaxResponseDemo").innerHTML = this.responseText;
       const response = JSON.parse(this.responseText);
+      console.log(response);
     }
   };
   xhttp.open("POST", "http://localhost:" + httpPort + "/" + api, true);
