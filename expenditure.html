@@ -54,6 +54,18 @@
     <div class="container-fluid">
       <h1>Expenditure demo</h1>
       <p>This shows the expenditure dialog view</p> 
+      <p>You can also add expenditures here</p>
+    </div>
+
+    <div class="new-expenditure-container">
+      <form class="new-expenditure-form">
+        <input id="input-name" placeholder="Name..." />
+        <input id="input-description" placeholder="Description..." />
+        <input id="input-goal" placeholder="Goal..." />
+        <input id="input-date" type="date" />
+        <input id="input-cost" placeholder="Cost..." />
+        <div id="submit-new-expenditure">Submit</div>
+      </form>
     </div>
 
     <!-- Expenditure objects -->
@@ -89,5 +101,6 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <script>window.jQuery || document.write('<script src="./node_modules/jquery/dist/jquery.min.js"><\/script>')</script>
     <script src="./node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script type="module" src="./js/pages/expenditure.js"></script>
   </body>
 </html>

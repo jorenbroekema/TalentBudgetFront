@@ -14,3 +14,21 @@
   padding: 0;
   display: flex;
 }
+
+.new-expenditure-container{
+  padding: 0 15px;
+}
+
+.new-expenditure-form input{
+  display: block;
+  padding: 5px;
+  margin-bottom: 5px;
+  width: 250px;
+}
+
+#submit-new-expenditure{
+  cursor: pointer;
+  background-color: #ddd;
+  padding: 10px 20px;
+  width: max-content;
+}

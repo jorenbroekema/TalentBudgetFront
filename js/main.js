@@ -37,4 +37,3 @@ function getPersons(){
 function getTeams(){
   getData('api/team');
 }
-
