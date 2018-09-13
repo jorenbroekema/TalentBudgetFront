@@ -29,40 +29,36 @@
 <hr>
 
 <div id="ajaxResponseDemo"></div>
-Person:
-<div id="person_API_container" style="text-align: center;">
-    <span id="person_API">API: <input type=text id="apiPersonUrl" value="api/person"/></span>
-</div>
 
+Talent:
+<div id="talent_API_container" style="text-align: center;">
+    <span id="talent_API">API: <input type=text id="apiTalentUrl" value="api/talentmanager/talent"/></span>
+</div>
 <hr/>
-<ul id="persons_table">
-    <li><span>First Name:</span> <span><input type="text" id="firstname"/></span></li>
-    <li><span>Age:</span> <span><input type="text" id="age"/></span></li>
-    <li><span>Height: </span><span><input type="text" id="height"/></span></li>
-    <li><span>Weight:</span><span><input type="text" id="weight"/></span></li>
-    <li><span>TeamID:</span> <span><input type="text" id="teamid"/></span></li>
+<ul id="talents_table">
+    <li><span>First Name:</span> <span><input type="text" id="name"/></span></li>
+    <li><span>Age:</span>        <span><input type="text" id="budget"/></span></li>
+    <li><span>TeamID:</span>     <span><input type="text" id="talent_team_id"/></span></li>
 </ul>
-<div><button id="sendPersonButton">Add Player</button></div>
+<div><button id="sendTalentButton">Add Talent</button></div>
 <hr>
+
 Team:
 <div id="team_API_container" style="text-align: center;">
-    <span id="team_API">API: <input type=text id="apiTeamUrl" value="api/team"/></span>
+    <span id="team_API">API: <input type=text id="apiTeamUrl" value="api/talentmanager/team"/></span>
 </div>
-
 <hr/>
 <ul id="teams_table">
-    <li>Team Name: <input type="text" id="teamname"/></li>
-    <li>Nationality: <input type="text" id="nationality"/></li>
-    <li>Slogan: <input type="text" id="slogan"/></li>
+    <li>Team Name: <input type="text" id="team_name"/></li>
 </ul>
-
-<div><button id="sendTeamButton">Add Team</button></div>
+<div><button id="sendTalentTeamButton">Add Team</button></div>
 <br>
 <hr>
+
 <br>
 <div id="show_buttons">
-    <button id="showPersonsButton">Show Players</button>
-    <button id="showTeamsButton">Show Teams</button>
+    <button id="showTalentsButton">Show All Talents</button>
+    <button id="showTalentTeamsButton">Show All Teams</button>
 </div>
 
 </div>
