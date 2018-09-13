@@ -26,10 +26,10 @@ class BudgetTalent extends HTMLElement {
         }
 
         .talent {
-          height: 100px;
+          /*height: 100px;
           margin-bottom: 15px;
           border-radius: 4px;
-          display: flex;
+          display: flex;*/
           position: relative;
         }
 
@@ -45,13 +45,15 @@ class BudgetTalent extends HTMLElement {
           text-align: center;
           position: absolute;
           top: 20px;
+          color: grey;
         }
 
         .budget {
           width: 100%;
           text-align: center;
           position: absolute;
-          top: 40px;
+          top: 60px;
+          color: red;
         }
       </style>
       <div class="id">${id}</div>

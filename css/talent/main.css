@@ -1,14 +1,30 @@
+body { 
+  padding-top: 50px; 
+}
+
+@media (max-width: 768px) {
+  body{
+    padding-top: 225px;
+  }
+}
+
 .container-fluid {
   margin-top: 10px;
 }
 
 .talent-container {
-  width: 100px;
-  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+}
+
+.list-group {
+  display: flex;
+  flex-flow: row wrap;
 }
 
 .list-group-item {
-  margin-bottom: 10px;
+  height: 300px;
+  width: 200px;
+  margin: 10px;
   border-radius: 4px;
-  display: flex;
 }

@@ -25,10 +25,8 @@
 .topnav {
 	padding: 10px;
 	height: 140px;
-    background-color: #333;
-}
-.topnav button {
-	
+	background-color:#333;
+		
 }
 
 /* The sidebar menu */
