@@ -1,0 +1,31 @@
+body { 
+  padding-top: 50px; 
+}
+
+@media (max-width: 768px) {
+  body{
+    padding-top: 225px;
+  }
+}
+
+.container-fluid {
+  margin-top: 10px;
+}
+
+.talent-container {
+  display: flex;
+  justify-content: center;
+}
+
+.list-group {
+  display: flex;
+  justify-content: center;
+  flex-flow: row wrap;
+}
+
+.list-group-item {
+  height: 300px;
+  width: 200px;
+  margin: 10px;
+  border-radius: 4px;
+}
