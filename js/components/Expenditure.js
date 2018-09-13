@@ -1,12 +1,6 @@
 class BudgetExpenditure extends HTMLElement {
   constructor(){
     super();
-
-    // FIXME: This needs to change to only fire when the actual expenditure gets clicked
-    // instead of "anywhere in shadowroot"
-    this.addEventListener('click', e =>{
-      this.displayDialog();
-    });
   }
 
   connectedCallback(){
@@ -15,10 +9,13 @@ class BudgetExpenditure extends HTMLElement {
     const title = this.title;
     const icon = this.icon;
     const budget = this.budget;
-    console.log(this.BSmodal);
+
+    this.setAttribute('data-toggle', 'modal');
+    this.setAttribute('data-target', '#myModal');
 
     expenditureContainer.classList.add('expenditure');
-
+    expenditureContainer.setAttribute('data-toggle', 'modal');
+    expenditureContainer.setAttribute('data-target', '#myModal');
     expenditureContainer.innerHTML = `
       <style>
         @import url("./node_modules/@fortawesome/fontawesome-free/css/all.min.css");
@@ -29,95 +26,61 @@ class BudgetExpenditure extends HTMLElement {
         }
 
         .expenditure{
-          height: 60px;
-          margin-bottom: 15px;
-          border-radius: 4px;
           display: flex;
+          padding: 15px;
         }
 
         .icon{
           margin-right: 15px;
-          line-height: 50px;
         }
         
         .title{
           width: 100%;
-          line-height: 40px;
+          line-height: 30px;
           text-align: center;
         }
         
         .budget{
-          line-height: 40px;
+          line-height: 30px;
           font-weight: bold;
-        }
-
-        /* The Modal (background) */
-        .modal {
-          display: none; /* Hidden by default */
-          position: fixed; /* Stay in place */
-          z-index: 1; /* Sit on top */
-          left: 0;
-          top: 0;
-          width: 100%; /* Full width */
-          height: 100%; /* Full height */
-          overflow: auto; /* Enable scroll if needed */
-          background-color: rgb(0,0,0); /* Fallback color */
-          background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
-        }
-
-        /* Modal Content/Box */
-        .modal-content {
-          background-color: #fefefe;
-          margin: 15% auto; /* 15% from the top and centered */
-          padding: 20px;
-          border: 1px solid #888;
-          width: 80%; /* Could be more or less, depending on screen size */
-        }
-
-        /* The Close Button */
-        .close {
-          color: #aaa;
-          float: right;
-          font-size: 28px;
-          font-weight: bold;
-        }
-
-        .close:hover,
-        .close:focus {
-          color: black;
-          text-decoration: none;
-          cursor: pointer;
         }
       </style>
       <div class="icon"><i class="fas ${icon} fa-2x"></i></div>
       <div class="title">${title}</div>
       <div class="budget">${budget}</div>
+    `;
+    shadow.appendChild(expenditureContainer);
 
-      <div id="myModal" class="modal">
-        <!-- Modal content -->
-        <div class="modal-content">
-          <span class="close">&times;</span>
-          <p>Some text in the Modal..</p>
+    this.createModal();
+  }
+
+  createModal(){
+    const modalContainer = document.createElement('div');
+    modalContainer.innerHTML = `
+      <div class="modal fade" id="myModal" role="dialog">
+        <div class="modal-dialog">
+        
+          <!-- Modal content-->
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal">&times;</button>
+              <h4 class="modal-title">Modal Header</h4>
+            </div>
+            <div class="modal-body">
+              <p>Some text in the modal.</p>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+          </div>
+          
         </div>
       </div>
     `;
-    // TODO: Add event listener for modal to this container
-    expenditureContainer.addEventListener('click', (e) => {
-      
-    });
-    shadow.appendChild(expenditureContainer);
-  }
-  
-  displayDialog(){
-    const dialog = this.shadowRoot.getElementById('myModal');
-    const closeButton = this.shadowRoot.querySelector(".close");
-    console.log(closeButton);
- 
-    dialog.style.display = "block";
 
-    closeButton.onclick = function() {
-      dialog.style.display = "none";
-    }
+    console.log(modalContainer);
+    console.log(this);
+    this.insertAdjacentElement('afterend', modalContainer);
   }
 
   get title(){

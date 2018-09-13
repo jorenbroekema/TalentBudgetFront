@@ -1,4 +1,5 @@
 import './Expenditure.js';
+
 class BudgetExpenditureDialog extends BudgetExpenditure {
 
   connectedCallback(){
