@@ -19,6 +19,7 @@ body {
 
 .list-group {
   display: flex;
+  justify-content: center;
   flex-flow: row wrap;
 }
 
