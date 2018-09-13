@@ -10,6 +10,7 @@ export function postData(api, data){
   };
   xhttp.open("POST", "http://localhost:" + httpPort + "/" + api, true);
   xhttp.setRequestHeader("Content-type", "application/json");
+  console.log(xhttp);
   xhttp.send(data);
 }
 
