@@ -1,5 +1,6 @@
 import { httpPort } from '../../localconfig.js';
 import { postData } from '../AjaxMixin.js';
+import { getNavUsers } from '../navbar.js';
 
 export class Talent {
 
@@ -8,20 +9,6 @@ export class Talent {
     this.budget = budget;
     this.name = name;
     this.talent_team_id = talent_team_id;
-  }
-
-  static sendTalent(api, budget, name, talent_team_id){
-    const talentObj = {
-      api: api,
-      budget: budget,
-      name: name,
-      team: {
-        id: talent_team_id
-      }
-    };
-    alert(`Welcome to the team, ${name}!`);
-    const talentJSON = JSON.stringify(talentObj);
-    postData(talentObj.api, talentJSON);
   }
 
   static showTalents(api) {
@@ -65,9 +52,8 @@ function submitNewTalent(){
     budget: DOMElems.budget.value,
   }
   const JSONdata = JSON.stringify(submitData);
-  postData('api/talentmanager/talent', JSONdata);
-  console.log(submitData);
-  console.log(JSONdata);
-
-  Talent.showTalents('api/talentmanager/talent/all');
+  postData('api/talentmanager/talent', JSONdata).then( () => {
+    Talent.showTalents('api/talentmanager/talent/all');
+    getNavUsers();
+  });
 };
