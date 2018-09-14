@@ -1,4 +1,4 @@
-import { postData } from './AjaxMixin.js';
+import { postData } from '../AjaxMixin.js';
 
 export class TalentTeam {
 
