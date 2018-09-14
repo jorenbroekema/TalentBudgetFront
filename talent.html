@@ -58,7 +58,16 @@
 
     <div class="container-fluid">
       <h1>Talent demo</h1>
-      <p>This shows the talent dialog view</p> 
+      <p>This is the talent dialog view!</p>
+    </div>
+
+    <div class="new-talent-container">
+      <form class="new-talent-form">
+        <input id="input-name" placeholder="Name..." />
+        <input id="input-id" placeholder="ID..." />
+        <input id="input-budget" placeholder="Budget..." />
+        <div id="submit-new-talent">Add Talent</div>
+      </form>
     </div>
 
     <!-- Talent objects -->
@@ -73,5 +82,6 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <script>window.jQuery || document.write('<script src="./node_modules/jquery/dist/jquery.min.js"><\/script>')</script>
     <script src="./node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script type="module" src="./js/pages/talent.js"></script>
   </body>
 </html>

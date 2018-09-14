@@ -10,6 +10,7 @@ body {
 
 .container-fluid {
   margin-top: 10px;
+  text-align: center;
 }
 
 .talent-container {
@@ -28,4 +29,25 @@ body {
   width: 200px;
   margin: 10px;
   border-radius: 4px;
+}
+
+.new-talent-container{
+  padding: 0 15px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  flex-flow: row wrap;
+}
+
+.new-talent-form input{
+  padding: 5px;
+  margin-bottom: 5px;
+  width: 200px;
+}
+
+#submit-new-talent{
+  cursor: pointer;
+  background-color: #ddd;
+  padding: 5px;
+  width: max-content;
 }

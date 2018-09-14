@@ -47,3 +47,27 @@ export class Talent {
     xhttp.send();
   }
 }
+
+// Add new talent:
+const newTalentButton = document.getElementById('submit-new-talent');
+newTalentButton.addEventListener('click', submitNewTalent);
+
+const DOMElems = {
+  name: document.getElementById('input-name'),
+  id: document.getElementById('input-id'),
+  budget: document.getElementById('input-budget'),
+};
+
+function submitNewTalent(){
+  const submitData = {
+    name: DOMElems.name.value,
+    id: DOMElems.id.value,
+    budget: DOMElems.budget.value,
+  }
+  const JSONdata = JSON.stringify(submitData);
+  postData('api/talentmanager/talent', JSONdata);
+  console.log(submitData);
+  console.log(JSONdata);
+
+  Talent.showTalents('api/talentmanager/talent/all');
+};
