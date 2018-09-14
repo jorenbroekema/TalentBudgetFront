@@ -20,7 +20,9 @@ function submitNewExpenditure(){
     cost: DOMElems.cost.value
   }
   const JSONdata = JSON.stringify(submitData);
-  postData('api/user/add/expenditure', JSONdata);
+  
+  // TODO: do not hard code 1 
+  postData('api/user/1/add/expenditure', JSONdata);
   console.log(submitData);
   console.log(JSONdata);
 }

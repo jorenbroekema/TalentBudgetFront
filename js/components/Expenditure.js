@@ -11,6 +11,7 @@ class BudgetExpenditure extends HTMLElement {
     const budget = this.budget;
 
     this.setAttribute('data-toggle', 'modal');
+    // TODO: Make #myModal configurable!
     this.setAttribute('data-target', '#myModal');
 
     expenditureContainer.classList.add('expenditure');
@@ -49,8 +50,8 @@ class BudgetExpenditure extends HTMLElement {
       <div class="title">${title}</div>
       <div class="budget">${budget}</div>
     `;
-    shadow.appendChild(expenditureContainer);
 
+    shadow.appendChild(expenditureContainer);
     this.createModal();
   }
 
