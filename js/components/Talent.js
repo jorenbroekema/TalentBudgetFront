@@ -1,10 +1,6 @@
 class BudgetTalent extends HTMLElement {
   constructor() {
     super();
-
-    this.addEventListener('click', e =>{
-      this.displayDialog();
-    });
   }
 
   connectedCallback() {
@@ -66,10 +62,6 @@ class BudgetTalent extends HTMLElement {
       <div class="budget">${budget}</div>
     `;
     shadow.appendChild(talentContainer);
-  }
-
-  displayDialog() {
-    console.log("clicked the talent!");
   }
 
   get id() {
