@@ -12,12 +12,15 @@ class BudgetTalent extends HTMLElement {
     const talentContainer = document.createElement('div');
     const id = this.id;
     const name = this.name;
-    const budget =this.budget;
+    const budget = this.budget;
     //const expenditures = 
     //const teams = 
 
-    talentContainer.classList.add('talent');
+    // Try to find the profile image:
+    var imgURL = `../../resources/images/portraits/${name}.jpg`;
+    var defaultImgURL = `../../resources/images/portraits/default.jpg`;
 
+    talentContainer.classList.add('talent');
     talentContainer.innerHTML = `
       <style>
         :host {
@@ -33,26 +36,33 @@ class BudgetTalent extends HTMLElement {
         .name {
           width: 100%;
           text-align: center;
-          position: absolute;
-          top: 0px;
+          position: relative;
+          top: 10px;
         }
         .id {
           width: 100%;
           text-align: center;
-          position: absolute;
-          top: 20px;
+          position: relative;
+          top: 10px;
           color: grey;
         }
         .budget {
           width: 100%;
           text-align: center;
-          position: absolute;
-          top: 60px;
+          position: relative;
+          top: 20px;
           color: red;
         }
+        .portrait {
+          border-radius: 50%;
+          display: block;
+          margin-left: auto;
+          margin-right: auto;
+        }
       </style>
-      <div class="id">${id}</div>
+      <img src="${imgURL}" onerror="this.src='${defaultImgURL}'" alt="${name}" width="100" height="100" class=portrait>
       <div class="name">${name}</div>
+      <div class="id">${id}</div>
       <div class="budget">${budget}</div>
     `;
     shadow.appendChild(talentContainer);
