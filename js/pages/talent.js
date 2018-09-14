@@ -15,7 +15,7 @@ export class Talent {
       api: api,
       budget: budget,
       name: name,
-      team: {
+      talentTeam: {
         id: talent_team_id
       }
     };
@@ -29,6 +29,7 @@ export class Talent {
     xhttp.onreadystatechange = function() {
       if (this.readyState == 4 && this.status == 200) {
         const response = JSON.parse(this.responseText);
+        console.log(response[0].talentTeam.id);
         var newInnerHTML = '';
         for (var i = 0; i < response.length; i++) {
           newInnerHTML += `<li class="list-group-item">
@@ -36,6 +37,8 @@ export class Talent {
                               id=${response[i].id}
                               name="${response[i].name}"
                               budget="€${response[i].budget}"
+                              talent-team-id=${response[i].talentTeam.id}
+                              talent-team-name="${response[i].talentTeam.teamname}"
                             ></budget-talent>
                           </li>`;
         }
@@ -54,20 +57,16 @@ newTalentButton.addEventListener('click', submitNewTalent);
 
 const DOMElems = {
   name: document.getElementById('input-name'),
-  id: document.getElementById('input-id'),
   budget: document.getElementById('input-budget'),
+  teamID: document.getElementById('input-talent-team-id'),
 };
 
 function submitNewTalent(){
   const submitData = {
     name: DOMElems.name.value,
-    id: DOMElems.id.value,
     budget: DOMElems.budget.value,
+    teamID: DOMElems.teamID.value,
   }
-  const JSONdata = JSON.stringify(submitData);
-  postData('api/talentmanager/talent', JSONdata);
-  console.log(submitData);
-  console.log(JSONdata);
-
+  Talent.sendTalent('api/talentmanager/talent', submitData.budget, submitData.name, submitData.talent_team_id)
   Talent.showTalents('api/talentmanager/talent/all');
 };
