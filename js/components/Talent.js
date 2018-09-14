@@ -8,7 +8,6 @@ class BudgetTalent extends HTMLElement {
   }
 
   connectedCallback() {
-    console.log("talent element loaded in the DOM");
     const shadow = this.attachShadow({ mode: 'open' });
     const talentContainer = document.createElement('div');
     const id = this.id;
@@ -24,7 +23,6 @@ class BudgetTalent extends HTMLElement {
         :host {
           width: 100%;
         }
-
         .talent {
           /*height: 100px;
           margin-bottom: 15px;
@@ -32,14 +30,12 @@ class BudgetTalent extends HTMLElement {
           display: flex;*/
           position: relative;
         }
-
         .name {
           width: 100%;
           text-align: center;
           position: absolute;
           top: 0px;
         }
-
         .id {
           width: 100%;
           text-align: center;
@@ -47,7 +43,6 @@ class BudgetTalent extends HTMLElement {
           top: 20px;
           color: grey;
         }
-
         .budget {
           width: 100%;
           text-align: center;

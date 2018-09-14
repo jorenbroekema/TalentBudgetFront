@@ -19,7 +19,12 @@
     <!-- Font Awesome Icons -->
     <link href="./node_modules/@fortawesome/fontawesome-free/css/all.min.css" rel="stylesheet">
 
-    <script src="js/components/Talent.js"></script>
+    <script type="module" src="./js/components/Talent.js"></script>
+
+    <script type="module">
+      import { Talent } from './js/pages/talent.js';
+      window.onload = Talent.showTalents('api/talentmanager/talent/all');
+    </script>
   </head>
   <body>
     <!-- Nav bar element -->
@@ -58,28 +63,7 @@
 
     <!-- Talent objects -->
     <div class="talent-container">
-      <ul class="list-group">
-        <li class="list-group-item">
-          <budget-talent
-            id=0
-            name="Josephine"
-            budget="€60,-"
-          ></budget-talent>
-        </li>
-        <li class="list-group-item">
-          <budget-talent
-            id=1
-            name="Maike"
-            budget="€12,95"
-          ></budget-talent>
-        </li>
-        <li class="list-group-item">
-          <budget-talent
-            id=2
-            name="Jorn"
-            budget="€120,45"
-          ></budget-talent>
-        </li>
+      <ul class="list-group" id="ajaxResponseTalents">
       </ul>
     </div>
         
