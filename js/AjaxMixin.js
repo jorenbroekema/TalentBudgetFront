@@ -1,15 +1,23 @@
 import { httpPort } from '../localconfig.js';
 
-export function postData(api, data){
+export async function postData(api, data){
   let xhttp = new XMLHttpRequest();
-  xhttp.onreadystatechange = function() {
-    if (this.readyState == 4 && this.status == 202) {
-      const response = JSON.parse(this.responseText);
-    }
-  };
+
+  let promise = new Promise((resolve, reject) => {
+    xhttp.onreadystatechange = function() {
+      if (this.readyState == 4 && this.status == 202) {
+        const response = JSON.parse(this.responseText);
+        resolve(response);
+      }
+    };
+  });
+
   xhttp.open("POST", "http://localhost:" + httpPort + "/" + api, true);
   xhttp.setRequestHeader("Content-type", "application/json");
   xhttp.send(data);
+
+  let response = await promise;
+  return response;
 }
 
 export async function getData(api){

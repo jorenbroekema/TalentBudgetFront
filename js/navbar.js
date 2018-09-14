@@ -1,13 +1,18 @@
 import { getData } from './AjaxMixin.js';
 
 const userSelector = document.getElementById('userSelector');
+getNavUsers();
 
+export function getNavUsers(){
 // Wait till we have the data from the backend, then set the options etc.
-getData('api/talentmanager/talent/all').then(result => {
-  setOptions(result);
-  changeUser();
-  userSelector.addEventListener('change', changeUser);
-});
+  getData('api/talentmanager/talent/all').then(result => {
+    setOptions(result);
+    if(result.length > 0){
+      changeUser();
+    }
+    userSelector.addEventListener('change', changeUser);
+  });
+}
 
 function changeUser(){
   let selectedUser = userSelector.options[userSelector.selectedIndex].value;
