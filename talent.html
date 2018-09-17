@@ -25,6 +25,10 @@
       import { Talent } from './js/pages/talent.js';
       window.onload = Talent.showTalents('api/talentmanager/talent/all');
     </script>
+
+    <script type="module"> 
+      import '@polymer/iron-ajax/iron-ajax.js'; 
+    </script>
   </head>
   <body>
     <!-- Nav bar element -->
@@ -73,6 +77,24 @@
         <span id="submit-delete-talent">Delete Talent</span>
       </form>
     </div>
+    <!-- This doesn't work yet. -->
+    <iron-ajax
+        auto
+        url="https://www.youtube.com/embed/NtQkz0aRDe8" 
+        params='{}'
+        handle-as="json"
+        on-response="handleResponse"
+        debounce-duration="300">
+    </iron-ajax>
+
+    <iframe 
+      width="560" 
+      height="315" 
+      src="https://www.youtube.com/embed/NtQkz0aRDe8" 
+      frameborder="0" 
+      allow="autoplay; encrypted-media" 
+      allowfullscreen>
+    </iframe>
 
     <!-- Talent objects -->
     <div class="talent-container">
