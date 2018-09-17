@@ -26,3 +26,4 @@ Optional, needed to run the talentPolymer.html page:
 `npm install @webcomponents/webcomponentsjs`  to install the webcomponentsjs module.
 `npm install --save @polymer/iron-ajax`       to install the iron ajax module.
 `npm install --save @polymer/paper-button`    to install the paper button module.
+`npm install --save @polymer/paper-input`     to install the paper input module.

@@ -14,17 +14,77 @@ class YoungColfield extends PolymerElement {
       <style>
         :host {
           display: block;
-          color: #F00
+          width: 100%;
+          text-align: center;
+        }
+        .talent {
+          position: relative;
+        }
+        .portrait {
+          border-radius: 50%;
+          display: block;
+          margin-left: auto;
+          margin-right: auto;
+        }
+        .name {
+          width: 100%;
+          text-align: center;
+          position: relative;
+          top: 10px;
+        }
+        .id {
+          width: 100%;
+          text-align: center;
+          position: relative;
+          top: 10px;
+          color: grey;
+        }
+        .budget {
+          width: 100%;
+          text-align: center;
+          position: relative;
+          top: 20px;
+          color: red;
+        }
+        .talent-team-id {
+          width: 100%;
+          text-align: center;
+          position: relative;
+          top: 20px;
+          color: grey;
+        }
+        .talent-team-name {
+          width: 100%;
+          text-align: center;
+          position: relative;
+          top: 20px;
         }
       </style>
-      <input type=text value={{inputFirstName::input}}>
-      <input type=text value={{inputKlas::input}}>
+      
+      <h1>Talent Polymer Demo</h1>
+      <p>This is the talent view for the Polymer demo!</p>
+
+      <input type=text value={{inputName::input}} placeholder="First name...">
+      <input type=text value={{inputBudget::input}} placeholder="Budget...">
+      <input type=text value={{inputTeamID::input}} placeholder="Team ID...">
 
       <paper-button raised class="indigo" on-click=_addStudentMethod>Submit Student</paper-button>
+      
+      <div><a href="http://127.0.0.1:8080/talent.html">Click here to switch to the normal Talent Page!</a></div>
 
       <dom-repeat items={{students}}>
         <template>
-          <div>Hello {{item.firstname}}, welcome to class {{item.klas}}.</div>
+          <li class="list-group-item">
+            <budget-talent
+              id={{item.id}}
+              name="{{item.name}}"
+              budget={{item.budget}}
+              talent-team-name="{{item.team.teamname}}"
+              talent-team-id={{item.team.id}}
+            ></budget-talent>
+          </li>
+        
+          <div>Hello {{item.name}}, welcome to team {{item.team.teamname}}.</div>
         </template>
       </dom-repeat>
       
@@ -37,21 +97,23 @@ class YoungColfield extends PolymerElement {
   }
   static get properties() {
     return {
-      inputFirstName: {
+      inputName: {
         type: String,
-        value: 'First name...',
+        value: undefined,
       },
-      inputKlas: {
-        type: String,
-        value: 'Klas...'
+      inputBudget: {
+        type: Number,
+        value: undefined
+      },
+      inputTeamID: {
+        type: Number,
+        value: undefined
       },
       students: {
         type: Array,
         value(){
           return[
-            { firstname:'Joost', klas: 'mavo4a' },
-            { firstname:'Frits', klas: 'have5b' },
-            { firstname:'Jan', klas: 'vwo6c' }
+            { id:123, name:'billy', budget:345, team:{ id:67, teamname:'ABC' } },
           ];
         }
       }
@@ -59,21 +121,37 @@ class YoungColfield extends PolymerElement {
   }
 
   _addStudentMethod() {
-    this.push('students', {firstname:this.inputFirstName, klas:this.inputKlas});
+    var ajax = this.$.studentajax;
+    ajax.url = "http://127.0.0.1:8083/api/talent";
+    ajax.generateRequest()
+    this.push('students', { name: this.inputName, budget: this.inputBudget, team: { id: this.inputTeamID } });
     console.log(this.students);
   }
 
   startajax() {
-    alert();
     var ajax = this.$.studentajax;
-    ajax.url = "http://127.0.0.1:8083/api/expenditure";
+    ajax.url = "http://127.0.0.1:8083/api/talent/all";
     ajax.generateRequest();
   }
 
   returnfrombackend(response) {
-    alert("in return from backend");
-    console.log(response)
-    alert(response.detail.response[0].description);
+    response = response.detail.response;  // Get the inner response, which contains the actual talents.
+    this.students = [];                   // Reset the array, because we will rebuild it from scratch.
+    for (var i = 0; i < response.length; i++) {
+      console.log(response[i]);
+      if (response[i].talentTeam == null) {
+        response[i].talentTeam = {
+          id: 'null',
+          teamname: 'null'
+        };
+      }
+      this.push('students', { id: response[i].id, 
+                              name: response[i].name, 
+                              budget: response[i].budget, 
+                              expenditures: response[i].expenditures,
+                              team: { id:response[i].talentTeam.id, 
+                                      teamname:response[i].talentTeam.teamname } });
+    }
   }
 }
 
