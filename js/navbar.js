@@ -14,6 +14,10 @@ export function getNavUsers(){
   });
 }
 
+export function getUser (){
+  return userSelector.options[userSelector.selectedIndex].getAttribute('talent-id');
+}
+
 function changeUser(){
   let selectedUser = userSelector.options[userSelector.selectedIndex].value;
 }
