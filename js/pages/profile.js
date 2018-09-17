@@ -1,10 +1,12 @@
 import { postData, getData } from '../AjaxMixin.js';
+import { getQueryVariable } from '../../js/getURLVar.js';
 
 const newExpenditureButton = document.getElementById('submit-new-expenditure');
 newExpenditureButton.addEventListener('click', submitNewExpenditure);
 const userID = getQueryVariable('id');
 loadTalent(userID);
 loadExpenditures(userID);
+
 
 const DOMElems = {
   name: document.getElementById('input-name'),
@@ -26,6 +28,7 @@ function submitNewExpenditure(){
 
   postData(`api/user/${userID}/expenditure`, JSONdata).then( () => {
     loadExpenditures(userID);
+    loadTalent(userID);
   });  
 }
 
@@ -33,7 +36,6 @@ function loadTalent(id){
   const api = `api/talent/${id}`;
   const profileElement = document.querySelector('.profile-info');
   getData(api).then( (response) => {
-    console.log(response);
     profileElement.innerHTML = `
       <img 
         src="../../resources/images/portraits/${response.name}.jpg" 
@@ -43,9 +45,25 @@ function loadTalent(id){
         class="portrait"
       >
       <h2>${response.name}</h2>
+      <h5 class="talent-budget"></h5>
     `;
+    const newBudget = calculateBudget(response);
+    adjustBudget(newBudget);
   });
 
+}
+
+function calculateBudget(response){
+  const expenditures = response.expenditures;
+  let newBudget = parseInt(response.budget);
+  for (let i = 0; i < expenditures.length; i++) {
+    newBudget = newBudget - expenditures[i].cost;
+  }
+  return newBudget;
+}
+
+function adjustBudget(budget){
+  document.querySelector('.talent-budget').innerText=`€${budget}`;
 }
 
 function loadExpenditures(id){
@@ -69,15 +87,4 @@ function loadExpenditures(id){
       `;
     });
   });
-}
-
-function getQueryVariable(variable) {
-  const query = window.location.search.substring(1);
-  const vars = query.split("&");
-  let result = ''
-  vars.forEach(someVar => {
-    let pair = someVar.split("=");
-    if (pair[0] == variable) result = pair[1];
-  });
-  return result ? result : false;
 }
