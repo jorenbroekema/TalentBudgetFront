@@ -1,0 +1,70 @@
+.profile-info{
+  width: max-content;
+  margin: 80px auto 0 auto;
+}
+
+.profile-info h2{
+  text-align: center;
+}
+
+.portrait {
+  border-radius: 50%;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.expenditure-container{
+  width: 700px;
+  margin: 0 auto;
+}
+
+.list-group-item{
+  height: 60px;
+  margin-bottom: 15px;
+  border-radius: 4px;
+  padding: 0;
+  display: flex;
+}
+
+.new-expenditure-container{
+  padding: 0 15px;
+}
+
+.new-expenditure-form input{
+  display: block;
+  padding: 5px;
+  margin-bottom: 5px;
+  width: 250px;
+}
+
+#submit-new-expenditure{
+  cursor: pointer;
+  background-color: #ddd;
+  padding: 10px 20px;
+  width: max-content;
+}
+
+.button-container{
+  width: 100%;
+  display: block;
+  height: 45px;
+}
+
+budget-expenditure {
+  -webkit-transition: all 0.30s ease-in-out;
+  -moz-transition: all 0.30s ease-in-out;
+  -ms-transition: all 0.30s ease-in-out;
+  -o-transition: all 0.30s ease-in-out;
+  outline: none;
+}
+ 
+budget-expenditure:hover {
+  box-shadow: 0 0 5px rgba(81, 203, 238, 1);
+  cursor: pointer;
+}
+
+#addExpenditureBtn{
+  float: right;
+  margin-bottom: 10px;
+}
