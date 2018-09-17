@@ -15,14 +15,17 @@ export class Talent {
     let xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = function() {
       if (this.readyState == 4 && this.status == 200) {
+        console.log(this.responseText);
         const response = JSON.parse(this.responseText);
         var newInnerHTML = '';
         for (var i = 0; i < response.length; i++) {
+          console.log(response[i].expenditures);
           newInnerHTML += `<li class="list-group-item">
                             <budget-talent
                               id=${response[i].id}
                               name="${response[i].name}"
-                              budget="€${response[i].budget}"
+                              budget="${response[i].budget}"
+                              expenditures='${JSON.stringify(response[i].expenditures)}' 
                             ></budget-talent>
                           </li>`;
         }
