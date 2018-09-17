@@ -11,6 +11,18 @@ class BudgetExpenditure extends HTMLElement {
     const budget = this.budget;
     const state = this.state;
     const ex_id = this.expenditureID;
+    let stateIcon;
+
+    switch(state){
+      case 1: stateIcon = 'fa-check-circle';
+      break;
+      case 2: stateIcon = 'fa-spinner';
+      break; 
+      case 3: stateIcon = 'fa-check-circle';
+      break;
+      case 4: stateIcon = 'fa-clipboard-check';
+      break;
+    }
 
     this.setAttribute('data-toggle', 'modal');
     this.setAttribute('data-target', '#modal-' + ex_id); 
@@ -18,8 +30,8 @@ class BudgetExpenditure extends HTMLElement {
     expenditureContainer.classList.add('expenditure', state);
     expenditureContainer.innerHTML = `
       <style>
-        @import url("./node_modules/@fortawesome/fontawesome-free/css/all.min.css");
-        @import url("./node_modules/bootstrap/dist/css/bootstrap.min.css");
+        @import url("../../node_modules/@fortawesome/fontawesome-free/css/all.min.css");
+        @import url("../../node_modules/bootstrap/dist/css/bootstrap.min.css");
 
         :host{
           width: 100%;
@@ -48,7 +60,7 @@ class BudgetExpenditure extends HTMLElement {
         .done{border: 2px solid #d9edf7}
       </style>
       <div class="icon"><i class="fas ${icon} fa-2x"></i></div>
-      <div class="title">${title}</div>
+      <div class="title">${title} <i class="fas ${stateIcon}"></i></div>
       <div class="budget">${budget}</div>
     `;
 
