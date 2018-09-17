@@ -8,11 +8,15 @@ class BudgetTalent extends HTMLElement {
     const talentContainer = document.createElement('div');
     const id = this.id;
     const name = this.name;
-    const budget = this.budget;
+    const expenditures = JSON.parse(this.expenditures);
     const talentTeamID = this.talentTeamID;
     const talentTeamName = this.talentTeamName;
-    //const expenditures = 
-    //const teams = 
+    
+    let budget = parseInt(this.budget);
+    for (let i = 0; i < expenditures.length; i++) {
+      budget = budget - expenditures[i].cost;     
+    } 
+      
 
     // Try to find the profile image:
     var imgURL = `../../resources/images/portraits/${name}.jpg`;
@@ -70,7 +74,7 @@ class BudgetTalent extends HTMLElement {
       <img src="${imgURL}" onerror="this.src='${defaultImgURL}'" alt="${name}" width="100" height="100" class=portrait>
       <div class="name">${name}</div>
       <div class="id">${id}</div>
-      <div class="budget">${budget}</div>
+      <div class="budget">€${budget}</div>
       <div class="talent-team-id">${talentTeamID}</div>
       <div class="talent-team-name">${talentTeamName}</div>
     `;
@@ -110,6 +114,16 @@ class BudgetTalent extends HTMLElement {
     }
   }
 
+  get expenditures(){
+    return this.getAttribute('expenditures');
+  }
+  set expenditures(obj) {
+    if (obj){
+      this.setAttribute('expenditures', obj);
+    } else {
+      this.removeAttribute('expenditures');
+    }
+  }
   get talentTeamID() {
     return this.getAttribute('talent-team-id');
   }
