@@ -24,7 +24,6 @@ export async function deleteData(item, url) {
   return fetch("http://localhost:" + httpPort + "/" + url + '/' + item, {
     method: 'delete'
   });
-  //.then(response => response);
 }
 
 export async function getData(api){
