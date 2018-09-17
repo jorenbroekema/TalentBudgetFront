@@ -15,9 +15,8 @@ export class Talent {
     let xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = function() {
       if (this.readyState == 4 && this.status == 200) {
-        console.log(this.responseText);
         const response = JSON.parse(this.responseText);
-        var newInnerHTML = '';
+        let newInnerHTML = '';
         for (var i = 0; i < response.length; i++) {
           if (response[i].talentTeam == null) {
             response[i].talentTeam = {

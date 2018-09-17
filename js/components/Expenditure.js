@@ -9,18 +9,29 @@ class BudgetExpenditure extends HTMLElement {
     const title = this.title;
     const icon = this.icon;
     const budget = this.budget;
+    const state = this.state;
+    const ex_id = this.expenditureID;
+    let stateIcon;
+
+    switch(state){
+      case 1: stateIcon = 'fa-check-circle';
+      break;
+      case 2: stateIcon = 'fa-spinner';
+      break; 
+      case 3: stateIcon = 'fa-check-circle';
+      break;
+      case 4: stateIcon = 'fa-clipboard-check';
+      break;
+    }
 
     this.setAttribute('data-toggle', 'modal');
-    // TODO: Make #myModal configurable!
-    this.setAttribute('data-target', '#myModal');
+    this.setAttribute('data-target', '#modal-' + ex_id); 
 
-    expenditureContainer.classList.add('expenditure');
-    expenditureContainer.setAttribute('data-toggle', 'modal');
-    expenditureContainer.setAttribute('data-target', '#myModal');
+    expenditureContainer.classList.add('expenditure', state);
     expenditureContainer.innerHTML = `
       <style>
-        @import url("./node_modules/@fortawesome/fontawesome-free/css/all.min.css");
-        @import url("./node_modules/bootstrap/dist/css/bootstrap.min.css");
+        @import url("../../node_modules/@fortawesome/fontawesome-free/css/all.min.css");
+        @import url("../../node_modules/bootstrap/dist/css/bootstrap.min.css");
 
         :host{
           width: 100%;
@@ -29,10 +40,7 @@ class BudgetExpenditure extends HTMLElement {
         .expenditure{
           display: flex;
           padding: 15px;
-        }
-
-        .icon{
-          margin-right: 15px;
+          height: 100%;
         }
         
         .title{
@@ -45,9 +53,14 @@ class BudgetExpenditure extends HTMLElement {
           line-height: 30px;
           font-weight: bold;
         }
+
+        .approved{border: 2px solid #dff0d8}
+        .in-progress{border: 2px solid #fcf8e3}
+        .declined{border: 2px solid #f2dede}
+        .done{border: 2px solid #d9edf7}
       </style>
       <div class="icon"><i class="fas ${icon} fa-2x"></i></div>
-      <div class="title">${title}</div>
+      <div class="title">${title} <i class="fas ${stateIcon}"></i></div>
       <div class="budget">${budget}</div>
     `;
 
@@ -58,14 +71,14 @@ class BudgetExpenditure extends HTMLElement {
   createModal(){
     const modalContainer = document.createElement('div');
     modalContainer.innerHTML = `
-      <div class="modal fade" id="myModal" role="dialog">
+      <div class="modal fade" id="modal-${this.expenditureID}" role="dialog">
         <div class="modal-dialog">
         
           <!-- Modal content-->
           <div class="modal-content">
             <div class="modal-header">
               <button type="button" class="close" data-dismiss="modal">&times;</button>
-              <h4 class="modal-title">Modal Header</h4>
+              <h4 class="modal-title">${this.title}</h4>
             </div>
             <div class="modal-body">
               <p>Some text in the modal.</p>
@@ -117,8 +130,14 @@ class BudgetExpenditure extends HTMLElement {
     }
   }
 
-  get BSmodal(){
-    return this.hasAttribute('BSmodal');
+  get state(){
+    const state = this.getAttribute('state');
+    const stateStrings = ['approved', 'in-progress', 'declined', 'done']
+    return stateStrings[parseInt(state)-1];
+  }
+
+  get expenditureID(){
+    return this.getAttribute('expenditure-id');
   }
 }
 customElements.define('budget-expenditure', BudgetExpenditure);

@@ -8,7 +8,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Expenditure example</title>
+    <title>Profile</title>
 
     <!-- Bootstrap core CSS -->
     <link href="./node_modules/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -48,48 +48,49 @@
       </div>
     </nav>
 
-    <div class="container-fluid">
-      <h1>Expenditure demo</h1>
-      <p>This shows the expenditure dialog view</p> 
-      <p>You can also add expenditures here</p>
+    <div class="profile-info">
+      
     </div>
 
-    <div class="new-expenditure-container">
-      <form class="new-expenditure-form">
-        <input id="input-name" placeholder="Name..." />
-        <input id="input-description" placeholder="Description..." />
-        <input id="input-goal" placeholder="Goal..." />
-        <input id="input-date" type="date" />
-        <input id="input-cost" placeholder="Cost..." />
-        <div id="submit-new-expenditure">Submit</div>
-      </form>
-    </div>
-    
-    <!-- Expenditure objects -->
-    <div class="expenditure-container">
-      <ul class="list-group">
-        <li class="list-group-item">
-          <budget-expenditure
-            title="Java OCA Book"
-            icon="fa-book"
-            budget="€60,-"
-          ></budget-expenditure>
-        </li>        
-        <li class="list-group-item">
-          <budget-expenditure
-            title="Egghead.io subscription"
-            icon="fa-bell"
-            budget="€12,95"
-          ></budget-expenditure>
-        </li>
-        <li class="list-group-item">
-          <budget-expenditure
-            title="Scrum Training"
-            icon="fa-graduation-cap"
-            budget="€120,45"
-          ></budget-expenditure>
-        </li>
-      </ul>
+    <div class="content-wrapper">
+      <div class="expenditure-container">
+        <div id="addExpenditureModal" class="modal fade" role="dialog">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Modal Header</h4>
+              </div>
+              <div class="modal-body">
+                <div class="new-expenditure-container">
+                  <form class="new-expenditure-form">
+                    <input id="input-name" placeholder="Name..." />
+                    <input id="input-description" placeholder="Description..." />
+                    <input id="input-goal" placeholder="Goal..." />
+                    <input id="input-date" type="date" />
+                    <input id="input-cost" placeholder="Cost..." />
+                    <div id="submit-new-expenditure" data-dismiss="modal">Submit</div>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="button-container">
+          <button 
+            id="addExpenditureBtn" 
+            type="button" 
+            class="btn"
+            data-toggle="modal" 
+            data-target="#addExpenditureModal"
+          >Add Expenditure</button>
+        </div>
+        
+        <ul class="list-group">
+
+
+        </ul>
+      </div>
     </div>
         
     <!-- Bootstrap core JavaScript
@@ -98,6 +99,6 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <script>window.jQuery || document.write('<script src="./node_modules/jquery/dist/jquery.min.js"><\/script>')</script>
     <script src="./node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
-    <script type="module" src="./js/pages/expenditure.js"></script>
+    <script type="module" src="./js/pages/profile.js"></script>
   </body>
 </html>

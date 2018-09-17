@@ -34,6 +34,7 @@ function getTalentTeams(){
   getData('api/talentteam/all');
 }
 
+// FIXME: Seems like a duplicate from getTalents that we don't need.
 function showTalentComponents(){
   Talent.showTalents('api/talent/all');
 }
