@@ -31,7 +31,7 @@ function getTalents(){
   getData('api/talent/all');
 }
 function getTalentTeams(){
-  getData('api/talentteam/all');
+  getData('api/team/all');
 }
 
 // FIXME: Seems like a duplicate from getTalents that we don't need.

@@ -6,6 +6,7 @@ const userID = getQueryVariable('id');
 loadTalent(userID);
 loadExpenditures(userID);
 
+
 const DOMElems = {
   name: document.getElementById('input-name'),
   description: document.getElementById('input-description'),
@@ -34,6 +35,11 @@ function loadTalent(id){
   const profileElement = document.querySelector('.profile-info');
   getData(api).then( (response) => {
     console.log(response);
+    const expenditures = response.expenditures;
+    let newBudget = parseInt(response.budget);
+    for (let i = 0; i < expenditures.length; i++) {
+      newBudget = newBudget - expenditures[i].cost;     
+    } 
     profileElement.innerHTML = `
       <img 
         src="../../resources/images/portraits/${response.name}.jpg" 
@@ -43,6 +49,7 @@ function loadTalent(id){
         class="portrait"
       >
       <h2>${response.name}</h2>
+      <h5><center>€${newBudget}</center> </h5>
     `;
   });
 
