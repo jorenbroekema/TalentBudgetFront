@@ -22,7 +22,7 @@ function submitNewExpenditure(){
   const JSONdata = JSON.stringify(submitData);
   
   // TODO: do not hard code 1 
-  postData('api/user/1/add/expenditure', JSONdata);
+  postData('api/user/1/expenditure', JSONdata);
   console.log(submitData);
   console.log(JSONdata);
 }

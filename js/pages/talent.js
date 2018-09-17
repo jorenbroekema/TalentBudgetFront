@@ -62,8 +62,8 @@ function submitNewTalent() {
     teamID: DOMElems.teamID.value,
   }
   const JSONdata = JSON.stringify(submitData);
-  postData('api/talentmanager/talent', JSONdata).then( () => {
-    Talent.showTalents('api/talentmanager/talent/all');
+  postData('api/talent', JSONdata).then( () => {
+    Talent.showTalents('api/talent/all');
     getNavUsers();
   });
 };
@@ -74,8 +74,8 @@ deleteTalentButton.addEventListener('click', deleteTalent);
 
 function deleteTalent() {
   const id = document.getElementById('input-id').value;
-  deleteData(id, 'api/talentmanager/talent').then( () => {
-    Talent.showTalents('api/talentmanager/talent/all');
+  deleteData(id, 'api/talent').then( () => {
+    Talent.showTalents('api/talent/all');
     getNavUsers();
   });
 }

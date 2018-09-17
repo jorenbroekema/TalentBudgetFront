@@ -28,12 +28,12 @@ function sendTalentTeam(){
 
 // GET functions:
 function getTalents(){
-  getData('api/talentmanager/talent/all');
+  getData('api/talent/all');
 }
 function getTalentTeams(){
-  getData('api/talentmanager/team/all');
+  getData('api/talentteam/all');
 }
 
 function showTalentComponents(){
-  Talent.showTalents('api/talentmanager/talent/all');
+  Talent.showTalents('api/talent/all');
 }
