@@ -28,12 +28,13 @@ function sendTalentTeam(){
 
 // GET functions:
 function getTalents(){
-  getData('api/talentmanager/talent/all');
+  getData('api/talent/all');
 }
 function getTalentTeams(){
   getData('api/talentmanager/team/all');
 }
 
+// FIXME: Seems like a duplicate from getTalents that we don't need.
 function showTalentComponents(){
-  Talent.showTalents('api/talentmanager/talent/all');
+  Talent.showTalents('api/talent/all');
 }
