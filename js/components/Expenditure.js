@@ -14,13 +14,13 @@ class BudgetExpenditure extends HTMLElement {
     let stateIcon;
 
     switch(state){
-      case 1: stateIcon = 'fa-check-circle';
+      case 'approved': stateIcon = 'fa-check-circle';
       break;
-      case 2: stateIcon = 'fa-spinner';
+      case 'in-progress': stateIcon = 'fa-spinner';
       break; 
-      case 3: stateIcon = 'fa-check-circle';
+      case 'declined': stateIcon = 'fa-exclamation-circle';
       break;
-      case 4: stateIcon = 'fa-clipboard-check';
+      case 'done': stateIcon = 'fa-clipboard-check';
       break;
     }
 
@@ -47,6 +47,11 @@ class BudgetExpenditure extends HTMLElement {
           width: 100%;
           line-height: 30px;
           text-align: center;
+        }
+
+        .title .fas{
+          margin-left: 10px;
+          font-size: 18px;
         }
         
         .budget{
