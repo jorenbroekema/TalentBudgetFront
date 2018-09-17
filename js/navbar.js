@@ -23,8 +23,6 @@ function setOptions(response){
 
   let htmlOptions = '';
   talents.forEach(talent => {
-    console.log(talent);
-
     // If talent team does not exist, just set it to id:1
     if(talent.talentTeam === null){
       talent.talentTeam = {id: 1};

@@ -1,5 +1,5 @@
 import { httpPort } from '../../localconfig.js';
-import { postData } from '../AjaxMixin.js';
+import { postData, deleteData } from '../AjaxMixin.js';
 import { getNavUsers } from '../navbar.js';
 
 export class Talent {
@@ -19,13 +19,20 @@ export class Talent {
         const response = JSON.parse(this.responseText);
         var newInnerHTML = '';
         for (var i = 0; i < response.length; i++) {
-          console.log(response[i].expenditures);
+          if (response[i].talentTeam == null) {
+            response[i].talentTeam = {
+              id: 'null',
+              teamname: 'null'
+            };
+          }
           newInnerHTML += `<li class="list-group-item">
                             <budget-talent
                               id=${response[i].id}
                               name="${response[i].name}"
                               budget="${response[i].budget}"
                               expenditures='${JSON.stringify(response[i].expenditures)}' 
+                              talent-team-name="${response[i].talentTeam.teamname}"
+                              talent-team-id=${response[i].talentTeam.id}
                             ></budget-talent>
                           </li>`;
         }
@@ -44,15 +51,15 @@ newTalentButton.addEventListener('click', submitNewTalent);
 
 const DOMElems = {
   name: document.getElementById('input-name'),
-  id: document.getElementById('input-id'),
   budget: document.getElementById('input-budget'),
+  teamID: document.getElementById('input-talent-team-id'),
 };
 
-function submitNewTalent(){
+function submitNewTalent() {
   const submitData = {
     name: DOMElems.name.value,
-    id: DOMElems.id.value,
     budget: DOMElems.budget.value,
+    teamID: DOMElems.teamID.value,
   }
   const JSONdata = JSON.stringify(submitData);
   postData('api/talentmanager/talent', JSONdata).then( () => {
@@ -60,3 +67,15 @@ function submitNewTalent(){
     getNavUsers();
   });
 };
+
+// Delete talent:
+const deleteTalentButton = document.getElementById('submit-delete-talent');
+deleteTalentButton.addEventListener('click', deleteTalent);
+
+function deleteTalent() {
+  const id = document.getElementById('input-id').value;
+  deleteData(id, 'api/talentmanager/talent').then( () => {
+    Talent.showTalents('api/talentmanager/talent/all');
+    getNavUsers();
+  });
+}

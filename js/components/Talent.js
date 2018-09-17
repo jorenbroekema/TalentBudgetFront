@@ -8,20 +8,15 @@ class BudgetTalent extends HTMLElement {
     const talentContainer = document.createElement('div');
     const id = this.id;
     const name = this.name;
-    let budget = parseInt(this.budget);
     const expenditures = JSON.parse(this.expenditures);
-    console.log(expenditures);
-
+    const talentTeamID = this.talentTeamID;
+    const talentTeamName = this.talentTeamName;
     
+    let budget = parseInt(this.budget);
     for (let i = 0; i < expenditures.length; i++) {
-      console.log(expenditures[i]);
-      console.log(expenditures.length);
-      console.log(expenditures[i].cost);
-      console.log(budget);
-      budget = budget - expenditures[i].cost; 
-      console.log(budget);  
+      budget = budget - expenditures[i].cost;     
     } 
-    //const teams = 
+      
 
     // Try to find the profile image:
     var imgURL = `../../resources/images/portraits/${name}.jpg`;
@@ -34,11 +29,13 @@ class BudgetTalent extends HTMLElement {
           width: 100%;
         }
         .talent {
-          /*height: 100px;
-          margin-bottom: 15px;
-          border-radius: 4px;
-          display: flex;*/
           position: relative;
+        }
+        .portrait {
+          border-radius: 50%;
+          display: block;
+          margin-left: auto;
+          margin-right: auto;
         }
         .name {
           width: 100%;
@@ -60,17 +57,26 @@ class BudgetTalent extends HTMLElement {
           top: 20px;
           color: red;
         }
-        .portrait {
-          border-radius: 50%;
-          display: block;
-          margin-left: auto;
-          margin-right: auto;
+        .talent-team-id {
+          width: 100%;
+          text-align: center;
+          position: relative;
+          top: 20px;
+          color: grey;
+        }
+        .talent-team-name {
+          width: 100%;
+          text-align: center;
+          position: relative;
+          top: 20px;
         }
       </style>
       <img src="${imgURL}" onerror="this.src='${defaultImgURL}'" alt="${name}" width="100" height="100" class=portrait>
       <div class="name">${name}</div>
       <div class="id">${id}</div>
       <div class="budget">€${budget}</div>
+      <div class="talent-team-id">${talentTeamID}</div>
+      <div class="talent-team-name">${talentTeamName}</div>
     `;
     shadow.appendChild(talentContainer);
   }
@@ -116,6 +122,27 @@ class BudgetTalent extends HTMLElement {
       this.setAttribute('expenditures', obj);
     } else {
       this.removeAttribute('expenditures');
+    }
+  }
+  get talentTeamID() {
+    return this.getAttribute('talent-team-id');
+  }
+  set talentTeamID(number) {
+    if (number) {
+      this.setAttribute('talent-team-id', number);
+    } else {
+      this.removeAttribute('talent-team-id');
+    }
+  }
+
+  get talentTeamName() {
+    return this.getAttribute('talent-team-name');
+  }
+  set talentTeamName(str) {
+    if (str) {
+      this.setAttribute('talent-team-name', str);
+    } else {
+      this.removeAttribute('talent-team-name');
     }
   }
 }
