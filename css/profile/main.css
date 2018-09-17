@@ -68,3 +68,8 @@ budget-expenditure:hover {
   float: right;
   margin-bottom: 10px;
 }
+
+h5.talent-budget{
+  text-align: center;
+  font-size: 15px;
+}
