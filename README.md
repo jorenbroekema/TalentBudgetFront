@@ -20,5 +20,9 @@ If you don't have npm, download and install node from here https://nodejs.org/en
 
 `bower install` to install bower dependencies
 
-
 To run it, just do `npm start` and it will do the http-server start. Alternatively, `http-server` works and you can provide an alternative port to the default given one. 
+
+Optional, needed to run the talentPolymer.html page:
+`npm install @webcomponents/webcomponentsjs`  to install the webcomponentsjs module.
+`npm install --save @polymer/iron-ajax`       to install the iron ajax module.
+`npm install --save @polymer/paper-button`    to install the paper button module.
