@@ -43,11 +43,16 @@ body {
   padding: 5px;
   margin-bottom: 5px;
   width: 200px;
+  height: 30px;
 }
 
 #submit-new-talent{
+  display: inline-block;
   cursor: pointer;
   background-color: #ddd;
   padding: 5px;
-  width: max-content;
+  margin-bottom: 5px;
+  width: 200px;
+  height: 30px;
+  text-align: center;
 }

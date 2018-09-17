@@ -16,16 +16,21 @@ export class Talent {
     xhttp.onreadystatechange = function() {
       if (this.readyState == 4 && this.status == 200) {
         const response = JSON.parse(this.responseText);
-        console.log(response[0].talentTeam.id);
         var newInnerHTML = '';
         for (var i = 0; i < response.length; i++) {
+          if (response[i].talentTeam == null) {
+            response[i].talentTeam = {
+              id: 'null',
+              teamname: 'null'
+            };
+          }
           newInnerHTML += `<li class="list-group-item">
                             <budget-talent
                               id=${response[i].id}
                               name="${response[i].name}"
                               budget="€${response[i].budget}"
-                              talent-team-id=${response[i].talentTeam.id}
                               talent-team-name="${response[i].talentTeam.teamname}"
+                              talent-team-id=${response[i].talentTeam.id}
                             ></budget-talent>
                           </li>`;
         }
