@@ -20,6 +20,13 @@ export async function postData(api, data){
   return response;
 }
 
+export async function deleteData(item, url) {
+  return fetch("http://localhost:" + httpPort + "/" + url + '/' + item, {
+    method: 'delete'
+  });
+  //.then(response => response);
+}
+
 export async function getData(api){
   let xhttp = new XMLHttpRequest();
 

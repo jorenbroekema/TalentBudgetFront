@@ -56,3 +56,29 @@ body {
   height: 30px;
   text-align: center;
 }
+
+.delete-talent-container{
+  padding: 0 15px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  flex-flow: row wrap;
+}
+
+.delete-talent-form input{
+  padding: 5px;
+  margin-bottom: 5px;
+  width: 200px;
+  height: 30px;
+}
+
+#submit-delete-talent{
+  display: inline-block;
+  cursor: pointer;
+  background-color: #ddd;
+  padding: 5px;
+  margin-bottom: 5px;
+  width: 200px;
+  height: 30px;
+  text-align: center;
+}

@@ -1,5 +1,5 @@
 import { httpPort } from '../../localconfig.js';
-import { postData } from '../AjaxMixin.js';
+import { postData, deleteData } from '../AjaxMixin.js';
 import { getNavUsers } from '../navbar.js';
 
 export class Talent {
@@ -53,7 +53,7 @@ const DOMElems = {
   teamID: document.getElementById('input-talent-team-id'),
 };
 
-function submitNewTalent(){
+function submitNewTalent() {
   const submitData = {
     name: DOMElems.name.value,
     budget: DOMElems.budget.value,
@@ -65,3 +65,15 @@ function submitNewTalent(){
     getNavUsers();
   });
 };
+
+// Delete talent:
+const deleteTalentButton = document.getElementById('submit-delete-talent');
+deleteTalentButton.addEventListener('click', deleteTalent);
+
+function deleteTalent() {
+  const id = document.getElementById('input-id').value;
+  deleteData(id, 'api/talentmanager/talent').then( () => {
+    Talent.showTalents('api/talentmanager/talent/all');
+    getNavUsers();
+  });
+}
