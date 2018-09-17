@@ -1,5 +1,4 @@
 import { getData } from './AjaxMixin.js';
-import { Talent } from './components/Talent.js';
 import { TalentTeam } from './components/TalentTeam.js';
 
 // POST Event Listeners:
@@ -10,15 +9,7 @@ document.getElementById("sendTalentTeamButton").addEventListener("click", sendTa
 document.getElementById("showTalentsButton").addEventListener("click", getTalents);
 document.getElementById("showTalentTeamsButton").addEventListener("click", getTalentTeams);
 
-// POST functions:
-function sendTalent(){
-  Talent.sendTalent(
-    document.querySelector('#apiTalentUrl').value,
-    document.querySelector('#talents_table #budget').value,
-    document.querySelector('#talents_table #name').value,
-    document.querySelector('#talents_table #talent_team_id').value
-  );
-}
+
 function sendTalentTeam(){
   TalentTeam.sendTalentTeam(
     document.querySelector('#apiTeamUrl').value,
@@ -32,9 +23,4 @@ function getTalents(){
 }
 function getTalentTeams(){
   getData('api/team/all');
-}
-
-// FIXME: Seems like a duplicate from getTalents that we don't need.
-function showTalentComponents(){
-  Talent.showTalents('api/talent/all');
 }

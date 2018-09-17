@@ -2,7 +2,7 @@ import { httpPort } from '../../localconfig.js';
 import { postData, deleteData } from '../AjaxMixin.js';
 import { getNavUsers } from '../navbar.js';
 
-export class Talent {
+//export class Talent {
 
   constructor(api, budget, name, talent_team_id){
     this.api = api;
@@ -42,7 +42,7 @@ export class Talent {
     xhttp.setRequestHeader("Content-type", "application/json");
     xhttp.send();
   }
-}
+//}
 
 // Add new talent:
 const newTalentButton = document.getElementById('submit-new-talent');
