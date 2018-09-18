@@ -61,13 +61,13 @@ export class YoungColfield extends PolymerElement {
       <p>This is the talent view for the Polymer demo!</p>
 
       <input type=text value={{inputName::input}} placeholder="First name...">
-      <input type=text value={{inputBudget::input}} placeholder="Budget...">
-      <input type=text value={{inputTeamID::input}} placeholder="Talent Team ID...">
+      <input type=number value={{inputBudget::input}} placeholder="Budget...">
+      <input type=number value={{inputTeamID::input}} placeholder="Talent Team ID...">
       <paper-button raised class="indigo" on-click=_addTalentMethod>Submit Talent</paper-button>
 
       <br>
 
-      <input type=text value={{inputID::input}} placeholder="Talent ID...">
+      <input type=number value={{inputID::input}} placeholder="Talent ID...">
       <paper-button raised class="indigo" on-click=_deleteTalentMethod>Delete Talent</paper-button>
       
       <div><a href="http://127.0.0.1:8080/talent.html">Click here to switch to the normal Talent Page!</a></div>
@@ -93,7 +93,13 @@ export class YoungColfield extends PolymerElement {
       <paper-button raised on-click=_startajax>Get Talents</paper-button>
 
       <iron-ajax id="deletetalentajax" handle-as="json" on-response="returnfromdelete"></iron-ajax>
-      <iron-ajax id="addtalentajax" handle-as="json" on-response="returnfromadd"></iron-ajax>
+      <iron-ajax id="addtalentajax" 
+                 handle-as="json" 
+                 method="POST"
+                 headers='{"Accept": "application/json"}'
+                 content-type='application/json'
+                 on-response="returnfromadd">
+      </iron-ajax>
       <iron-ajax id="gettalentajax" handle-as="json" on-response="returnfromget"></iron-ajax>
     `;
   }
@@ -101,19 +107,15 @@ export class YoungColfield extends PolymerElement {
     return {
       inputName: {
         type: String,
-        value: undefined,
       },
       inputBudget: {
         type: Number,
-        value: undefined
       },
       inputTeamID: {
         type: Number,
-        value: undefined
       },
       inputID: {
         type: Number,
-        value: undefined
       },
       talents: {
         type: Array,
@@ -126,13 +128,14 @@ export class YoungColfield extends PolymerElement {
 
   _deleteTalentMethod() {
     var ajax = this.$.deletetalentajax;
-    ajax.url = "http://127.0.0.1:" + httpPort + "/api/talent/" + inputID;
+    ajax.url = "http://127.0.0.1:" + httpPort + "/api/talent/" + this.inputID;
     ajax.method = 'delete';
     ajax.generateRequest();
   }
 
   returnfromdelete(response) {
     console.log(response);
+    this._startajax();
   }
 
   _addTalentMethod() {
@@ -140,16 +143,18 @@ export class YoungColfield extends PolymerElement {
     ajax.url = "http://127.0.0.1:" + httpPort + "/api/talent";
     ajax.method = 'post';
     const submitData = {
-      name: inputName,
-      budget: inputBudget,
-      teamID: inputTeamID,
+      name: this.inputName,
+      budget: this.inputBudget,
+      talent_team_id: this.inputTeamID,
     }
+    console.log(submitData);
     ajax.body = JSON.stringify(submitData);
     ajax.generateRequest()
   }
 
   returnfromadd(response) {
     console.log(response);
+    this._startajax();
   }
   
   _startajax() {

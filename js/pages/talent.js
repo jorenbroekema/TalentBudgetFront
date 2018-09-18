@@ -52,7 +52,7 @@ function submitNewTalent() {
   const submitData = {
     name: DOMElems.name.value,
     budget: DOMElems.budget.value,
-    teamID: DOMElems.teamID.value,
+    talent_team_id: DOMElems.teamID.value,
   }
   const JSONdata = JSON.stringify(submitData);
   postData('api/talent', JSONdata).then( () => {
