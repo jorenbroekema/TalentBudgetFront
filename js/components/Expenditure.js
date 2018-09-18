@@ -1,5 +1,5 @@
 import { patchData, deleteData } from '../../js/AjaxMixin.js';
-import { loadExpenditures } from '../../js/pages/profile.js';
+import { loadExpenditures, loadTalent } from '../../js/pages/profile.js';
 
 class BudgetExpenditure extends HTMLElement {
   constructor(){
@@ -202,6 +202,7 @@ class BudgetExpenditure extends HTMLElement {
   ex_delete(expenditureID){
     deleteData(`api/user/${this.talent_id}/expenditure/${expenditureID}`).then( (response) => {
       loadExpenditures(this.talent_id);
+      loadTalent(this.talent_id);
     });
   }
 
