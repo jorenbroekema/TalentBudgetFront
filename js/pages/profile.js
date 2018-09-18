@@ -3,6 +3,13 @@ import { getQueryVariable } from '../../js/getURLVar.js';
 
 const newExpenditureButton = document.getElementById('submit-new-expenditure');
 newExpenditureButton.addEventListener('click', submitNewExpenditure);
+const stateFilters = [].slice.call(document.querySelector('.state-filters').children);
+stateFilters.forEach(button => {
+  button.addEventListener('click', () => {
+    toggleFilter(button);
+  });
+});
+
 const userID = getQueryVariable('id');
 loadTalent(userID);
 loadExpenditures(userID);
@@ -32,7 +39,7 @@ function submitNewExpenditure(){
   });  
 }
 
-function loadTalent(id){
+export function loadTalent(id){
   const api = `api/talent/${id}`;
   const profileElement = document.querySelector('.profile-info');
   getData(api).then( (response) => {
@@ -90,4 +97,34 @@ export function loadExpenditures(id){
       `;
     });
   });
+}
+
+function toggleFilter(btn){
+  const stateMapping = { 
+    "Approved": 1,
+    "In Progress": 2,
+    "Declined": 3,
+    "Done": 4
+  }
+
+  if (btn.classList.contains('active')) {
+    btn.classList.remove('active');
+  } else {
+    btn.classList.add('active');
+  } 
+  toggleExpenditures(stateMapping[btn.innerText]);
+}
+
+function toggleExpenditures(state){
+  const expenditures = [].slice.call(document.querySelector('.expenditure-container .list-group').children);
+  expenditures.forEach(expenditure => {
+    if (parseInt(expenditure.firstElementChild.getAttribute('state')) === state) {
+      if (expenditure.classList.contains('hidden')){
+        expenditure.classList.remove('hidden');
+      } else {
+        expenditure.classList.add('hidden');
+      }
+    }
+  });
+
 }
