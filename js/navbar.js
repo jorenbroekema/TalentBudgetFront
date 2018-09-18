@@ -5,7 +5,7 @@ getNavUsers();
 
 export function getNavUsers(){
 // Wait till we have the data from the backend, then set the options etc.
-  getData('api/talentmanager/talent/all').then(result => {
+  getData('api/talent/all').then(result => {
     setOptions(result);
     if(result.length > 0){
       changeUser();

@@ -1,5 +1,4 @@
 import { getData } from './AjaxMixin.js';
-import { Talent } from './components/Talent.js';
 import { TalentTeam } from './components/TalentTeam.js';
 
 // POST Event Listeners:
@@ -10,15 +9,7 @@ document.getElementById("sendTalentTeamButton").addEventListener("click", sendTa
 document.getElementById("showTalentsButton").addEventListener("click", getTalents);
 document.getElementById("showTalentTeamsButton").addEventListener("click", getTalentTeams);
 
-// POST functions:
-function sendTalent(){
-  Talent.sendTalent(
-    document.querySelector('#apiTalentUrl').value,
-    document.querySelector('#talents_table #budget').value,
-    document.querySelector('#talents_table #name').value,
-    document.querySelector('#talents_table #talent_team_id').value
-  );
-}
+
 function sendTalentTeam(){
   TalentTeam.sendTalentTeam(
     document.querySelector('#apiTeamUrl').value,
@@ -28,12 +19,8 @@ function sendTalentTeam(){
 
 // GET functions:
 function getTalents(){
-  getData('api/talentmanager/talent/all');
+  getData('api/talent/all');
 }
 function getTalentTeams(){
-  getData('api/talentmanager/team/all');
-}
-
-function showTalentComponents(){
-  Talent.showTalents('api/talentmanager/talent/all');
+  getData('api/team/all');
 }

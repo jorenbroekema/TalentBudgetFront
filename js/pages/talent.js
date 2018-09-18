@@ -2,46 +2,40 @@ import { httpPort } from '../../localconfig.js';
 import { postData, deleteData } from '../AjaxMixin.js';
 import { getNavUsers } from '../navbar.js';
 
-export class Talent {
+showTalents('api/talent/all');
 
-  constructor(api, budget, name, talent_team_id){
-    this.api = api;
-    this.budget = budget;
-    this.name = name;
-    this.talent_team_id = talent_team_id;
-  }
-
-  static showTalents(api) {
-    let xhttp = new XMLHttpRequest();
-    xhttp.onreadystatechange = function() {
-      if (this.readyState == 4 && this.status == 200) {
-        const response = JSON.parse(this.responseText);
-        let newInnerHTML = '';
-        for (var i = 0; i < response.length; i++) {
-          if (response[i].talentTeam == null) {
-            response[i].talentTeam = {
-              id: 'null',
-              teamname: 'null'
-            };
-          }
-          newInnerHTML += `<li class="list-group-item">
-                            <budget-talent
-                              id=${response[i].id}
-                              name="${response[i].name}"
-                              budget="${response[i].budget}"
-                              expenditures='${JSON.stringify(response[i].expenditures)}' 
-                              talent-team-name="${response[i].talentTeam.teamname}"
-                              talent-team-id=${response[i].talentTeam.id}
-                            ></budget-talent>
-                          </li>`;
+function showTalents(api){
+  let xhttp = new XMLHttpRequest();
+  xhttp.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+      const response = JSON.parse(this.responseText);
+      let newInnerHTML = '';
+      for (var i = 0; i < response.length; i++) {
+        if (response[i].talentTeam == null) {
+          response[i].talentTeam = {
+            id: 'null',
+            teamname: 'null'
+          };
         }
-        document.getElementById("ajaxResponseTalents").innerHTML = newInnerHTML;
+        newInnerHTML += `
+          <li class="list-group-item">
+            <budget-talent
+              id=${response[i].id}
+              name="${response[i].name}"
+              budget="${response[i].budget}"
+              expenditures='${JSON.stringify(response[i].expenditures)}' 
+              talent-team-name="${response[i].talentTeam.teamname}"
+              talent-team-id=${response[i].talentTeam.id}
+            ></budget-talent>
+          </li>
+        `;
       }
-    };
-    xhttp.open("GET", "http://localhost:" + httpPort + "/" + api);
-    xhttp.setRequestHeader("Content-type", "application/json");
-    xhttp.send();
-  }
+      document.getElementById("ajaxResponseTalents").innerHTML = newInnerHTML;
+    }
+  };
+  xhttp.open("GET", "http://localhost:" + httpPort + "/" + api);
+  xhttp.setRequestHeader("Content-type", "application/json");
+  xhttp.send();
 }
 
 // Add new talent:
@@ -61,8 +55,8 @@ function submitNewTalent() {
     teamID: DOMElems.teamID.value,
   }
   const JSONdata = JSON.stringify(submitData);
-  postData('api/talentmanager/talent', JSONdata).then( () => {
-    Talent.showTalents('api/talentmanager/talent/all');
+  postData('api/talent', JSONdata).then( () => {
+    showTalents('api/talent/all'); 
     getNavUsers();
   });
 };
@@ -73,8 +67,8 @@ deleteTalentButton.addEventListener('click', deleteTalent);
 
 function deleteTalent() {
   const id = document.getElementById('input-id').value;
-  deleteData(id, 'api/talentmanager/talent').then( () => {
-    Talent.showTalents('api/talentmanager/talent/all');
+  deleteData(id, 'api/talent').then( () => {
+    showTalents('api/talent/all');
     getNavUsers();
   });
 }

@@ -20,10 +20,8 @@
     <link href="./node_modules/@fortawesome/fontawesome-free/css/all.min.css" rel="stylesheet">
 
     <script type="module" src="./js/components/Talent.js"></script>
-
-    <script type="module">
-      import { Talent } from './js/pages/talent.js';
-      window.onload = Talent.showTalents('api/talentmanager/talent/all');
+    
+    <script type="module" src='./js/pages/talent.js'>
     </script>
   </head>
   <body>
@@ -58,28 +56,76 @@
       <p>This is the talent demo page!</p>
     </div>
 
-    <div class="new-talent-container">
-      <form class="new-talent-form">
-        <input id="input-name" placeholder="Name..." />
-        <input id="input-budget" placeholder="Budget..." />
-        <input id="input-talent-team-id" placeholder="Talent Team ID..." />
-        <span id="submit-new-talent">Add Talent</span>
-      </form>
+    <div class="modal-wrapper">
+      <div class="new-talent-container">
+        <div id="addTalentModal" class="modal fade" role="dialog">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Add a new Talent</h4>
+              </div>
+              <div class="modal-body">
+                <div class="new-talent-container">
+                  <form class="new-talent-form">
+                    <input id="input-name" placeholder="Name..." />
+                    <input id="input-budget" placeholder="Budget..." />
+                    <input id="input-talent-team-id" placeholder="Talent Team ID..." />
+                    <div id="submit-new-talent" data-dismiss="modal">Add Talent</div>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="delete-talent-container">
+        <div id="deleteTalentModal" class="modal fade" role="dialog">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Delete Talent</h4>
+              </div>
+              <div class="modal-body">
+                <div class="delete-talent-container">
+                  <form class="delete-talent-form">
+                    <input id="input-id" placeholder="ID..." />
+                    <span id="submit-delete-talent">Delete Talent</span>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
-
-    <div class="delete-talent-container">
-      <form class="delete-talent-form">
-        <input id="input-id" placeholder="ID..." />
-        <span id="submit-delete-talent">Delete Talent</span>
-      </form>
-    </div>
-
-    <a href="http://127.0.0.1:8081/components/talentbudgetfront/talentPolymer.html">Click here to switch to the Polymer Talent Page!</a>
-
+    
+    <div class="talents-page-container">
+        <div class="button-container">
+          <button 
+            id="addTalentBtn" 
+            type="button" 
+            class="btn"
+            data-toggle="modal" 
+            data-target="#addTalentModal"
+          >Add Talent</button>
+          <button 
+            id="deleteTalentBtn" 
+            type="button" 
+            class="btn"
+            data-toggle="modal" 
+            data-target="#deleteTalentModal"
+          >Delete Talent</button>
+        </div>
+    
     <!-- Talent objects -->
     <div class="talent-container">
       <ul class="list-group" id="ajaxResponseTalents">
       </ul>
+    </div>
+    <a href="http://127.0.0.1:8081/components/talentbudgetfront/talentPolymer.html">Click here to switch to the Polymer Talent Page!</a>
+
     </div>
         
     <!-- Bootstrap core JavaScript
