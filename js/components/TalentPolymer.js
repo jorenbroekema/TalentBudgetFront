@@ -3,14 +3,8 @@ import {PolymerElement, html} from '@polymer/polymer/polymer-element.js';
 // Define the element's API using an ES2015 class
 class BudgetTalentPolymer extends PolymerElement {
 
-  constructor(id, name, budget, talentTeamName, talentTeamID) {
+  constructor() {
     super();
-    this.id = id;
-    console.log(id);
-    this.name = name;
-    this.budget = budget;
-    this.talentTeamName = talentTeamName;
-    this.talentTeamID = talentTeamID;
   }
 
   // Define optional shadow DOM template
