@@ -1,3 +1,6 @@
+import { patchData, deleteData } from '../../js/AjaxMixin.js';
+import { loadExpenditures } from '../../js/pages/profile.js';
+
 class BudgetExpenditure extends HTMLElement {
   constructor(){
     super();
@@ -14,13 +17,21 @@ class BudgetExpenditure extends HTMLElement {
     let stateIcon;
 
     switch(state){
-      case 'approved': stateIcon = 'fa-check-circle';
+      case 'approved': 
+        stateIcon = 'fa-check-circle';
+        this.buttonDisplays = ['btn-request', 'btn-finish'];
       break;
-      case 'in-progress': stateIcon = 'fa-spinner';
+      case 'in-progress': 
+        stateIcon = 'fa-spinner';
+        this.buttonDisplays = ['btn-request', 'btn-approve', 'btn-decline'];
       break; 
-      case 'declined': stateIcon = 'fa-exclamation-circle';
+      case 'declined': 
+        stateIcon = 'fa-exclamation-circle';
+        this.buttonDisplays = ['btn-request', 'btn-delete'];
       break;
-      case 'done': stateIcon = 'fa-clipboard-check';
+      case 'done': 
+        stateIcon = 'fa-clipboard-check';
+        this.buttonDisplays = [];
       break;
     }
 
@@ -75,7 +86,34 @@ class BudgetExpenditure extends HTMLElement {
 
   createModal(){
     const modalContainer = document.createElement('div');
+    const stateString = this.toPascalCase(this.state);
+    const buttonMapping = {
+      "btn-request": "Request Approval",
+      "btn-decline": "Decline",
+      "btn-approve": "Approve",
+      "btn-delete": "Delete",
+      "btn-finish": "Finish"
+    };
+    let buttonsHTML = '';
+    if(this.buttonDisplays){
+      this.buttonDisplays.split(',').forEach(button => {
+        buttonsHTML += `<button 
+          type="button" 
+          class="btn btn-default ${button}" 
+          data-dismiss="modal"
+        >${buttonMapping[button]}</button>`
+      });
+    }
+
     modalContainer.innerHTML = `
+      <style>
+        .modal-state{width: max-content}
+        .approved, .btn-approve{border-bottom: 2px solid #dff0d8}
+        .in-progress, .btn-request{border-bottom: 2px solid #fcf8e3}
+        .declined, .btn-decline, .btn-delete{border-bottom: 2px solid #f2dede}
+        .done, .btn-finish{border-bottom: 2px solid #d9edf7}
+        .btn-request{float: left}
+      </style>
       <div class="modal fade" id="modal-${this.expenditureID}" role="dialog">
         <div class="modal-dialog">
         
@@ -83,13 +121,18 @@ class BudgetExpenditure extends HTMLElement {
           <div class="modal-content">
             <div class="modal-header">
               <button type="button" class="close" data-dismiss="modal">&times;</button>
-              <h4 class="modal-title">${this.title}</h4>
+              <h3 class="modal-title">${this.title}</h3>
+              <h5 class="modal-state ${this.state}">Status: ${stateString}</h5>
             </div>
             <div class="modal-body">
-              <p>Some text in the modal.</p>
+              <h4>Description</h4>
+              <p>${this.description}</p>
+              <hr>
+              <h4>Goal</h4>
+              <p>${this.goalDescription}</p>
             </div>
             <div class="modal-footer">
-              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+              ${buttonsHTML}
             </div>
           </div>
           
@@ -97,6 +140,82 @@ class BudgetExpenditure extends HTMLElement {
       </div>
     `;
     this.insertAdjacentElement('afterend', modalContainer);
+
+    // TODO: configurable callback names, needs more elegance
+    const buttons = document.querySelector(`#modal-${this.expenditureID} .modal-footer`).children;
+    for (let i = 0; i < buttons.length; i++){
+      let func = `ex_${buttons[i].classList[2].split('-')[1]}`;
+      switch(func){
+        case 'ex_finish':
+          buttons[i].addEventListener('click', () => {
+            this.ex_finish(this.expenditureID);
+          });
+        break;
+        case 'ex_approve':
+          buttons[i].addEventListener('click', () => {
+            this.ex_approve(this.expenditureID);
+          });
+        break;
+        case 'ex_request':
+          buttons[i].addEventListener('click', () => {
+            this.ex_request(this.expenditureID);
+          });
+        break;
+        case 'ex_delete':
+          buttons[i].addEventListener('click', () => {
+            this.ex_delete(this.expenditureID);
+          });
+        break;
+        case 'ex_decline':
+          buttons[i].addEventListener('click', () => {
+            this.ex_decline(this.expenditureID);
+          });
+        break;
+      }      
+    }
+  }
+
+  ex_finish(expenditureID){
+    patchData(`api/expenditure/${expenditureID}/state/4`).then( (response) => {
+      loadExpenditures(this.talent_id);
+    });
+  }
+
+  ex_approve(expenditureID){
+    patchData(`api/expenditure/${expenditureID}/state/1`).then( (response) => {
+      loadExpenditures(this.talent_id);
+    });
+  }
+
+  ex_request(expenditureID){
+    patchData(`api/expenditure/${expenditureID}/state/2`).then( (response) => {
+      loadExpenditures(this.talent_id);
+    });
+  }
+
+  ex_delete(expenditureID){
+    deleteData(`api/user/${this.talent_id}/expenditure/${expenditureID}`).then( (response) => {
+      loadExpenditures(this.talent_id);
+    });
+  }
+
+  ex_decline(expenditureID){
+    patchData(`api/expenditure/${expenditureID}/state/3`).then( (response) => {
+      loadExpenditures(this.talent_id);
+    });
+  }
+
+  toPascalCase(str){
+    str = str.replace('-', ' ');
+    let splitStr = str.toLowerCase().split(' ');
+    for (let i = 0; i < splitStr.length; i++) {
+      splitStr[i] = splitStr[i].charAt(0).toUpperCase() + splitStr[i].substring(1);     
+    }
+    return splitStr.join(' ');
+  }
+
+  get talent_id(){
+    return this.getAttribute('talent-id');
   }
 
   get title(){
@@ -143,6 +262,23 @@ class BudgetExpenditure extends HTMLElement {
 
   get expenditureID(){
     return this.getAttribute('expenditure-id');
+  }
+
+  get goalDescription(){
+    return this.getAttribute('goal-description');
+  }
+
+  get description(){
+    return this.getAttribute('description');
+  }
+
+  get buttonDisplays(){
+    return this.getAttribute('buttons');
+  }
+
+  set buttonDisplays(opts){
+    if (opts) this.setAttribute('buttons', opts);
+    else this.removeAttribute('buttons');
   }
 }
 customElements.define('budget-expenditure', BudgetExpenditure);

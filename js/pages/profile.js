@@ -66,7 +66,7 @@ function adjustBudget(budget){
   document.querySelector('.talent-budget').innerText=`€${budget}`;
 }
 
-function loadExpenditures(id){
+export function loadExpenditures(id){
   const api = `api/talent/${id}/expenditures`;
   getData(api).then( (response) => {
     const list = document.querySelector('.expenditure-container .list-group');
@@ -77,8 +77,11 @@ function loadExpenditures(id){
       list.innerHTML += `
         <li class="list-group-item">
           <budget-expenditure
+            talent-id="${id}"
             expenditure-id="${expenditure.id}"
             title="${expenditure.name}"
+            description="${expenditure.description}"
+            goal-description="${expenditure.goal_description}"
             icon="fa-graduation-cap"
             budget="€${expenditure.cost}"
             state="${expenditure.state}"

@@ -20,9 +20,15 @@ export async function postData(api, data){
   return response;
 }
 
-export async function deleteData(item, url) {
-  return fetch("http://localhost:" + httpPort + "/" + url + '/' + item, {
+export async function deleteData(url) {
+  return fetch("http://localhost:" + httpPort + "/" + url, {
     method: 'delete'
+  });
+}
+
+export async function patchData(url) {
+  return fetch("http://localhost:" + httpPort + "/" + url, {
+    method: 'PATCH'
   });
 }
 
