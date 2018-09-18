@@ -52,6 +52,7 @@ class BudgetExpenditure extends HTMLElement {
           display: flex;
           padding: 15px;
           height: 100%;
+          border-radius: 4px;
         }
         
         .title{

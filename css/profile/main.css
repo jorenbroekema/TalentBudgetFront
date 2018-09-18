@@ -19,6 +19,10 @@
   margin: 0 auto;
 }
 
+.expenditure-container .list-group-item{
+  border: none;
+}
+
 .list-group-item{
   height: 60px;
   margin-bottom: 15px;
