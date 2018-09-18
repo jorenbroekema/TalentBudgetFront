@@ -84,7 +84,7 @@ function loadExpenditures(id){
             state="${expenditure.state}"
           ></budget-expenditure>
         </li>
-      `;
+        `;
+      });
     });
-  });
-}
+  }

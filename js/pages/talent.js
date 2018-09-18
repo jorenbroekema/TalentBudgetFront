@@ -1,8 +1,10 @@
 import { httpPort } from '../../localconfig.js';
-import { postData, deleteData } from '../AjaxMixin.js';
+import { postData, deleteData, getData } from '../AjaxMixin.js';
 import { getNavUsers } from '../navbar.js';
 
 showTalents('api/talent/all');
+/*showTalentteams('api/talentteam/all');*/
+loadTeams();
 
 function showTalents(api){
   let xhttp = new XMLHttpRequest();
@@ -37,6 +39,32 @@ function showTalents(api){
   xhttp.setRequestHeader("Content-type", "application/json");
   xhttp.send();
 }
+/*
+function showTalentteams(api){
+  let xhttp = new XMLHttpRequest();
+  xhttp.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+      const response = JSON.parse(this.responseText);
+      let newInnerHTML = '';
+      for (var i = 0; i < response.length; i++) {
+        newInnerHTML += `
+          <li class="list-group-item1">
+            <budget-talentteam
+              id=${response[i].id}
+              teamname="${response[i].teamname}"
+            ></budget-talentteam>
+          </li>
+        `;
+      }
+      document.getElementById("ajaxResponseTalentteams").innerHTML = newInnerHTML;
+    }
+  };
+  xhttp.open("GET", "http://localhost:" + httpPort + "/" + api);
+  xhttp.setRequestHeader("Content-type", "application/json");
+  xhttp.send();
+}
+
+*/
 
 // Add new talent:
 const newTalentButton = document.getElementById('submit-new-talent');
@@ -70,5 +98,26 @@ function deleteTalent() {
   deleteData(id, 'api/talent').then( () => {
     showTalents('api/talent/all');
     getNavUsers();
+  });
+}
+
+function loadTeams(){
+  const api = `api/talentteam/all`;
+  const talentTeamNav = document.querySelector('.talentteam-container .nav.nav-tabs');
+  const talentTeamElement = document.querySelector('.tab-content');
+  getData(api).then( (response) => {
+    console.log(response);
+    let teamsNavHTML= `<li class="active"><a data-toggle="tab" href="#all">All Talents</a></li>`; 
+    let teamsElHTML =`<div id="all" class="tab-pane fade in active"> <h3>HOME</h3> </div>`;
+    response.forEach(team => {
+      teamsNavHTML+=`<li><a data-toggle="tab" href="#${team.teamname}">${team.teamname}</a></li>` ;
+      teamsElHTML +=`<div id="${team.teamname}" class="tab-pane fade"> 
+      <h3>${team.teamname} </h3></div>`;
+      console.log(teamsElHTML);
+
+    });
+
+    talentTeamNav.innerHTML = teamsNavHTML;
+    talentTeamElement.innerHTML = teamsElHTML;
   });
 }
