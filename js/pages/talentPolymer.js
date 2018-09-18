@@ -91,9 +91,10 @@ export class YoungColfield extends PolymerElement {
       </div>
       
       <paper-button raised on-click=_startajax>Get Talents</paper-button>
-      <iron-ajax id="talentajax" handle-as="json" on-response="returnfrombackend">
-        
-      </iron-ajax>
+
+      <iron-ajax id="deletetalentajax" handle-as="json" on-response="returnfromdelete"></iron-ajax>
+      <iron-ajax id="addtalentajax" handle-as="json" on-response="returnfromadd"></iron-ajax>
+      <iron-ajax id="gettalentajax" handle-as="json" on-response="returnfromget"></iron-ajax>
     `;
   }
   static get properties() {
@@ -123,32 +124,45 @@ export class YoungColfield extends PolymerElement {
     };
   }
 
-  _deleteTalentMethod(id) {
-    var ajax = this.$.talentajax;
-    ajax.url = "http://127.0.0.1:" + httpPort + "/api/talent/" + id;
-    ajax.type = 'delete';
+  _deleteTalentMethod() {
+    var ajax = this.$.deletetalentajax;
+    ajax.url = "http://127.0.0.1:" + httpPort + "/api/talent/" + inputID;
+    ajax.method = 'delete';
     ajax.generateRequest();
   }
 
+  returnfromdelete(response) {
+    console.log(response);
+  }
+
   _addTalentMethod() {
-    var ajax = this.$.talentajax;
+    var ajax = this.$.addtalentajax;
     ajax.url = "http://127.0.0.1:" + httpPort + "/api/talent";
+    ajax.method = 'post';
+    const submitData = {
+      name: inputName,
+      budget: inputBudget,
+      teamID: inputTeamID,
+    }
+    ajax.body = JSON.stringify(submitData);
     ajax.generateRequest()
-    this.push('talents', { name: this.inputName, budget: this.inputBudget, team: { id: this.inputTeamID } });
-    console.log(this.talents);
+  }
+
+  returnfromadd(response) {
+    console.log(response);
   }
   
   _startajax() {
-    var ajax = this.$.talentajax;
+    var ajax = this.$.gettalentajax;
     ajax.url = "http://127.0.0.1:" + httpPort + "/api/talent/all";
     ajax.generateRequest();
   }
 
-  returnfrombackend(response) {
+  returnfromget(response) {
     response = response.detail.response;  // Get the inner response, which contains the actual talents.
     this.talents = [];                    // Reset the array, because we will rebuild it from scratch.
     for (var i = 0; i < response.length; i++) {
-      console.log(response[i]);
+      //console.log(response[i]);
       if (response[i].talentTeam == null) {
         response[i].talentTeam = {
           id: 'null',
@@ -162,7 +176,7 @@ export class YoungColfield extends PolymerElement {
                               team: { id:response[i].talentTeam.id, 
                                       teamname:response[i].talentTeam.teamname } });
     }
-    console.log(this.talents);
+    //console.log(this.talents);
   }
 }
 
