@@ -175,12 +175,6 @@ class BudgetExpenditure extends HTMLElement {
     }
   }
 
-  ex_finish(expenditureID){
-    patchData(`api/expenditure/${expenditureID}/state/4`).then( (response) => {
-      loadExpenditures(this.talent_id);
-    });
-  }
-
   ex_approve(expenditureID){
     patchData(`api/expenditure/${expenditureID}/state/1`).then( (response) => {
       loadExpenditures(this.talent_id);
@@ -193,14 +187,20 @@ class BudgetExpenditure extends HTMLElement {
     });
   }
 
-  ex_delete(expenditureID){
-    deleteData(`api/user/${this.talent_id}/expenditure/${expenditureID}`).then( (response) => {
+  ex_decline(expenditureID){
+    patchData(`api/expenditure/${expenditureID}/state/3`).then( (response) => {
+      loadExpenditures(this.talent_id);
+    });
+  }
+  
+  ex_finish(expenditureID){
+    patchData(`api/expenditure/${expenditureID}/state/4`).then( (response) => {
       loadExpenditures(this.talent_id);
     });
   }
 
-  ex_decline(expenditureID){
-    patchData(`api/expenditure/${expenditureID}/state/3`).then( (response) => {
+  ex_delete(expenditureID){
+    deleteData(`api/user/${this.talent_id}/expenditure/${expenditureID}`).then( (response) => {
       loadExpenditures(this.talent_id);
     });
   }
