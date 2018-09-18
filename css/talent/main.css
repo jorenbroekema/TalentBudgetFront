@@ -20,6 +20,14 @@ body {
 .talent-container {
   display: flex;
   justify-content: center;
+  width: 100%;
+}
+.button-container{
+  display:block;
+  float:right;
+  margin-bottom:10px;
+
+
 }
 
 .list-group {
@@ -35,6 +43,11 @@ body {
   border-radius: 4px;
 }
 
+.page-container{
+  width:800px;
+  margin: auto;
+}
+/*
 .new-talent-container{
   padding: 0 15px;
   width: 100%;
@@ -71,7 +84,7 @@ body {
 
 .delete-talent-form input{
   padding: 5px;
-  margin-bottom: 5px;
+  margin-bottom: 50px;
   width: 200px;
   height: 30px;
 }
@@ -85,4 +98,9 @@ body {
   width: 200px;
   height: 30px;
   text-align: center;
-}
+}*/
+
+
+
+
+
