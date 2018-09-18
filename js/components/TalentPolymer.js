@@ -1,18 +1,19 @@
 import {PolymerElement, html} from '@polymer/polymer/polymer-element.js';
 
 // Define the element's API using an ES2015 class
-class BudgetTalent extends PolymerElement {
+class BudgetTalentPolymer extends PolymerElement {
+
+  constructor() {
+    super();
+  }
 
   // Define optional shadow DOM template
   static get template() { 
     // Try to find the profile image:
-    var imgURL = `../../resources/images/portraits/${name}.jpg`;
-    var defaultImgURL = `../../resources/images/portraits/default.jpg`;
+    var imgURL = ``;
+    var defaultImgURL = ``;
 
     return html`
-      <style>
-        /* CSS rules for your element */
-      </style>
       <style>
         :host {
           width: 100%;
@@ -60,16 +61,17 @@ class BudgetTalent extends PolymerElement {
           top: 20px;
         }
       </style>
-      <img src="${imgURL}" onerror="this.src='${defaultImgURL}'" alt="${name}" width="100" height="100" class=portrait>
-      <div class="name">${name}</div>
-      <div class="id">${id}</div>
-      <div class="budget">€${budget}</div>
-      <div class="talent-team-id">${talentTeamID}</div>
-      <div class="talent-team-name">${talentTeamName}</div>
-
-      <!-- shadow DOM for your element -->
-
-      <div>[[greeting]]</div> <!-- data bindings in shadow DOM -->
+      <img src="../../resources/images/portraits/{{name}}.jpg" 
+           onerror="this.src='../../resources/images/portraits/default.jpg'" 
+           alt="{{name}}" 
+           width="100" 
+           height="100" 
+           class=portrait>
+      <div class="name">{{name}}</div>
+      <div class="id">{{id}}</div>
+      <div class="budget">€{{budget}}</div>
+      <div class="talent-team-id">{{talentTeamID}}</div>
+      <div class="talent-team-name">{{talentTeamName}}</div>
     `;
   }
 
@@ -97,17 +99,7 @@ class BudgetTalent extends PolymerElement {
       }
     }
   }
-
-  constructor() {
-    super();
-  }
-
-  // Add methods to the element's public API
-  greetMe() {
-    console.log(this.greeting);
-  }
-
 }
 
 // Register the budget-talent element with the browser
-customElements.define('budget-talent', BudgetTalent);
+customElements.define('budget-talent', BudgetTalentPolymer);
