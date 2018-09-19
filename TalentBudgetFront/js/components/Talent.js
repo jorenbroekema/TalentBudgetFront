@@ -55,21 +55,21 @@ class BudgetTalent extends HTMLElement {
            width: 100%;
            text-align: center;
            position: relative;
-           top: 20px;
+           top: 25px;
            font-size: 18px;
          }
          .talent-team-id {
            width: 100%;
            text-align: center;
            position: relative;
-           top: 15px;
+           top: 20px;
            color: grey;
          }
         .budget {
           width: 100%;
           text-align: center;
           position: relative;
-          top: 20px;
+          top: 25px;
           color: #E46A35;
           font-size: 18px;
         }
