@@ -1,5 +1,5 @@
 import { patchData, deleteData } from '../../js/AjaxMixin.js';
-import { loadExpenditures, loadTalent } from '../../js/pages/profile.js';
+import { loadExpenditures, loadTalent, executeFilters } from '../../js/pages/profile.js';
 
 class BudgetExpenditure extends HTMLElement {
   constructor(){
@@ -178,32 +178,46 @@ class BudgetExpenditure extends HTMLElement {
 
   ex_approve(expenditureID){
     patchData(`api/expenditure/${expenditureID}/state/1`).then( (response) => {
-      loadExpenditures(this.talent_id);
+      loadExpenditures(this.talent_id).then( () => {
+        loadTalent(this.talent_id);
+        executeFilters();
+      });
     });
   }
 
   ex_request(expenditureID){
     patchData(`api/expenditure/${expenditureID}/state/2`).then( (response) => {
-      loadExpenditures(this.talent_id);
+      loadExpenditures(this.talent_id).then( () => {
+        loadTalent(this.talent_id);
+        executeFilters();
+      });
     });
   }
 
   ex_decline(expenditureID){
     patchData(`api/expenditure/${expenditureID}/state/3`).then( (response) => {
-      loadExpenditures(this.talent_id);
+      loadExpenditures(this.talent_id).then( () => {
+        loadTalent(this.talent_id);
+        executeFilters();
+      });
     });
   }
   
   ex_finish(expenditureID){
     patchData(`api/expenditure/${expenditureID}/state/4`).then( (response) => {
-      loadExpenditures(this.talent_id);
+      loadExpenditures(this.talent_id).then( () => {
+        loadTalent(this.talent_id);
+        executeFilters();
+      });
     });
   }
 
   ex_delete(expenditureID){
     deleteData(`api/user/${this.talent_id}/expenditure/${expenditureID}`).then( (response) => {
-      loadExpenditures(this.talent_id);
-      loadTalent(this.talent_id);
+      loadExpenditures(this.talent_id).then( () => {
+        loadTalent(this.talent_id);
+        executeFilters();
+      });
     });
   }
 
