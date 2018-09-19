@@ -11,9 +11,7 @@ stateFilters.forEach(button => {
 });
 
 const userID = getQueryVariable('id');
-loadTalent(userID);
-loadExpenditures(userID);
-
+reloadProfileData(userID);
 
 const DOMElems = {
   name: document.getElementById('input-name'),
@@ -34,8 +32,7 @@ function submitNewExpenditure(){
   const JSONdata = JSON.stringify(submitData);
 
   postData(`api/user/${userID}/expenditure`, JSONdata).then( () => {
-    loadExpenditures(userID);
-    loadTalent(userID);
+    reloadProfileData(userID);
   });  
 }
 
@@ -73,30 +70,36 @@ function adjustBudget(budget){
   document.querySelector('.talent-budget').innerText=`€${budget}`;
 }
 
-export function loadExpenditures(id){
+export async function loadExpenditures(id) {
   const api = `api/talent/${id}/expenditures`;
-  getData(api).then( (response) => {
-    const list = document.querySelector('.expenditure-container .list-group');
-    list.innerHTML = '';
 
-    response.forEach(expenditure => {
-      // TODO: Make icon configurable (needs backend first)
-      list.innerHTML += `
-        <li class="list-group-item">
-          <budget-expenditure
-            talent-id="${id}"
-            expenditure-id="${expenditure.id}"
-            title="${expenditure.name}"
-            description="${expenditure.description}"
-            goal-description="${expenditure.goal_description}"
-            icon="fa-graduation-cap"
-            budget="€${expenditure.cost}"
-            state="${expenditure.state}"
-          ></budget-expenditure>
-        </li>
-      `;
+  let promise = new Promise((resolve, reject) => {
+    getData(api).then( (response) => {
+      const list = document.querySelector('.expenditure-container .list-group');
+      list.innerHTML = '';
+
+      response.forEach(expenditure => {
+        // TODO: Make icon configurable (needs backend first)
+        list.innerHTML += `
+          <li class="list-group-item">
+            <budget-expenditure
+              talent-id="${id}"
+              expenditure-id="${expenditure.id}"
+              title="${expenditure.name}"
+              description="${expenditure.description}"
+              goal-description="${expenditure.goal_description}"
+              icon="fa-graduation-cap"
+              budget="€${expenditure.cost}"
+              state="${expenditure.state}"
+            ></budget-expenditure>
+          </li>
+        `;
+      });
+      resolve("done!");
     });
   });
+  let result = await promise;
+  return result;
 }
 
 function toggleFilter(btn){
@@ -112,19 +115,30 @@ function toggleFilter(btn){
   } else {
     btn.classList.add('active');
   } 
-  toggleExpenditures(stateMapping[btn.innerText]);
+  executeFilters();
 }
 
-function toggleExpenditures(state){
+export function executeFilters(){
   const expenditures = [].slice.call(document.querySelector('.expenditure-container .list-group').children);
+  const stateFilters = [].slice.call(document.querySelector('.state-filters').children);
+
   expenditures.forEach(expenditure => {
-    if (parseInt(expenditure.firstElementChild.getAttribute('state')) === state) {
-      if (expenditure.classList.contains('hidden')){
+    const state = parseInt(expenditure.firstElementChild.getAttribute('state'));
+    if (stateFilters[state-1].classList.contains('active')) {
+      if (expenditure.classList.contains('hidden')) {
         expenditure.classList.remove('hidden');
-      } else {
+      }
+    } else {
+      if (!expenditure.classList.contains('hidden')){
         expenditure.classList.add('hidden');
       }
     }
   });
+}
 
+export function reloadProfileData(id){
+  loadExpenditures(id).then( () => {
+    loadTalent(id);
+    executeFilters();
+  });
 }
