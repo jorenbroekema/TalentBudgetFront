@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Expenditure example</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="./node_modules/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="./css/profile/main.css" rel="stylesheet">
+
+    <!-- Font Awesome Icons -->
+    <link href="./node_modules/@fortawesome/fontawesome-free/css/all.min.css" rel="stylesheet">
+
+    <script src="js/components/Expenditure.js"></script>
+  </head>
+  <body>
+    <!-- Nav bar element -->
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="#">Young Colfield</a>
+        </div>
+        <ul class="nav navbar-nav">
+          <li><a href="#">Home</a></li>
+          <li class="active"><a href="#">Expenditures</a></li>
+          <li><a href="talent.html">Talents</a></li>
+        </ul>
+        <div id="navbar" class="navbar-collapse collapse">
+          <form class="navbar-form navbar-right">
+              <select id="userSelector" name="asUser" class="form-control"></select>
+          </form>
+        </div>
+        <script type="module" src="./js/navbar.js"></script>
+      </div>
+    </nav>
+
+    <div class="container-fluid">
+      <h1>New expenditure </h1>
+      <p>Please enter your expenditure here:</p>
+    </div>
+
+    <div class="new-expenditure-container">
+      <form class="new-expenditure-form">
+        <input id="input-name" placeholder="Name..." />
+        <input id="input-description" placeholder="Description..." />
+        <input id="input-goal" placeholder="Goal..." />
+        <input id="input-date" type="date" />
+        <input id="input-cost" placeholder="Cost..." />
+        <div id="submit-new-expenditure">Submit</div>
+      </form>
+    </div>
+    
+    <!-- Expenditure objects -->
+    <div class="expenditure-container">
+      <ul class="list-group">
+        <li class="list-group-item">
+          <budget-expenditure
+            title="Java OCA Book"
+            icon="fa-book"
+            budget="€60,-"
+          ></budget-expenditure>
+        </li>        
+        <li class="list-group-item">
+          <budget-expenditure
+            title="Egghead.io subscription"
+            icon="fa-bell"
+            budget="€12,95"
+          ></budget-expenditure>
+        </li>
+        <li class="list-group-item">
+          <budget-expenditure
+            title="Scrum Training"
+            icon="fa-graduation-cap"
+            budget="€120,45"
+          ></budget-expenditure>
+        </li>
+      </ul>
+    </div>
+        
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script>window.jQuery || document.write('<script src="./node_modules/jquery/dist/jquery.min.js"><\/script>')</script>
+    <script src="./node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script type="module" src="./js/pages/expenditure.js"></script>
+  </body>
+</html>

@@ -1,0 +1,21 @@
+{
+  "name": "talentbudgetfront",
+  "description": "",
+  "main": "index.js",
+  "authors": [
+    "Joren Broekema <Joren.Broekema@ing.com>"
+  ],
+  "license": "ISC",
+  "homepage": "https://github.com/jorenbroekema/TalentBudgetFront",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "custom-elements": "webcomponents/custom-elements#^1.2.0",
+    "shadydom": "webcomponents/shadydom#^1.2.0"
+  }
+}

@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Talent Page</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="./node_modules/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="./css/talent/main.css" rel="stylesheet">
+
+    <!-- Font Awesome Icons -->
+    <link href="./node_modules/@fortawesome/fontawesome-free/css/all.min.css" rel="stylesheet">
+
+    <script type="module" src="./js/components/Talent.js"></script>
+    
+    <script type="module" src='./js/pages/talent.js'>
+    </script>
+  </head>
+  <body>
+    <!-- Nav bar element -->
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="#">Young Colfield</a>
+        </div>
+        <ul class="nav navbar-nav">
+          <li><a href="#">Home</a></li>
+          <li><a href="expenditure.html">Expenditures</a></li>
+          <li class="active"><a href="#">Talents</a></li>
+        </ul>
+        <div id="navbar" class="navbar-collapse collapse">
+          <form class="navbar-form navbar-right">
+              <select id="userSelector" name="asUser" class="form-control"></select>
+          </form>
+        </div>
+        <script type="module" src="./js/navbar.js"></script>
+      </div>
+    </nav>
+
+
+    <div class="modal-wrapper">
+      <div class="new-talent-container">
+        <div id="addTalentModal" class="modal fade" role="dialog">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Add a new Talent</h4>
+              </div>
+              <div class="modal-body">
+                <div class="new-talent-container">
+                  <form class="new-talent-form">
+                    <input id="input-name" placeholder="Name..." />
+                    <input id="input-budget" placeholder="Budget..." />
+                    <input id="input-talent-team-id" placeholder="Talent Team ID..." />
+                    <div id="submit-new-talent" data-dismiss="modal">Add Talent</div>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="delete-talent-container">
+        <div id="deleteTalentModal" class="modal fade" role="dialog">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Delete Talent</h4>
+              </div>
+              <div class="modal-body">
+                <div class="delete-talent-container">
+                  <form class="delete-talent-form">
+                    <input id="input-id" placeholder="ID..." />
+                    <span id="submit-delete-talent">Delete Talent</span>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="talents-page-container">
+        <div class="button-container">
+          <button 
+            id="addTalentBtn" 
+            type="button" 
+            class="btn"
+            data-toggle="modal" 
+            data-target="#addTalentModal"
+          >Add Talent</button>
+          <button 
+            id="deleteTalentBtn" 
+            type="button" 
+            class="btn"
+            data-toggle="modal" 
+            data-target="#deleteTalentModal"
+          >Delete Talent</button>
+        </div>
+    
+    <!-- Talent objects -->
+    <div class="talent-container">
+      <ul class="list-group" id="ajaxResponseTalents">
+      </ul>
+    </div>
+    <a href="http://127.0.0.1:8081/components/talentbudgetfront/talentPolymer.html">Click here to switch to the Polymer Talent Page!</a>
+
+    </div>
+        
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script>window.jQuery || document.write('<script src="./node_modules/jquery/dist/jquery.min.js"><\/script>')</script>
+    <script src="./node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script type="module" src="./js/pages/talent.js"></script>
+  </body>
+</html>
