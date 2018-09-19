@@ -1,3 +1,49 @@
+
+@font-face {
+  font-family: NeuzeitGroT;
+  /* Chrome 4+, Firefox 3.5, Opera 10+, Safari 3—5 */
+  src: url('../../resources/fonts/NeuzeitGroT-2.ttf') format('truetype');
+}
+
+* {
+	margin: 0;
+	padding: 0;
+	font-family: NeuzeitGroT;
+	text-align: center;
+}
+
+.navbar-inverse {
+    background-color: #e46a35;
+    border-color: #e46a35;
+}
+
+.navbar-inverse .navbar-brand {
+    color: #fff;
+}
+
+.navbar-inverse .navbar-nav>li>a {
+    color: #fff;
+    font-size:17px;
+}
+
+.navbar-inverse .navbar-nav>.active>a, .navbar-inverse .navbar-nav>.active>a:focus, .navbar-inverse .navbar-nav>.active>a:hover {
+    color: #e46a35;
+    background-color: #fff;
+}
+
+.navbar-brand {
+    float: left;
+    height: 50px;
+    padding: 15px 15px;
+    font-size: 33px;
+    line-height: 20px;
+}
+
+.container-fluid {
+    margin-top: 65px;
+    margin-bottom: 20px;
+}
+
 .profile-info{
   width: max-content;
   margin: 80px auto 0 auto;
@@ -33,6 +79,8 @@
 
 .new-expenditure-container{
   padding: 0 15px;
+  display: flex;
+  justify-content: center;
 }
 
 .new-expenditure-form input{
