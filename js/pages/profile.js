@@ -1,6 +1,6 @@
 import { postData, getData } from '../AjaxMixin.js';
 import { getQueryVariable } from '../../js/getURLVar.js';
-
+const userID = getQueryVariable('id');
 const newExpenditureButton = document.getElementById('submit-new-expenditure');
 if (newExpenditureButton !== null){
   newExpenditureButton.addEventListener('click', submitNewExpenditure);
@@ -13,9 +13,7 @@ if (stateFiltersElem !== null){
     button.addEventListener('click', () => {
       toggleFilter(button);
     });
-  });
-  
-  const userID = getQueryVariable('id');
+  });  
   reloadProfileData(userID);
 }
 
@@ -28,6 +26,7 @@ const DOMElems = {
 };
 
 function submitNewExpenditure(){
+  console.log("hello world");
   const submitData = {
     name: DOMElems.name.value,
     description: DOMElems.description.value,
