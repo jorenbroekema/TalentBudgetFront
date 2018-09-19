@@ -2,15 +2,10 @@ import { httpPort } from '../../localconfig.js';
 import { postData, deleteData, getData } from '../AjaxMixin.js';
 import { getNavUsers } from '../navbar.js';
 
-showTalents('api/talent/all');
-/*showTalentteams('api/talentteam/all');*/
 loadTeams();
-
+/*
 function showTalents(api){
-  let xhttp = new XMLHttpRequest();
-  xhttp.onreadystatechange = function() {
-    if (this.readyState == 4 && this.status == 200) {
-      const response = JSON.parse(this.responseText);
+  getData(api).then( (response)=> {
       let newInnerHTML = '';
       for (var i = 0; i < response.length; i++) {
         if (response[i].talentTeam == null) {
@@ -32,40 +27,11 @@ function showTalents(api){
           </li>
         `;
       }
-      document.getElementById("ajaxResponseTalents").innerHTML = newInnerHTML;
+      document.querySelector('.tab-content').innerHTML = newInnerHTML;
     }
-  };
-  xhttp.open("GET", "http://localhost:" + httpPort + "/" + api);
-  xhttp.setRequestHeader("Content-type", "application/json");
-  xhttp.send();
+  );
 }
-/*
-function showTalentteams(api){
-  let xhttp = new XMLHttpRequest();
-  xhttp.onreadystatechange = function() {
-    if (this.readyState == 4 && this.status == 200) {
-      const response = JSON.parse(this.responseText);
-      let newInnerHTML = '';
-      for (var i = 0; i < response.length; i++) {
-        newInnerHTML += `
-          <li class="list-group-item1">
-            <budget-talentteam
-              id=${response[i].id}
-              teamname="${response[i].teamname}"
-            ></budget-talentteam>
-          </li>
-        `;
-      }
-      document.getElementById("ajaxResponseTalentteams").innerHTML = newInnerHTML;
-    }
-  };
-  xhttp.open("GET", "http://localhost:" + httpPort + "/" + api);
-  xhttp.setRequestHeader("Content-type", "application/json");
-  xhttp.send();
-}
-
 */
-
 // Add new talent:
 const newTalentButton = document.getElementById('submit-new-talent');
 newTalentButton.addEventListener('click', submitNewTalent);
@@ -84,7 +50,8 @@ function submitNewTalent() {
   }
   const JSONdata = JSON.stringify(submitData);
   postData('api/talent', JSONdata).then( () => {
-    showTalents('api/talent/all'); 
+    loadTeams();
+    //showTalents('api/talent/all'); 
     getNavUsers();
   });
 };
@@ -96,26 +63,52 @@ deleteTalentButton.addEventListener('click', deleteTalent);
 function deleteTalent() {
   const id = document.getElementById('input-id').value;
   deleteData(id, 'api/talent').then( () => {
-    showTalents('api/talent/all');
+    loadTeams();
+    //showTalents('api/talent/all');
     getNavUsers();
   });
 }
 
 function loadTeams(){
   const api = `api/talentteam/all`;
+  const api_alltalents = `api/talent/all`;
   const talentTeamNav = document.querySelector('.talentteam-container .nav.nav-tabs');
   const talentTeamElement = document.querySelector('.tab-content');
-  // Get teams data
+  let teamsNavHTML= `<li class="active"><a data-toggle="tab" href="#all">All Talents</a></li>`; 
+  let teamsElHTML =`<div id="all" class="tab-pane fade in active"> <h3>All Talents</h3><ul>`
+  getData(api_alltalents).then((response_alltalents)=>{
+    response_alltalents.forEach(talent =>{
+     if (talent.talentTeam == null) {
+        talent.talentTeam = {
+          id: 'null',
+          teamname: 'null'
+        }};
+      teamsElHTML += `
+        <li class="list-group-item">
+          <budget-talent
+            id=${talent.id}
+            name="${talent.name}"
+            budget="${talent.budget}"
+            expenditures='${JSON.stringify(talent.expenditures)}' 
+            talent-team-name="${talent.talentTeam.teamname}"
+            talent-team-id=${talent.talentTeam.id}
+          ></budget-talent>
+        </li>
+      `;
+      console.log(teamsElHTML);
+    })
+    teamsElHTML += `</ul></div>`
+    console.log(teamsElHTML);
+    talentTeamElement.innerHTML = teamsElHTML;
+  })
+
   getData(api).then( (response) => {
-    let teamsNavHTML= `<li class="active"><a data-toggle="tab" href="#all">All Talents</a></li>`; 
-    let teamsElHTML =`<div id="all" class="tab-pane fade in active"> <h3>All Talents</h3></div>`;
-    
-    // Get members for each team
     response.forEach(team => {
+      teamsNavHTML+=`<li><a data-toggle="tab" href="#${team.teamname}">${team.teamname}</a></li>` ;
       const api_perteam = `api/talentteam/${team.id}/teammembers`; 
       getData(api_perteam).then( (response_team) =>{
           teamsElHTML +=`<div id="${team.teamname}" class="tab-pane fade">
-          <h3>${team.teamname} </h3>`;
+          <h3>${team.teamname} </h3><ul>`;
           response_team.forEach(member =>{
             if (member.talentTeam == null) {
               member.talentTeam = {
@@ -136,13 +129,11 @@ function loadTeams(){
               </li>
             `;
           })
-          teamsElHTML+= `</div>`;
+          teamsElHTML += `</ul></div>`
           talentTeamElement.innerHTML = teamsElHTML;
         }); 
-    teamsNavHTML+=`<li><a data-toggle="tab" href="#${team.teamname}">${team.teamname}</a></li>` ;
-  
     });
     talentTeamNav.innerHTML = teamsNavHTML;
-    //talentTeamElement.innerHTML = teamsElHTML;
+    talentTeamElement.innerHTML = teamsElHTML;
   });
 }

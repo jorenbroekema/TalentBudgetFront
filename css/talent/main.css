@@ -36,6 +36,12 @@ body {
   flex-flow: row wrap;
 }
 
+.tab-content div ul{
+  display: flex;
+  justify-content: center;
+  flex-flow: row wrap;
+}
+
 .list-group-item {
   height: 300px;
   width: 200px;
@@ -47,7 +53,7 @@ body {
   width:800px;
   margin: auto;
 }
-/*
+
 .new-talent-container{
   padding: 0 15px;
   width: 100%;
@@ -98,7 +104,7 @@ body {
   width: 200px;
   height: 30px;
   text-align: center;
-}*/
+}
 
 
 
