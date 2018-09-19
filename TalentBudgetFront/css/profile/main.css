@@ -94,7 +94,6 @@
   cursor: pointer;
   background-color: #ddd;
   padding: 10px 20px;
-  width: max-content;
 }
 
 .button-container{
@@ -117,7 +116,6 @@ budget-expenditure:hover {
 }
 
 #addExpenditureBtn{
-  float: right;
   margin-bottom: 10px;
 }
 
