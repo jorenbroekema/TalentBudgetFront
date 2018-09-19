@@ -1,7 +1,7 @@
 import { patchData, deleteData } from '../../js/AjaxMixin.js';
 import { reloadProfileData } from '../../js/pages/profile.js';
 
-class BudgetExpenditure extends HTMLElement {
+class BudgetExpenditureSmall extends HTMLElement {
   constructor(){
     super();
   }
@@ -50,7 +50,7 @@ class BudgetExpenditure extends HTMLElement {
 
         .expenditure{
           display: flex;
-          padding: 15px;
+          margin-top: 10px;
           height: 100%;
           border-radius: 4px;
         }
@@ -76,9 +76,7 @@ class BudgetExpenditure extends HTMLElement {
         .declined{border: 2px solid #f2dede}
         .done{border: 2px solid #d9edf7}
       </style>
-      <div class="icon"><i class="fas ${icon} fa-2x"></i></div>
-      <div class="title">${title} <i class="fas ${stateIcon}"></i></div>
-      <div class="budget">${budget}</div>
+      <div class="title">${title}</div>
     `;
 
     shadow.appendChild(expenditureContainer);
@@ -283,4 +281,4 @@ class BudgetExpenditure extends HTMLElement {
     else this.removeAttribute('buttons');
   }
 }
-customElements.define('budget-expenditure', BudgetExpenditure);
+customElements.define('budget-expenditure-small', BudgetExpenditureSmall);
