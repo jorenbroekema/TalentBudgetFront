@@ -1,3 +1,4 @@
+import './ExpenditureSmall.js';
 class BudgetTalent extends HTMLElement {
   constructor() {
     super();
@@ -11,20 +12,42 @@ class BudgetTalent extends HTMLElement {
     const expenditures = JSON.parse(this.expenditures);
     const talentTeamID = this.talentTeamID;
     const talentTeamName = this.talentTeamName;
+    const expendituresInProgress = this.expendituresInProgress;
     
     let budget = parseInt(this.budget);
     for (let i = 0; i < expenditures.length; i++) {
       budget = budget - expenditures[i].cost;     
     } 
       
-
     // Try to find the profile image:
-    var imgURL = `../../resources/images/portraits/${name}.jpg`;
-    var defaultImgURL = `../../resources/images/portraits/default.jpg`;
+    let imgURL = `../../resources/images/portraits/${name}.jpg`;
+    let defaultImgURL = `../../resources/images/portraits/default.jpg`;
+    
+    let expendituresHTML = '';
+    if (expendituresInProgress.length > 0){
+      expendituresHTML = `<div class="expenditures-container">`;
+      expendituresInProgress.forEach(expenditure => {
+        expendituresHTML += `
+          <budget-expenditure-small
+            talent-id="${id}"
+            expenditure-id="${expenditure.id}"
+            title="${expenditure.name}"
+            description="${expenditure.description}"
+            goal-description="${expenditure.goal_description}"
+            icon="fa-graduation-cap"
+            budget="€${expenditure.cost}"
+            state="${expenditure.state}"
+          ></budget-expenditure-small>
+        `;
+      });
+      expendituresHTML += `</div>`;
+    }
 
     talentContainer.classList.add('talent');
     talentContainer.innerHTML = `
       <style>
+        @import url("../../node_modules/@fortawesome/fontawesome-free/css/all.min.css");
+        @import url("../../node_modules/bootstrap/dist/css/bootstrap.min.css");
         :host {
           width: 100%;
         }
@@ -75,15 +98,17 @@ class BudgetTalent extends HTMLElement {
         }
 
       </style>
-      <img src="${imgURL}" onerror="this.src='${defaultImgURL}'" alt="${name}" width="100" height="100" class=portrait>
+      <img style="margin-bottom: 10px" src="${imgURL}" onerror="this.src='${defaultImgURL}'" alt="${name}" width="100" height="100" class=portrait>
       <div class="name">${name}</div>
       <div class="id">${id}</div>
       <div class="talent-team-name">${talentTeamName}</div>
       <div class="talent-team-id">${talentTeamID}</div>
       <div class="budget">€${budget}</div>
-
     `;
     shadow.appendChild(talentContainer);
+    let expendituresElem = document.createElement('div');
+    expendituresElem.innerHTML = expendituresHTML;
+    this.insertAdjacentElement('afterend', expendituresElem);
   }
 
   get id() {
@@ -149,6 +174,17 @@ class BudgetTalent extends HTMLElement {
     } else {
       this.removeAttribute('talent-team-name');
     }
+  }
+
+  get expendituresInProgress() {
+    const expenditureData = JSON.parse(this.getAttribute('expenditures'));
+    let expendituresToReturn = [];
+    expenditureData.forEach(expenditure => {
+      if (parseInt(expenditure.state) === 2){
+        expendituresToReturn.push(expenditure);
+      }
+    });
+    return expendituresToReturn;
   }
 }
 customElements.define('budget-talent', BudgetTalent);

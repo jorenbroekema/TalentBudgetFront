@@ -94,7 +94,6 @@ body {
 }
 
 .list-group-item {
-  height: 300px;
   width: 200px;
   margin: 10px;
   border-radius: 4px;
@@ -102,9 +101,18 @@ body {
 }
 
 .talents-page-container{
-  width:800px;
+  width: 880px;
   margin: auto;
 }
+
+.icon{
+  display: none !important;
+}
+
+budget-talent /deep/ budget-expenditure /deep/ .icon{
+  display: none !important;
+}
+
 /*
 .new-talent-container{
   padding: 0 15px;
