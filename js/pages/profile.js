@@ -11,9 +11,7 @@ stateFilters.forEach(button => {
 });
 
 const userID = getQueryVariable('id');
-loadExpenditures(userID).then( () => {
-  loadTalent(userID);
-});
+reloadProfileData(userID);
 
 const DOMElems = {
   name: document.getElementById('input-name'),
@@ -34,10 +32,7 @@ function submitNewExpenditure(){
   const JSONdata = JSON.stringify(submitData);
 
   postData(`api/user/${userID}/expenditure`, JSONdata).then( () => {
-    loadExpenditures(userID).then( () => {
-      loadTalent(userID);
-      executeFilters();
-    });
+    reloadProfileData(userID);
   });  
 }
 
@@ -138,5 +133,12 @@ export function executeFilters(){
         expenditure.classList.add('hidden');
       }
     }
+  });
+}
+
+export function reloadProfileData(id){
+  loadExpenditures(id).then( () => {
+    loadTalent(id);
+    executeFilters();
   });
 }
