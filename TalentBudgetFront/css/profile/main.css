@@ -117,6 +117,7 @@ budget-expenditure:hover {
 
 #addExpenditureBtn{
   margin-bottom: 10px;
+  background-color: #ddd;
 }
 
 h5.talent-budget{
