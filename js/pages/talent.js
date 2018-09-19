@@ -105,19 +105,44 @@ function loadTeams(){
   const api = `api/talentteam/all`;
   const talentTeamNav = document.querySelector('.talentteam-container .nav.nav-tabs');
   const talentTeamElement = document.querySelector('.tab-content');
+  // Get teams data
   getData(api).then( (response) => {
-    console.log(response);
     let teamsNavHTML= `<li class="active"><a data-toggle="tab" href="#all">All Talents</a></li>`; 
-    let teamsElHTML =`<div id="all" class="tab-pane fade in active"> <h3>HOME</h3> </div>`;
+    let teamsElHTML =`<div id="all" class="tab-pane fade in active"> <h3>All Talents</h3></div>`;
+    
+    // Get members for each team
     response.forEach(team => {
-      teamsNavHTML+=`<li><a data-toggle="tab" href="#${team.teamname}">${team.teamname}</a></li>` ;
-      teamsElHTML +=`<div id="${team.teamname}" class="tab-pane fade"> 
-      <h3>${team.teamname} </h3></div>`;
-      console.log(teamsElHTML);
-
+      const api_perteam = `api/talentteam/${team.id}/teammembers`; 
+      getData(api_perteam).then( (response_team) =>{
+          teamsElHTML +=`<div id="${team.teamname}" class="tab-pane fade">
+          <h3>${team.teamname} </h3>`;
+          response_team.forEach(member =>{
+            if (member.talentTeam == null) {
+              member.talentTeam = {
+                id: 'null',
+                teamname: 'null'
+              };
+            }
+            teamsElHTML += `
+              <li class="list-group-item">
+                <budget-talent
+                  id=${member.id}
+                  name="${member.name}"
+                  budget="${member.budget}"
+                  expenditures='${JSON.stringify(member.expenditures)}' 
+                  talent-team-name="${member.talentTeam.teamname}"
+                  talent-team-id=${member.talentTeam.id}
+                ></budget-talent>
+              </li>
+            `;
+          })
+          teamsElHTML+= `</div>`;
+          talentTeamElement.innerHTML = teamsElHTML;
+        }); 
+    teamsNavHTML+=`<li><a data-toggle="tab" href="#${team.teamname}">${team.teamname}</a></li>` ;
+  
     });
-
     talentTeamNav.innerHTML = teamsNavHTML;
-    talentTeamElement.innerHTML = teamsElHTML;
+    //talentTeamElement.innerHTML = teamsElHTML;
   });
 }
