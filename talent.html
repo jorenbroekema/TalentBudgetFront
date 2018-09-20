@@ -65,6 +65,23 @@
         <li class="active"><a data-toggle="tab" href="#all">All Talents</a></li>
       </ul>
     </div>
+
+    <div class="button-container">
+        <button 
+          id="addTalentBtn" 
+          type="button" 
+          class="btn"
+          data-toggle="modal" 
+          data-target="#addTalentModal"
+        >Add Talent</button>
+        <button 
+          id="deleteTalentBtn" 
+          type="button" 
+          class="btn"
+          data-toggle="modal" 
+          data-target="#deleteTalentModal"
+        >Delete Talent</button>
+    </div>
       
     <div class="tab-content">
         <div id="all" class="tab-pane fade in active"> <h3>All Talents</h3></div>
@@ -115,33 +132,18 @@
       </div>
     </div>
     
-    <div class="talents-page-container">
-        <div class="button-container">
-          <button 
-            id="addTalentBtn" 
-            type="button" 
-            class="btn"
-            data-toggle="modal" 
-            data-target="#addTalentModal"
-          >Add Talent</button>
-          <button 
-            id="deleteTalentBtn" 
-            type="button" 
-            class="btn"
-            data-toggle="modal" 
-            data-target="#deleteTalentModal"
-          >Delete Talent</button>
-        </div>
+   <!-- <div class="talents-page-container"> -->
+ 
     
-    <!-- Talent objects -->
+    <!-- Talent objects 
     <div class="talent-container">
       <ul class="list-group" id="ajaxResponseTalents">
       </ul>
-    </div>
+    </div>-->
 
     <a href="http://127.0.0.1:8081/components/talentbudgetfront/talentPolymer.html">Click here to switch to the Polymer Talent Page!</a>
 
-    </div>
+   <!-- </div>-->
         
     <!-- Bootstrap core JavaScript
     ================================================== -->

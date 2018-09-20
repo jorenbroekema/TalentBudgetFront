@@ -36,6 +36,12 @@ body {
   flex-flow: row wrap;
 }
 
+.tab-content div h3{
+  display: flex;
+  justify-content: center;
+  flex-flow: row wrap;
+}
+
 .tab-content div ul{
   display: flex;
   justify-content: center;
