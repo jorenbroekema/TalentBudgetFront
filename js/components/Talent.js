@@ -11,7 +11,6 @@ class BudgetTalent extends HTMLElement {
     const id = this.id;
     const name = this.name;
     const expenditures = JSON.parse(this.expenditures);
-    const talentTeamID = this.talentTeamID;
     const talentTeamName = this.talentTeamName;
     const expendituresInProgress = this.expendituresInProgress;
     
@@ -85,7 +84,7 @@ class BudgetTalent extends HTMLElement {
         }
       </style>
       <img style="margin-bottom: 10px" src="${imgURL}" onerror="this.src='${defaultImgURL}'" alt="${name}" width="100" height="100" class=portrait>
-      <div class="name">${name}</div>
+      <div class="name"><a href="./profile?id=${id}">${name}</a></div>
       <div class="id">${id}</div>
       <div class="budget">€${budget}</div>
       <div class="talent-team-name">${talentTeamName}</div>
@@ -138,16 +137,6 @@ class BudgetTalent extends HTMLElement {
       this.setAttribute('expenditures', obj);
     } else {
       this.removeAttribute('expenditures');
-    }
-  }
-  get talentTeamID() {
-    return this.getAttribute('talent-team-id');
-  }
-  set talentTeamID(number) {
-    if (number) {
-      this.setAttribute('talent-team-id', number);
-    } else {
-      this.removeAttribute('talent-team-id');
     }
   }
 
