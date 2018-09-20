@@ -12,6 +12,11 @@ body {
   text-align: center;
 }
 
+.content-wrapper {
+  width:880px;
+  margin:0 auto;
+}
+
 .container-fluid {
   margin-top: 10px;
   text-align: center;
@@ -36,10 +41,8 @@ body {
   flex-flow: row wrap;
 }
 
-.tab-content div h3{
-  display: flex;
-  justify-content: center;
-  flex-flow: row wrap;
+.tab-content{
+  margin-top:50px;
 }
 
 .tab-content div ul{

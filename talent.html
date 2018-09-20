@@ -49,89 +49,90 @@
         <script type="module" src="./js/navbar.js"></script>
       </div>
     </nav>
-
-    <div class="container-fluid">
-      <h1>Talent demo</h1>
-      <p>This is the talent demo page!</p>
-    </div>
-
-    <div id="global-modal-container">
-
-    </div>
-
-    <!--Talentteam objects-->
-    <div class="talentteam-container">  
-      <ul class ="nav nav-tabs">
-        <li class="active"><a data-toggle="tab" href="#all">All Talents</a></li>
-      </ul>
-    </div>
-
-    <div class="button-container">
-        <button 
-          id="addTalentBtn" 
-          type="button" 
-          class="btn"
-          data-toggle="modal" 
-          data-target="#addTalentModal"
-        >Add Talent</button>
-        <button 
-          id="deleteTalentBtn" 
-          type="button" 
-          class="btn"
-          data-toggle="modal" 
-          data-target="#deleteTalentModal"
-        >Delete Talent</button>
-    </div>
-      
-    <div class="tab-content">
-        <div id="all" class="tab-pane fade in active"> <h3>All Talents</h3></div>
-    </div>
-
-    <div class="modal-wrapper">
-      <div class="new-talent-container">
-        <div id="addTalentModal" class="modal fade" role="dialog">
-          <div class="modal-dialog">
-            <div class="modal-content">
-              <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal">&times;</button>
-                <h4 class="modal-title">Add a new Talent</h4>
-              </div>
-              <div class="modal-body">
-                <div class="new-talent-container">
-                  <form class="new-talent-form">
-                    <input id="input-name" placeholder="Name..." />
-                    <input id="input-budget" placeholder="Budget..." />
-                    <input id="input-talent-team-id" placeholder="Talent Team ID..." />
-                    <div id="submit-new-talent" data-dismiss="modal">Add Talent</div>
-                  </form>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="delete-talent-container">
-        <div id="deleteTalentModal" class="modal fade" role="dialog">
-          <div class="modal-dialog">
-            <div class="modal-content">
-              <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal">&times;</button>
-                <h4 class="modal-title">Delete Talent</h4>
-              </div>
-              <div class="modal-body">
-                <div class="delete-talent-container">
-                  <form class="delete-talent-form">
-                    <input id="input-id" placeholder="ID..." />
-                    <span id="submit-delete-talent">Delete Talent</span>
-                  </form>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
     
+    <div class="content-wrapper">
+      <div class="container-fluid">
+        <h1>Talent demo</h1>
+        <p>This is the talent demo page!</p>
+      </div>
+
+      <div id="global-modal-container">
+
+      </div>
+
+      <!--Talentteam objects-->
+      <div class="talentteam-container">  
+        <ul class ="nav nav-tabs">
+
+        </ul>
+      </div>
+
+      <div class="button-container">
+          <button 
+            id="addTalentBtn" 
+            type="button" 
+            class="btn"
+            data-toggle="modal" 
+            data-target="#addTalentModal"
+          >Add Talent</button>
+          <button 
+            id="deleteTalentBtn" 
+            type="button" 
+            class="btn"
+            data-toggle="modal" 
+            data-target="#deleteTalentModal"
+          >Delete Talent</button>
+      </div>
+        
+      <div class="tab-content">
+
+      </div>
+
+      <div class="modal-wrapper">
+        <div class="new-talent-container">
+          <div id="addTalentModal" class="modal fade" role="dialog">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal">&times;</button>
+                  <h4 class="modal-title">Add a new Talent</h4>
+                </div>
+                <div class="modal-body">
+                  <div class="new-talent-container">
+                    <form class="new-talent-form">
+                      <input id="input-name" placeholder="Name..." />
+                      <input id="input-budget" placeholder="Budget..." />
+                      <input id="input-talent-team-id" placeholder="Talent Team ID..." />
+                      <div id="submit-new-talent" data-dismiss="modal">Add Talent</div>
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="delete-talent-container">
+          <div id="deleteTalentModal" class="modal fade" role="dialog">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal">&times;</button>
+                  <h4 class="modal-title">Delete Talent</h4>
+                </div>
+                <div class="modal-body">
+                  <div class="delete-talent-container">
+                    <form class="delete-talent-form">
+                      <input id="input-id" placeholder="ID..." />
+                      <span id="submit-delete-talent">Delete Talent</span>
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
    <!-- <div class="talents-page-container"> -->
  
     
