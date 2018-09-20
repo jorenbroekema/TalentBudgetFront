@@ -64,30 +64,46 @@ class BudgetTalent extends HTMLElement {
           width: 100%;
           text-align: center;
           position: relative;
+          top: 25px;
+          font-size: 18px;
         }
         .id {
           width: 100%;
           text-align: center;
           position: relative;
+          top: 18px;
           color: grey;
         }
+         .talent-team-name {
+           width: 100%;
+           text-align: center;
+           position: relative;
+           top: 25px;
+           font-size: 18px;
+         }
+         .talent-team-id {
+           width: 100%;
+           text-align: center;
+           position: relative;
+           top: 20px;
+           color: grey;
+         }
         .budget {
           width: 100%;
           text-align: center;
           position: relative;
-          color: red;
+          top: 25px;
+          margin-bottom: 30px;
+          color: #E46A35;
+          font-size: 18px;
         }
-        .talent-team-name {
-          width: 100%;
-          text-align: center;
-          position: relative;
-        }
+
       </style>
       <img style="margin-bottom: 10px" src="${imgURL}" onerror="this.src='${defaultImgURL}'" alt="${name}" width="100" height="100" class=portrait>
       <div class="name"><a href="./profile?id=${id}">${name}</a></div>
       <div class="id">${id}</div>
-      <div class="budget">€${budget}</div>
       <div class="talent-team-name">${talentTeamName}</div>
+      <div class="budget">€${budget}</div>
       <h5>Expenditures:</h5>
     `;
     shadow.appendChild(talentContainer);

@@ -13,7 +13,7 @@ if (stateFiltersElem !== null){
     button.addEventListener('click', () => {
       toggleFilter(button);
     });
-  });  
+  });
   reloadProfileData(userID);
 }
 
@@ -38,7 +38,7 @@ function submitNewExpenditure(){
 
   postData(`api/user/${userID}/expenditure`, JSONdata).then( () => {
     reloadProfileData(userID);
-  });  
+  });
 }
 
 export function loadTalent(id){
@@ -46,11 +46,11 @@ export function loadTalent(id){
   const profileElement = document.querySelector('.profile-info');
   getData(api).then( (response) => {
     profileElement.innerHTML = `
-      <img 
-        src="../../resources/images/portraits/${response.name}.jpg" 
-        onerror="this.src='../../resources/images/portraits/default.jpg'" 
-        alt="${response.name}" 
-        width="100" height="100" 
+      <img
+        src="../../resources/images/portraits/${response.name}.jpg"
+        onerror="this.src='../../resources/images/portraits/default.jpg'"
+        alt="${response.name}"
+        width="100" height="100"
         class="portrait"
       >
       <h2>${response.name}</h2>
@@ -108,7 +108,7 @@ export async function loadExpenditures(id) {
 }
 
 function toggleFilter(btn){
-  const stateMapping = { 
+  const stateMapping = {
     "Approved": 1,
     "In Progress": 2,
     "Declined": 3,
@@ -119,7 +119,7 @@ function toggleFilter(btn){
     btn.classList.remove('active');
   } else {
     btn.classList.add('active');
-  } 
+  }
   executeFilters();
 }
 

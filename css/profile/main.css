@@ -1,6 +1,11 @@
+.container-fluid {
+    margin-top: 65px;
+    margin-bottom: 20px;
+}
+
 .profile-info{
   width: max-content;
-  margin: 80px auto 0 auto;
+  margin: 80px auto 10px auto;
 }
 
 .profile-info h2{
@@ -33,6 +38,8 @@
 
 .new-expenditure-container{
   padding: 0 15px;
+  display: flex;
+  justify-content: center;
 }
 
 .new-expenditure-form input{
@@ -46,7 +53,6 @@
   cursor: pointer;
   background-color: #ddd;
   padding: 10px 20px;
-  width: max-content;
 }
 
 .button-container{
@@ -71,6 +77,7 @@ budget-expenditure:hover {
 #addExpenditureBtn{
   float: right;
   margin-bottom: 10px;
+  background-color: #ddd;
 }
 
 h5.talent-budget{
