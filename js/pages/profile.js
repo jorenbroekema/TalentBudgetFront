@@ -26,7 +26,6 @@ const DOMElems = {
 };
 
 function submitNewExpenditure(){
-  console.log("hello world");
   const submitData = {
     name: DOMElems.name.value,
     description: DOMElems.description.value,
@@ -82,6 +81,10 @@ export async function loadExpenditures(id) {
     getData(api).then( (response) => {
       const list = document.querySelector('.expenditure-container .list-group');
       list.innerHTML = '';
+
+      response.sort( (a, b) => {
+        return parseInt(b.id)-parseInt(a.id);
+      });
 
       response.forEach(expenditure => {
         // TODO: Make icon configurable (needs backend first)
