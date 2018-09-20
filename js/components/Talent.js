@@ -93,6 +93,7 @@ class BudgetTalent extends HTMLElement {
           text-align: center;
           position: relative;
           top: 25px;
+          margin-bottom: 30px;
           color: #E46A35;
           font-size: 18px;
         }
