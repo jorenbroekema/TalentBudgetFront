@@ -47,12 +47,14 @@
   padding: 5px;
   margin-bottom: 5px;
   width: 250px;
+  text-align: center;
 }
 
 #submit-new-expenditure{
   cursor: pointer;
   background-color: #ddd;
   padding: 10px 20px;
+  text-align: center;
 }
 
 .button-container{
@@ -83,6 +85,7 @@ budget-expenditure:hover {
 h5.talent-budget{
   text-align: center;
   font-size: 15px;
+  margin-bottom: 50px;
 }
 
 .state-filters button{
@@ -104,6 +107,12 @@ h5.talent-budget{
 .state-filters .done{
   background-color: #d9edf7;
   color: #31708f;
+}
+
+.modal-title {
+    margin: 0;
+    line-height: 1.42857143;
+    text-align: center;
 }
 
 .state-filters .approved.active{border-bottom: 2px solid #3c763d}

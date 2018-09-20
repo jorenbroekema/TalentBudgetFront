@@ -131,6 +131,9 @@ class BudgetExpenditure extends HTMLElement {
               <hr>
               <h4>Goal</h4>
               <p>${this.goalDescription}</p>
+              <hr>
+              <h4>Budget</h4>
+              <p>${this.budget}</p> 
             </div>
             <div class="modal-footer">
               ${buttonsHTML}
@@ -143,7 +146,6 @@ class BudgetExpenditure extends HTMLElement {
     this.insertAdjacentElement('afterend', modalContainer);
 
     // TODO: configurable callback names, needs more elegance
-    console.log(this.expenditureID);
     const buttons = document.querySelector(`#modal-${this.expenditureID} .modal-footer`).children;
     for (let i = 0; i < buttons.length; i++){
       let func = `ex_${buttons[i].classList[2].split('-')[1]}`;

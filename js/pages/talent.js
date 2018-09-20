@@ -39,7 +39,7 @@ function deleteTalent() {
   });
 }
 
-function loadTeams(){
+export function loadTeams(){
   const api = `api/talentteam/all`;
   const api_alltalents = `api/talent/all`;
   const talentTeamNav = document.querySelector('.talentteam-container .nav.nav-tabs');
