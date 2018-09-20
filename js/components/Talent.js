@@ -5,7 +5,6 @@ class BudgetTalent extends HTMLElement {
   }
 
   connectedCallback() {
-    console.log("loading BudgetTalent element");
     const shadow = this.attachShadow({ mode: 'open' });
     const talentContainer = document.createElement('div');
     const id = this.id;

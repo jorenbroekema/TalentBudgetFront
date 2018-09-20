@@ -1,5 +1,5 @@
 import { patchData, deleteData } from '../../js/AjaxMixin.js';
-import { reloadProfileData } from '../../js/pages/profile.js';
+import { loadTeams } from '../pages/talent.js';
 
 class BudgetExpenditureSmall extends HTMLElement {
   constructor(){
@@ -10,8 +10,6 @@ class BudgetExpenditureSmall extends HTMLElement {
     const shadow = this.attachShadow({ mode: 'open' });
     const expenditureContainer = document.createElement('div');
     const title = this.title;
-    const icon = this.icon;
-    const budget = this.budget;
     const state = this.state;
     const ex_id = this.expenditureID;
     let stateIcon;
@@ -53,8 +51,18 @@ class BudgetExpenditureSmall extends HTMLElement {
           margin-top: 10px;
           height: 100%;
           border-radius: 4px;
+          -webkit-transition: all 0.30s ease-in-out;
+          -moz-transition: all 0.30s ease-in-out;
+          -ms-transition: all 0.30s ease-in-out;
+          -o-transition: all 0.30s ease-in-out;
+          outline: none;
         }
-        
+
+        .expenditure:hover{
+          cursor: pointer;
+          box-shadow: 0 0 5px rgba(81, 203, 238, 1);
+        }
+
         .title{
           width: 100%;
           line-height: 30px;
@@ -141,7 +149,6 @@ class BudgetExpenditureSmall extends HTMLElement {
     this.insertAdjacentElement('afterend', modalContainer);
 
     // TODO: configurable callback names, needs more elegance
-    console.log(this.expenditureID);
     const buttons = document.querySelector(`#modal-${this.expenditureID} .modal-footer`).children;
     for (let i = 0; i < buttons.length; i++){
       let func = `ex_${buttons[i].classList[2].split('-')[1]}`;
@@ -177,31 +184,31 @@ class BudgetExpenditureSmall extends HTMLElement {
 
   ex_approve(expenditureID){
     patchData(`api/expenditure/${expenditureID}/state/1`).then( (response) => {
-      reloadProfileData(this.talent_id);
+      loadTeams();
     });
   }
 
   ex_request(expenditureID){
     patchData(`api/expenditure/${expenditureID}/state/2`).then( (response) => {
-      reloadProfileData(this.talent_id);
+      loadTeams();
     });
   }
 
   ex_decline(expenditureID){
     patchData(`api/expenditure/${expenditureID}/state/3`).then( (response) => {
-      reloadProfileData(this.talent_id);
+      loadTeams();
     });
   }
   
   ex_finish(expenditureID){
     patchData(`api/expenditure/${expenditureID}/state/4`).then( (response) => {
-      reloadProfileData(this.talent_id);
+      loadTeams();
     });
   }
 
   ex_delete(expenditureID){
     deleteData(`api/user/${this.talent_id}/expenditure/${expenditureID}`).then( (response) => {
-      reloadProfileData(this.talent_id);
+      loadTeams();
     });
   }
 
@@ -225,30 +232,6 @@ class BudgetExpenditureSmall extends HTMLElement {
   set title(str){
     if (str) {
       this.setAttribute('title', str);
-    } else {
-      this.removeAttribute();
-    }
-  }
-
-  get icon(){
-    return this.getAttribute('icon');
-  }
-
-  set icon(str){
-    if (str) {
-      this.setAttribute('icon', str);
-    } else {
-      this.removeAttribute();
-    }
-  }
-
-  get budget(){
-    return this.getAttribute('budget');
-  }
-
-  set budget(str){
-    if (str) {
-      this.setAttribute('budget', str);
     } else {
       this.removeAttribute();
     }
