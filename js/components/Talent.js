@@ -163,6 +163,9 @@ class BudgetTalent extends HTMLElement {
 
   get expendituresInProgress() {
     const expenditureData = JSON.parse(this.getAttribute('expenditures'));
+    expenditureData.sort( (a, b) => {
+      return parseInt(b.id)-parseInt(a.id);
+    });
     let expendituresToReturn = [];
     expenditureData.forEach(expenditure => {
       if (parseInt(expenditure.state) === 2){
