@@ -134,7 +134,6 @@ export class YoungColfield extends PolymerElement {
   }
 
   returnfromdelete(response) {
-    console.log(response);
     this._startajax();
   }
 
@@ -146,16 +145,14 @@ export class YoungColfield extends PolymerElement {
       name: this.inputName,
       budget: this.inputBudget,
       talentTeam: {
-        id: DOMElems.teamID.value,
+        id: this.inputTeamID,
       }
     }
-    console.log(submitData);
     ajax.body = JSON.stringify(submitData);
     ajax.generateRequest()
   }
 
   returnfromadd(response) {
-    console.log(response);
     this._startajax();
   }
   
@@ -169,7 +166,6 @@ export class YoungColfield extends PolymerElement {
     response = response.detail.response;  // Get the inner response, which contains the actual talents.
     this.talents = [];                    // Reset the array, because we will rebuild it from scratch.
     for (var i = 0; i < response.length; i++) {
-      //console.log(response[i]);
       if (response[i].talentTeam == null) {
         response[i].talentTeam = {
           id: 'null',
@@ -183,7 +179,6 @@ export class YoungColfield extends PolymerElement {
                               team: { id:response[i].talentTeam.id, 
                                       teamname:response[i].talentTeam.teamname } });
     }
-    //console.log(this.talents);
   }
 }
 
