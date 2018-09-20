@@ -45,7 +45,7 @@ function loadTeams(){
   const talentTeamNav = document.querySelector('.talentteam-container .nav.nav-tabs');
   const talentTeamElement = document.querySelector('.tab-content');
   let teamsNavHTML= `<li class="active"><a data-toggle="tab" href="#all">All Talents</a></li>`; 
-  let teamsElHTML =`<div id="all" class="tab-pane fade in active"> <h3>All Talents</h3><ul>`
+  let teamsElHTML =`<div id="all" class="tab-pane fade in active"> <h2>All Talents</h2><ul>`
   getData(api_alltalents).then( (response_alltalents) => {
     response_alltalents.forEach(talent =>{
       if (talent.talentTeam == null) {
@@ -77,7 +77,7 @@ function loadTeams(){
         getData(api_perteam).then( (response_team) =>{
           teamsElHTML +=`
             <div id="${team.teamname.replace(/\s+/g, '-')}" class="tab-pane fade">
-            <h3>${team.teamname} </h3><ul>
+            <h2>${team.teamname} </h2><ul>
           `;
           response_team.forEach(member => {
             if (member.talentTeam == null) {
