@@ -204,7 +204,6 @@ class BudgetExpenditure extends HTMLElement {
   ex_delete(expenditureID){
     deleteData(`api/user/${this.talent_id}/expenditure/${expenditureID}`).then( (response) => {
       reloadProfileData(this.talent_id);
-      loadTalent(this.talent_id);
     });
   }
 
