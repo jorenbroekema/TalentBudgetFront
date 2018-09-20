@@ -14,20 +14,16 @@ class BudgetExpenditureSmall extends HTMLElement {
     const ex_id = this.expenditureID;
 
     switch(state){
-      case 'approved': 
-        stateIcon = 'fa-check-circle';
+      case 'approved':
         this.buttonDisplays = ['btn-request', 'btn-finish'];
       break;
-      case 'in-progress': 
-        stateIcon = 'fa-spinner';
+      case 'in-progress':
         this.buttonDisplays = ['btn-request', 'btn-approve', 'btn-decline'];
       break; 
-      case 'declined': 
-        stateIcon = 'fa-exclamation-circle';
+      case 'declined':
         this.buttonDisplays = ['btn-request', 'btn-delete'];
       break;
-      case 'done': 
-        stateIcon = 'fa-clipboard-check';
+      case 'done':
         this.buttonDisplays = [];
       break;
     }
@@ -135,14 +131,12 @@ class BudgetExpenditureSmall extends HTMLElement {
               ${buttonsHTML}
             </div>
           </div>
-          
         </div>
       </div>
     `;
     this.insertAdjacentElement('afterend', modalContainer);
 
     // TODO: configurable callback names, needs more elegance
-    console.log(this.expenditureID);
     const buttons = document.querySelector(`#modal-${this.expenditureID} .modal-footer`).children;
     for (let i = 0; i < buttons.length; i++){
       let func = `ex_${buttons[i].classList[2].split('-')[1]}`;
