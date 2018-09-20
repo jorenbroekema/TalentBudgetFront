@@ -32,8 +32,9 @@ deleteTalentButton.addEventListener('click', deleteTalent);
 
 function deleteTalent() {
   const id = document.getElementById('input-id').value;
-  deleteData(id, 'api/talent').then( () => {
-    loadTeams();
+
+  deleteData(`api/talent/${id}`).then( () => {
+    showTalents('api/talent/all');
     getNavUsers();
   });
 }
