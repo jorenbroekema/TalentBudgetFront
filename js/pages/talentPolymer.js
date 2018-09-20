@@ -166,7 +166,6 @@ export class YoungColfield extends PolymerElement {
     response = response.detail.response;  // Get the inner response, which contains the actual talents.
     this.talents = [];                    // Reset the array, because we will rebuild it from scratch.
     for (var i = 0; i < response.length; i++) {
-      //console.log(response[i]);
       if (response[i].talentTeam == null) {
         response[i].talentTeam = {
           id: 'null',
