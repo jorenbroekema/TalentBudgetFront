@@ -1,12 +1,21 @@
 import { postData, getData } from '../AjaxMixin.js';
 import { getQueryVariable } from '../../js/getURLVar.js';
-
-const newExpenditureButton = document.getElementById('submit-new-expenditure');
-newExpenditureButton.addEventListener('click', submitNewExpenditure);
 const userID = getQueryVariable('id');
-loadTalent(userID);
-loadExpenditures(userID);
+const newExpenditureButton = document.getElementById('submit-new-expenditure');
+if (newExpenditureButton !== null){
+  newExpenditureButton.addEventListener('click', submitNewExpenditure);
+}
 
+const stateFiltersElem = document.querySelector('.state-filters');
+if (stateFiltersElem !== null){
+  const stateFilters = [].slice.call(document.querySelector('.state-filters').children);
+  stateFilters.forEach(button => {
+    button.addEventListener('click', () => {
+      toggleFilter(button);
+    });
+  });  
+  reloadProfileData(userID);
+}
 
 const DOMElems = {
   name: document.getElementById('input-name'),
@@ -17,6 +26,7 @@ const DOMElems = {
 };
 
 function submitNewExpenditure(){
+  console.log("hello world");
   const submitData = {
     name: DOMElems.name.value,
     description: DOMElems.description.value,
@@ -27,12 +37,11 @@ function submitNewExpenditure(){
   const JSONdata = JSON.stringify(submitData);
 
   postData(`api/user/${userID}/expenditure`, JSONdata).then( () => {
-    loadExpenditures(userID);
-    loadTalent(userID);
+    reloadProfileData(userID);
   });  
 }
 
-function loadTalent(id){
+export function loadTalent(id){
   const api = `api/talent/${id}`;
   const profileElement = document.querySelector('.profile-info');
   getData(api).then( (response) => {
@@ -66,25 +75,75 @@ function adjustBudget(budget){
   document.querySelector('.talent-budget').innerText=`€${budget}`;
 }
 
-function loadExpenditures(id){
+export async function loadExpenditures(id) {
   const api = `api/talent/${id}/expenditures`;
-  getData(api).then( (response) => {
-    const list = document.querySelector('.expenditure-container .list-group');
-    list.innerHTML = '';
 
-    response.forEach(expenditure => {
-      // TODO: Make icon configurable (needs backend first)
-      list.innerHTML += `
-        <li class="list-group-item">
-          <budget-expenditure
-            expenditure-id="${expenditure.id}"
-            title="${expenditure.name}"
-            icon="fa-graduation-cap"
-            budget="€${expenditure.cost}"
-            state="${expenditure.state}"
-          ></budget-expenditure>
-        </li>
+  let promise = new Promise((resolve, reject) => {
+    getData(api).then( (response) => {
+      const list = document.querySelector('.expenditure-container .list-group');
+      list.innerHTML = '';
+
+      response.forEach(expenditure => {
+        // TODO: Make icon configurable (needs backend first)
+        list.innerHTML += `
+          <li class="list-group-item">
+            <budget-expenditure
+              talent-id="${id}"
+              expenditure-id="${expenditure.id}"
+              title="${expenditure.name}"
+              description="${expenditure.description}"
+              goal-description="${expenditure.goal_description}"
+              icon="fa-graduation-cap"
+              budget="€${expenditure.cost}"
+              state="${expenditure.state}"
+            ></budget-expenditure>
+          </li>
         `;
       });
+      resolve("done!");
     });
+  });
+  let result = await promise;
+  return result;
+}
+
+function toggleFilter(btn){
+  const stateMapping = { 
+    "Approved": 1,
+    "In Progress": 2,
+    "Declined": 3,
+    "Done": 4
   }
+
+  if (btn.classList.contains('active')) {
+    btn.classList.remove('active');
+  } else {
+    btn.classList.add('active');
+  } 
+  executeFilters();
+}
+
+export function executeFilters(){
+  const expenditures = [].slice.call(document.querySelector('.expenditure-container .list-group').children);
+  const stateFilters = [].slice.call(document.querySelector('.state-filters').children);
+
+  expenditures.forEach(expenditure => {
+    const state = parseInt(expenditure.firstElementChild.getAttribute('state'));
+    if (stateFilters[state-1].classList.contains('active')) {
+      if (expenditure.classList.contains('hidden')) {
+        expenditure.classList.remove('hidden');
+      }
+    } else {
+      if (!expenditure.classList.contains('hidden')){
+        expenditure.classList.add('hidden');
+      }
+    }
+  });
+}
+
+export function reloadProfileData(id){
+  loadExpenditures(id).then( () => {
+    loadTalent(id);
+    executeFilters();
+  });
+}

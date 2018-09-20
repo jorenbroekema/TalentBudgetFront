@@ -43,14 +43,13 @@ body {
 }
 
 .list-group-item {
-  height: 300px;
   width: 200px;
   margin: 10px;
   border-radius: 4px;
 }
 
 .talents-page-container{
-  width:800px;
+  width: 880px;
   margin: auto;
 }
 

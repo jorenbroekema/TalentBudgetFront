@@ -1,3 +1,4 @@
+import { httpPort } from '../../localconfig.js';
 import {html, PolymerElement} from '@polymer/polymer/polymer-element.js';
 import '@polymer/paper-button/paper-button.js';
 import '@polymer/iron-ajax/iron-ajax.js';
@@ -8,7 +9,17 @@ import '@polymer/iron-ajax/iron-ajax.js';
  * @customElement
  * @polymer
  */
-class YoungColfield extends PolymerElement {
+export class YoungColfield extends PolymerElement {
+
+  constructor() {
+    super();
+  }
+
+  ready() {
+    super.ready();
+    this._startajax();
+  }
+
   static get template() {
     return html`
       <style>
@@ -17,47 +28,32 @@ class YoungColfield extends PolymerElement {
           width: 100%;
           text-align: center;
         }
-        .talent {
-          position: relative;
+
+        .talent-container {
+          display: flex;
+          justify-content: center;
         }
-        .portrait {
-          border-radius: 50%;
-          display: block;
-          margin-left: auto;
-          margin-right: auto;
+
+        .list-group {
+          padding: 0px;
+          display: flex;
+          justify-content: center;
+          flex-flow: row wrap;
         }
-        .name {
+
+        .list-group-item {
+          height: 200px;
+          width: 200px;
+          margin: 10px;
+          border-radius: 4px;
+        }
+
+        .new-talent-container{
+          padding: 0 15px;
           width: 100%;
-          text-align: center;
-          position: relative;
-          top: 10px;
-        }
-        .id {
-          width: 100%;
-          text-align: center;
-          position: relative;
-          top: 10px;
-          color: grey;
-        }
-        .budget {
-          width: 100%;
-          text-align: center;
-          position: relative;
-          top: 20px;
-          color: red;
-        }
-        .talent-team-id {
-          width: 100%;
-          text-align: center;
-          position: relative;
-          top: 20px;
-          color: grey;
-        }
-        .talent-team-name {
-          width: 100%;
-          text-align: center;
-          position: relative;
-          top: 20px;
+          display: flex;
+          justify-content: center;
+          flex-flow: row wrap;
         }
       </style>
       
@@ -65,93 +61,129 @@ class YoungColfield extends PolymerElement {
       <p>This is the talent view for the Polymer demo!</p>
 
       <input type=text value={{inputName::input}} placeholder="First name...">
-      <input type=text value={{inputBudget::input}} placeholder="Budget...">
-      <input type=text value={{inputTeamID::input}} placeholder="Team ID...">
+      <input type=number value={{inputBudget::input}} placeholder="Budget...">
+      <input type=number value={{inputTeamID::input}} placeholder="Talent Team ID...">
+      <paper-button raised class="indigo" on-click=_addTalentMethod>Submit Talent</paper-button>
 
-      <paper-button raised class="indigo" on-click=_addStudentMethod>Submit Student</paper-button>
+      <br>
+
+      <input type=number value={{inputID::input}} placeholder="Talent ID...">
+      <paper-button raised class="indigo" on-click=_deleteTalentMethod>Delete Talent</paper-button>
       
       <div><a href="http://127.0.0.1:8080/talent.html">Click here to switch to the normal Talent Page!</a></div>
-
-      <dom-repeat items={{students}}>
-        <template>
-          <li class="list-group-item">
-            <budget-talent
-              id={{item.id}}
-              name="{{item.name}}"
-              budget={{item.budget}}
-              talent-team-name="{{item.team.teamname}}"
-              talent-team-id={{item.team.id}}
-            ></budget-talent>
-          </li>
-        
-          <div>Hello {{item.name}}, welcome to team {{item.team.teamname}}.</div>
-        </template>
-      </dom-repeat>
       
-      <br>Start Ajax:
-      <paper-button raised on-click=startajax>Start Ajax</paper-button>
-      <iron-ajax id="studentajax" handle-as="json" on-response="returnfrombackend">
-        
+      <div class="talent-container">
+        <ul class="list-group">
+          <dom-repeat items={{talents}}>
+            <template>
+              <span class="list-group-item">
+                <budget-talent
+                  id="{{item.id}}" 
+                  name="{{item.name}}" 
+                  budget="{{item.budget}}" 
+                  talent-team-name="{{item.team.teamname}}" 
+                  talent-team-id="{{item.team.id}}" 
+                ></budget-talent>
+              </span>
+            </template>
+          </dom-repeat>
+        </ul>
+      </div>
+      
+      <paper-button raised on-click=_startajax>Get Talents</paper-button>
+
+      <iron-ajax id="deletetalentajax" handle-as="json" on-response="returnfromdelete"></iron-ajax>
+      <iron-ajax id="addtalentajax" 
+                 handle-as="json" 
+                 method="POST"
+                 headers='{"Accept": "application/json"}'
+                 content-type='application/json'
+                 on-response="returnfromadd">
       </iron-ajax>
+      <iron-ajax id="gettalentajax" handle-as="json" on-response="returnfromget"></iron-ajax>
     `;
   }
   static get properties() {
     return {
       inputName: {
         type: String,
-        value: undefined,
       },
       inputBudget: {
         type: Number,
-        value: undefined
       },
       inputTeamID: {
         type: Number,
-        value: undefined
       },
-      students: {
+      inputID: {
+        type: Number,
+      },
+      talents: {
         type: Array,
         value(){
-          return[
-            { id:123, name:'billy', budget:345, team:{ id:67, teamname:'ABC' } },
-          ];
+          return[];
         }
       }
     };
   }
 
-  _addStudentMethod() {
-    var ajax = this.$.studentajax;
-    ajax.url = "http://127.0.0.1:8083/api/talent";
-    ajax.generateRequest()
-    this.push('students', { name: this.inputName, budget: this.inputBudget, team: { id: this.inputTeamID } });
-    console.log(this.students);
-  }
-
-  startajax() {
-    var ajax = this.$.studentajax;
-    ajax.url = "http://127.0.0.1:8083/api/talent/all";
+  _deleteTalentMethod() {
+    var ajax = this.$.deletetalentajax;
+    ajax.url = "http://127.0.0.1:" + httpPort + "/api/talent/" + this.inputID;
+    ajax.method = 'delete';
     ajax.generateRequest();
   }
 
-  returnfrombackend(response) {
+  returnfromdelete(response) {
+    console.log(response);
+    this._startajax();
+  }
+
+  _addTalentMethod() {
+    var ajax = this.$.addtalentajax;
+    ajax.url = "http://127.0.0.1:" + httpPort + "/api/talent";
+    ajax.method = 'post';
+    const submitData = {
+      name: this.inputName,
+      budget: this.inputBudget,
+      talentTeam: {
+        id: this.inputTeamID,
+      }
+    }
+    console.log(submitData);
+    ajax.body = JSON.stringify(submitData);
+    ajax.generateRequest()
+  }
+
+  returnfromadd(response) {
+    console.log(response);
+    this._startajax();
+  }
+  
+  _startajax() {
+    var ajax = this.$.gettalentajax;
+    ajax.url = "http://127.0.0.1:" + httpPort + "/api/talent/all";
+    ajax.generateRequest();
+  }
+
+  returnfromget(response) {
     response = response.detail.response;  // Get the inner response, which contains the actual talents.
-    this.students = [];                   // Reset the array, because we will rebuild it from scratch.
+    this.talents = [];                    // Reset the array, because we will rebuild it from scratch.
     for (var i = 0; i < response.length; i++) {
-      console.log(response[i]);
+      //console.log(response[i]);
       if (response[i].talentTeam == null) {
         response[i].talentTeam = {
           id: 'null',
           teamname: 'null'
         };
       }
-      this.push('students', { id: response[i].id, 
+      this.push('talents', { id: response[i].id, 
                               name: response[i].name, 
                               budget: response[i].budget, 
-                              expenditures: response[i].expenditures,
+                              //expenditures: response[i].expenditures,
                               team: { id:response[i].talentTeam.id, 
                                       teamname:response[i].talentTeam.teamname } });
     }
+    //console.log(this.talents);
   }
 }
 
