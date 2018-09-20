@@ -70,8 +70,6 @@ export class YoungColfield extends PolymerElement {
       <input type=number value={{inputID::input}} placeholder="Talent ID...">
       <paper-button raised class="indigo" on-click=_deleteTalentMethod>Delete Talent</paper-button>
       
-      <div><a href="http://127.0.0.1:8080/talent.html">Click here to switch to the normal Talent Page!</a></div>
-      
       <div class="talent-container">
         <ul class="list-group">
           <dom-repeat items={{talents}}>
