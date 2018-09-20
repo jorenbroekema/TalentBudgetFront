@@ -91,7 +91,7 @@ class BudgetTalent extends HTMLElement {
         }
       </style>
       <img style="margin-bottom: 10px" src="${imgURL}" onerror="this.src='${defaultImgURL}'" alt="${name}" width="100" height="100" class=portrait>
-      <div class="name"><a href="./profile?id=${id}">${name}</a></div>
+      <div class="name"><a href="./profile?id=${id}" target="_blank">${name}</a></div>
       <div class="id">${id}</div>
       <div class="talent-team-name">${talentTeamName}</div>
       <div class="budget">€${budget}</div>
