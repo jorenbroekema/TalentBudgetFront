@@ -146,7 +146,7 @@ export class YoungColfield extends PolymerElement {
       name: this.inputName,
       budget: this.inputBudget,
       talentTeam: {
-        id: this.inputTeamID,
+        id: DOMElems.teamID.value,
       }
     }
     console.log(submitData);
