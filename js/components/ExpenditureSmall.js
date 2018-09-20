@@ -46,6 +46,16 @@ class BudgetExpenditureSmall extends HTMLElement {
           margin-top: 10px;
           height: 100%;
           border-radius: 4px;
+          -webkit-transition: all 0.30s ease-in-out;	
+          -moz-transition: all 0.30s ease-in-out;	
+          -ms-transition: all 0.30s ease-in-out;	
+          -o-transition: all 0.30s ease-in-out;	
+          outline: none;
+        }
+
+        .expenditure:hover{
+          cursor: pointer;	
+          box-shadow: 0 0 5px rgba(81, 203, 238, 1);
         }
         
         .title{
