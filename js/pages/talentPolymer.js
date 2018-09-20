@@ -145,7 +145,9 @@ export class YoungColfield extends PolymerElement {
     const submitData = {
       name: this.inputName,
       budget: this.inputBudget,
-      talent_team_id: this.inputTeamID,
+      talentTeam: {
+        id: DOMElems.teamID.value,
+      }
     }
     console.log(submitData);
     ajax.body = JSON.stringify(submitData);

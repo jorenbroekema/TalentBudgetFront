@@ -103,7 +103,6 @@ class BudgetTalent extends HTMLElement {
       <div class="name">${name}</div>
       <div class="id">${id}</div>
       <div class="talent-team-name">${talentTeamName}</div>
-      <div class="talent-team-id">${talentTeamID}</div>
       <div class="budget">€${budget}</div>
     `;
     shadow.appendChild(talentContainer);
