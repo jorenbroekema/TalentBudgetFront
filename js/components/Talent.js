@@ -5,7 +5,6 @@ class BudgetTalent extends HTMLElement {
   }
 
   connectedCallback() {
-    console.log("loading BudgetTalent element");
     const shadow = this.attachShadow({ mode: 'open' });
     const talentContainer = document.createElement('div');
     const id = this.id;
@@ -44,7 +43,7 @@ class BudgetTalent extends HTMLElement {
     }
 
     talentContainer.classList.add('talent');
-    talentContainer.innerHTML = `
+    let talentContainerHTML = `
       <style>
         @import url("../../node_modules/@fortawesome/fontawesome-free/css/all.min.css");
         @import url("../../node_modules/bootstrap/dist/css/bootstrap.min.css");
@@ -104,8 +103,11 @@ class BudgetTalent extends HTMLElement {
       <div class="id">${id}</div>
       <div class="talent-team-name">${talentTeamName}</div>
       <div class="budget">€${budget}</div>
-      <h5>Expenditures:</h5>
     `;
+    if(expendituresInProgress.length > 0){
+      talentContainerHTML += `<h5>Requested Approval:</h5>`;
+    }
+    talentContainer.innerHTML = talentContainerHTML;
     shadow.appendChild(talentContainer);
     let expendituresElem = document.createElement('div');
     expendituresElem.innerHTML = expendituresHTML;
