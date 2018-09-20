@@ -104,6 +104,7 @@ class BudgetTalent extends HTMLElement {
       <div class="id">${id}</div>
       <div class="talent-team-name">${talentTeamName}</div>
       <div class="budget">€${budget}</div>
+      <h5>Expenditures:</h5>
     `;
     shadow.appendChild(talentContainer);
     let expendituresElem = document.createElement('div');
