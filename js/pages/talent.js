@@ -34,7 +34,7 @@ function deleteTalent() {
   const id = document.getElementById('input-id').value;
 
   deleteData(`api/talent/${id}`).then( () => {
-    showTalents('api/talent/all');
+    loadTeams();
     getNavUsers();
   });
 }
