@@ -11,7 +11,6 @@ class BudgetTalent extends HTMLElement {
     const id = this.id;
     const name = this.name;
     const expenditures = JSON.parse(this.expenditures);
-    const talentTeamID = this.talentTeamID;
     const talentTeamName = this.talentTeamName;
     const expendituresInProgress = this.expendituresInProgress;
     
@@ -138,16 +137,6 @@ class BudgetTalent extends HTMLElement {
       this.setAttribute('expenditures', obj);
     } else {
       this.removeAttribute('expenditures');
-    }
-  }
-  get talentTeamID() {
-    return this.getAttribute('talent-team-id');
-  }
-  set talentTeamID(number) {
-    if (number) {
-      this.setAttribute('talent-team-id', number);
-    } else {
-      this.removeAttribute('talent-team-id');
     }
   }
 
