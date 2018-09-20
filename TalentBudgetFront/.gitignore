@@ -1,8 +1,0 @@
-CODEOWNERS
-localconfig.js
-node_modules
-package-lock.json
-bower_components
-*.xml
-*.iml
-index.lock
