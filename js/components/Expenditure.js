@@ -131,6 +131,9 @@ class BudgetExpenditure extends HTMLElement {
               <hr>
               <h4>Goal</h4>
               <p>${this.goalDescription}</p>
+              <hr>
+              <h4>Budget</h4>
+              <p>${this.budget}</p> 
             </div>
             <div class="modal-footer">
               ${buttonsHTML}
