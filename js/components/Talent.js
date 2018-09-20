@@ -64,7 +64,7 @@ class BudgetTalent extends HTMLElement {
           width: 100%;
           text-align: center;
           position: relative;
-          font-size: 25px;
+          font-size: 20px;
           margin-bottom: 0px;
         }
         .id {
@@ -72,21 +72,14 @@ class BudgetTalent extends HTMLElement {
           text-align: center;
           position: relative;
           color: grey;
-          margin-bottom: 20px;
+          margin-bottom: 10px;
         }
         .talent-team-name {
           width: 100%;
           text-align: center;
           position: relative;
-          font-size: 18px;
-          margin-bottom: 0px;
-        }
-        .talent-team-id {
-          width: 100%;
-          text-align: center;
-          position: relative;
-          color: grey;
-          margin-bottom: 25px;
+          font-size: 14px;
+          margin-bottom: 0;
         }
         .budget {
           width: 100%;
@@ -94,7 +87,7 @@ class BudgetTalent extends HTMLElement {
           position: relative;
           color: #E46A35;
           font-size: 18px;
-          margin-bottom: 20px;
+          margin-bottom: 5px;
         }
       </style>
       <img style="margin-bottom: 10px" src="${imgURL}" onerror="this.src='${defaultImgURL}'" alt="${name}" width="100" height="100" class=portrait>
