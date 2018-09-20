@@ -1,4 +1,3 @@
-import { httpPort } from '../../localconfig.js';
 import { postData, deleteData, getData } from '../AjaxMixin.js';
 import { getNavUsers } from '../navbar.js';
 
