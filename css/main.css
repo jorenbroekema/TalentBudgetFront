@@ -21,6 +21,11 @@
 	font-family: NeuzeitGroT;
 }
 
+a {
+    color: #333333;
+    text-decoration: none;
+}
+
 .navbar-inverse {
     background-color: #e46a35;
     border-color: #e46a35;
