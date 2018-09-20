@@ -31,6 +31,11 @@ body {
     transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
 }
 
+.content-wrapper {
+  width:880px;
+  margin:0 auto;
+}
+
 .container-fluid {
   margin-top: 10px;
   text-align: center;
@@ -57,6 +62,16 @@ body {
   flex-flow: row wrap;
 }
 
+.tab-content{
+  margin-top:50px;
+}
+
+.tab-content div ul{
+  display: flex;
+  justify-content: center;
+  flex-flow: row wrap;
+}
+
 .list-group-item {
   width: 200px;
   margin: 10px;
@@ -69,15 +84,6 @@ body {
   margin: auto;
 }
 
-.icon{
-  display: none !important;
-}
-
-budget-talent /deep/ budget-expenditure /deep/ .icon{
-  display: none !important;
-}
-
-/*
 .new-talent-container{
   padding: 0 15px;
   width: 100%;
@@ -128,7 +134,20 @@ budget-talent /deep/ budget-expenditure /deep/ .icon{
   width: 200px;
   height: 30px;
   text-align: center;
-}*/
+}
+
+.expenditures-container {
+  -webkit-transition: all 0.30s ease-in-out;
+  -moz-transition: all 0.30s ease-in-out;
+  -ms-transition: all 0.30s ease-in-out;
+  -o-transition: all 0.30s ease-in-out;
+  outline: none;
+}
+
+.expenditures-container:hover{
+  cursor: pointer;
+  box-shadow: 0 0 5px rgba(81, 203, 238, 1);
+}
 
 
 
