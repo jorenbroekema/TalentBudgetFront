@@ -78,13 +78,14 @@ function loadTeams(){
   const talentTeamElement = document.querySelector('.tab-content');
   let teamsNavHTML= `<li class="active"><a data-toggle="tab" href="#all">All Talents</a></li>`; 
   let teamsElHTML =`<div id="all" class="tab-pane fade in active"> <h3>All Talents</h3><ul>`
-  getData(api_alltalents).then((response_alltalents)=>{
+  getData(api_alltalents).then( (response_alltalents) => {
     response_alltalents.forEach(talent =>{
-     if (talent.talentTeam == null) {
+      if (talent.talentTeam == null) {
         talent.talentTeam = {
           id: 'null',
           teamname: 'null'
-        }};
+        }
+      };
       teamsElHTML += `
         <li class="list-group-item">
           <budget-talent
@@ -97,19 +98,20 @@ function loadTeams(){
           ></budget-talent>
         </li>
       `;
-    })
+    });
     teamsElHTML += `</ul></div>`;
     talentTeamElement.innerHTML = teamsElHTML;
-  })
 
-  getData(api).then( (response) => {
-    response.forEach(team => {
-      teamsNavHTML+=`<li><a data-toggle="tab" href="#${team.teamname.replace(/\s+/g, '-')}">${team.teamname}</a></li>` ;
-      const api_perteam = `api/talentteam/${team.id}/teammembers`; 
-      getData(api_perteam).then( (response_team) =>{
-          teamsElHTML +=`<div id="${team.teamname.replace(/\s+/g, '-')}" class="tab-pane fade">
-          <h3>${team.teamname} </h3><ul>`;
-          response_team.forEach(member =>{
+    getData(api).then( (response) => {
+      response.forEach(team => {
+        teamsNavHTML+=`<li><a data-toggle="tab" href="#${team.teamname.replace(/\s+/g, '-')}">${team.teamname}</a></li>` ;
+        const api_perteam = `api/talentteam/${team.id}/teammembers`; 
+        getData(api_perteam).then( (response_team) =>{
+          teamsElHTML +=`
+            <div id="${team.teamname.replace(/\s+/g, '-')}" class="tab-pane fade">
+            <h3>${team.teamname} </h3><ul>
+          `;
+          response_team.forEach(member => {
             if (member.talentTeam == null) {
               member.talentTeam = {
                 id: 'null',
@@ -128,12 +130,13 @@ function loadTeams(){
                 ></budget-talent>
               </li>
             `;
-          })
+          });
           teamsElHTML += `</ul></div>`;
           talentTeamElement.innerHTML = teamsElHTML;
         }); 
+      });
+      talentTeamNav.innerHTML = teamsNavHTML;
+      talentTeamElement.innerHTML = teamsElHTML;
     });
-    talentTeamNav.innerHTML = teamsNavHTML;
-    talentTeamElement.innerHTML = teamsElHTML;
   });
 }
