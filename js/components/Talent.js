@@ -59,45 +59,44 @@ class BudgetTalent extends HTMLElement {
           display: block;
           margin-left: auto;
           margin-right: auto;
+          margin-bottom: 25px;
         }
         .name {
           width: 100%;
           text-align: center;
           position: relative;
-          top: 25px;
-          font-size: 18px;
+          font-size: 25px;
+          margin-bottom: 0px;
         }
         .id {
           width: 100%;
           text-align: center;
           position: relative;
-          top: 18px;
           color: grey;
+          margin-bottom: 20px;
         }
-         .talent-team-name {
-           width: 100%;
-           text-align: center;
-           position: relative;
-           top: 25px;
-           font-size: 18px;
-         }
-         .talent-team-id {
-           width: 100%;
-           text-align: center;
-           position: relative;
-           top: 20px;
-           color: grey;
-         }
+        .talent-team-name {
+          width: 100%;
+          text-align: center;
+          position: relative;
+          font-size: 18px;
+          margin-bottom: 0px;
+        }
+        .talent-team-id {
+          width: 100%;
+          text-align: center;
+          position: relative;
+          color: grey;
+          margin-bottom: 25px;
+        }
         .budget {
           width: 100%;
           text-align: center;
           position: relative;
-          top: 25px;
-          margin-bottom: 30px;
           color: #E46A35;
           font-size: 18px;
+          margin-bottom: 20px;
         }
-
       </style>
       <img style="margin-bottom: 10px" src="${imgURL}" onerror="this.src='${defaultImgURL}'" alt="${name}" width="100" height="100" class=portrait>
       <div class="name"><a href="./profile?id=${id}">${name}</a></div>
