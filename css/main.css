@@ -84,6 +84,9 @@ a {
 .sidenav a:hover {
 	color: #DDDDDD;
 }
+.navbar-form{
+	color: white;
+}
 
 /* Style page content */
 .main {
