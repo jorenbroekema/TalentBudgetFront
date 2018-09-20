@@ -134,7 +134,6 @@ export class YoungColfield extends PolymerElement {
   }
 
   returnfromdelete(response) {
-    console.log(response);
     this._startajax();
   }
 
@@ -146,16 +145,14 @@ export class YoungColfield extends PolymerElement {
       name: this.inputName,
       budget: this.inputBudget,
       talentTeam: {
-        id: DOMElems.teamID.value,
+        id: this.inputTeamID,
       }
     }
-    console.log(submitData);
     ajax.body = JSON.stringify(submitData);
     ajax.generateRequest()
   }
 
   returnfromadd(response) {
-    console.log(response);
     this._startajax();
   }
   
@@ -183,7 +180,6 @@ export class YoungColfield extends PolymerElement {
                               team: { id:response[i].talentTeam.id, 
                                       teamname:response[i].talentTeam.teamname } });
     }
-    //console.log(this.talents);
   }
 }
 
