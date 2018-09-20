@@ -53,8 +53,8 @@ export function loadTeams(){
           id: 'null',
           teamname: 'null'
         }
-      };
-      teamsElHTML += `
+      }else{
+        teamsElHTML += `
         <li class="list-group-item">
           <budget-talent
             id=${talent.id}
@@ -66,6 +66,7 @@ export function loadTeams(){
           ></budget-talent>
         </li>
       `;
+      }
     });
     teamsElHTML += `</ul></div>`;
     talentTeamElement.innerHTML = teamsElHTML;
