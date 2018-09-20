@@ -95,19 +95,17 @@ function loadTeams(){
           ></budget-talent>
         </li>
       `;
-      console.log(teamsElHTML);
     })
-    teamsElHTML += `</ul></div>`
-    console.log(teamsElHTML);
+    teamsElHTML += `</ul></div>`;
     talentTeamElement.innerHTML = teamsElHTML;
   })
 
   getData(api).then( (response) => {
     response.forEach(team => {
-      teamsNavHTML+=`<li><a data-toggle="tab" href="#${team.teamname}">${team.teamname}</a></li>` ;
+      teamsNavHTML+=`<li><a data-toggle="tab" href="#${team.teamname.replace(/\s+/g, '-')}">${team.teamname}</a></li>` ;
       const api_perteam = `api/talentteam/${team.id}/teammembers`; 
       getData(api_perteam).then( (response_team) =>{
-          teamsElHTML +=`<div id="${team.teamname}" class="tab-pane fade">
+          teamsElHTML +=`<div id="${team.teamname.replace(/\s+/g, '-')}" class="tab-pane fade">
           <h3>${team.teamname} </h3><ul>`;
           response_team.forEach(member =>{
             if (member.talentTeam == null) {
@@ -129,7 +127,7 @@ function loadTeams(){
               </li>
             `;
           })
-          teamsElHTML += `</ul></div>`
+          teamsElHTML += `</ul></div>`;
           talentTeamElement.innerHTML = teamsElHTML;
         }); 
     });
