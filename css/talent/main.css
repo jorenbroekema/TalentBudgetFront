@@ -56,6 +56,10 @@ body {
     font-size:16px;
 }
 
+.nav-tabs {
+  margin-top: 60px;
+}
+
 .list-group {
   display: flex;
   justify-content: center;
