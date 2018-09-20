@@ -3,36 +3,7 @@ import { postData, deleteData, getData } from '../AjaxMixin.js';
 import { getNavUsers } from '../navbar.js';
 
 loadTeams();
-/*
-function showTalents(api){
-  getData(api).then( (response)=> {
-      let newInnerHTML = '';
-      for (var i = 0; i < response.length; i++) {
-        if (response[i].talentTeam == null) {
-          response[i].talentTeam = {
-            id: 'null',
-            teamname: 'null'
-          };
-        }
-        newInnerHTML += `
-          <li class="list-group-item">
-            <budget-talent
-              id=${response[i].id}
-              name="${response[i].name}"
-              budget="${response[i].budget}"
-              expenditures='${JSON.stringify(response[i].expenditures)}' 
-              talent-team-name="${response[i].talentTeam.teamname}"
-              talent-team-id=${response[i].talentTeam.id}
-            ></budget-talent>
-          </li>
-        `;
-      }
-      document.querySelector('.tab-content').innerHTML = newInnerHTML;
-    }
-  );
-}
-*/
-// Add new talent:
+
 const newTalentButton = document.getElementById('submit-new-talent');
 newTalentButton.addEventListener('click', submitNewTalent);
 
@@ -53,12 +24,10 @@ function submitNewTalent() {
   const JSONdata = JSON.stringify(submitData);
   postData('api/talent', JSONdata).then( () => {
     loadTeams();
-    //showTalents('api/talent/all'); 
     getNavUsers();
   });
 };
 
-// Delete talent:
 const deleteTalentButton = document.getElementById('submit-delete-talent');
 deleteTalentButton.addEventListener('click', deleteTalent);
 
@@ -66,7 +35,6 @@ function deleteTalent() {
   const id = document.getElementById('input-id').value;
   deleteData(id, 'api/talent').then( () => {
     loadTeams();
-    //showTalents('api/talent/all');
     getNavUsers();
   });
 }
