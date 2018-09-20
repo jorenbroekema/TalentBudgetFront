@@ -18,11 +18,10 @@
 
     <!-- Font Awesome Icons -->
     <link href="./node_modules/@fortawesome/fontawesome-free/css/all.min.css" rel="stylesheet">
+    <link href="./css/main.css" rel="stylesheet">
 
     <script type="module" src="./js/components/Talent.js"></script>
     
-    <script type="module" src='./js/pages/talent.js'>
-    </script>
   </head>
   <body>
     <!-- Nav bar element -->
@@ -58,6 +57,17 @@
 
     <div id="global-modal-container">
 
+    </div>
+
+    <!--Talentteam objects-->
+    <div class="talentteam-container">  
+      <ul class ="nav nav-tabs">
+        <li class="active"><a data-toggle="tab" href="#all">All Talents</a></li>
+      </ul>
+    </div>
+      
+    <div class="tab-content">
+        <div id="all" class="tab-pane fade in active"> <h3>All Talents</h3></div>
     </div>
 
     <div class="modal-wrapper">
@@ -128,6 +138,7 @@
       <ul class="list-group" id="ajaxResponseTalents">
       </ul>
     </div>
+
     <a href="http://127.0.0.1:8081/components/talentbudgetfront/talentPolymer.html">Click here to switch to the Polymer Talent Page!</a>
 
     </div>

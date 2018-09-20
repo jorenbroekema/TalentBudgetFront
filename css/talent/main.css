@@ -36,6 +36,12 @@ body {
   flex-flow: row wrap;
 }
 
+.tab-content div ul{
+  display: flex;
+  justify-content: center;
+  flex-flow: row wrap;
+}
+
 .list-group-item {
   width: 200px;
   margin: 10px;
@@ -47,15 +53,6 @@ body {
   margin: auto;
 }
 
-.icon{
-  display: none !important;
-}
-
-budget-talent /deep/ budget-expenditure /deep/ .icon{
-  display: none !important;
-}
-
-/*
 .new-talent-container{
   padding: 0 15px;
   width: 100%;
@@ -106,7 +103,7 @@ budget-talent /deep/ budget-expenditure /deep/ .icon{
   width: 200px;
   height: 30px;
   text-align: center;
-}*/
+}
 
 
 
