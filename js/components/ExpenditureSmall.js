@@ -1,5 +1,5 @@
 import { patchData, deleteData } from '../../js/AjaxMixin.js';
-import { reloadProfileData } from '../../js/pages/profile.js';
+import { loadTeams } from '../pages/talent.js';
 
 class BudgetExpenditureSmall extends HTMLElement {
   constructor(){
@@ -10,11 +10,8 @@ class BudgetExpenditureSmall extends HTMLElement {
     const shadow = this.attachShadow({ mode: 'open' });
     const expenditureContainer = document.createElement('div');
     const title = this.title;
-    const icon = this.icon;
-    const budget = this.budget;
     const state = this.state;
     const ex_id = this.expenditureID;
-    let stateIcon;
 
     switch(state){
       case 'approved': 
@@ -181,31 +178,31 @@ class BudgetExpenditureSmall extends HTMLElement {
 
   ex_approve(expenditureID){
     patchData(`api/expenditure/${expenditureID}/state/1`).then( (response) => {
-      reloadProfileData(this.talent_id);
+      loadTeams();
     });
   }
 
   ex_request(expenditureID){
     patchData(`api/expenditure/${expenditureID}/state/2`).then( (response) => {
-      reloadProfileData(this.talent_id);
+      loadTeams();
     });
   }
 
   ex_decline(expenditureID){
     patchData(`api/expenditure/${expenditureID}/state/3`).then( (response) => {
-      reloadProfileData(this.talent_id);
+      loadTeams();
     });
   }
   
   ex_finish(expenditureID){
     patchData(`api/expenditure/${expenditureID}/state/4`).then( (response) => {
-      reloadProfileData(this.talent_id);
+      loadTeams();
     });
   }
 
   ex_delete(expenditureID){
     deleteData(`api/user/${this.talent_id}/expenditure/${expenditureID}`).then( (response) => {
-      reloadProfileData(this.talent_id);
+      loadTeams();
     });
   }
 
